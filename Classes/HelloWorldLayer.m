@@ -2,7 +2,7 @@
 //  HelloWorldLayer.m
 //  Perm and Comb
 //
-//  Created by System Administrator on 12/9/11.
+//  Created by mbilker on 12/9/11.
 //  Copyright mbilker 2011. All rights reserved.
 //
 
@@ -55,7 +55,7 @@
 		// Set up score and score label
         _score = 0;
         _oldScore = -1;
-        self.scoreLabel = [CCLabelTTF labelWithString:@"" dimensions:CGSizeMake(100, 50) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:32];
+        self.scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" dimensions:CGSizeMake(150, 50) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:32];
         _scoreLabel.position = ccp(winSize.width - _scoreLabel.contentSize.width/2, _scoreLabel.contentSize.height/2);
         _scoreLabel.color = ccc3(0,0,0);
         [self addChild:_scoreLabel];
@@ -268,10 +268,10 @@
 		
 		//if (targetsToDelete.count > 0) {
 		//	[projectilesToDelete addObject:projectile];
-			if (monsterHit) {
-				[projectilesToDelete addObject:projectile];
-				[[SimpleAudioEngine sharedEngine] playEffect:@"explosion.caf"];
-			}
+        if (monsterHit) {
+            [projectilesToDelete addObject:projectile];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"explosion.caf"];
+        }
 		//}
 		[targetsToDelete release];
 	}
@@ -285,7 +285,7 @@
 	// Update score only when it changes for efficiency
 	if (_score != _oldScore) {
 		_oldScore = _score;
-		[_scoreLabel setString:[NSString stringWithFormat:@"%d", _score]];
+		[_scoreLabel setString:[NSString stringWithFormat:@"Score: %d", _score]];
 	}
 }
 

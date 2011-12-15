@@ -2,8 +2,8 @@
 //  Projectile.h
 //  Perm and Comb
 //
-//  Created by System Administrator on 12/15/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by mbilker on 12/15/11.
+//  Copyright 2011 mbilker. All rights reserved.
 //
 
 #import "cocos2d.h"
