@@ -50,21 +50,24 @@
 		
 		_player = [[CCSprite spriteWithFile:@"Player.png"] retain];
 		_player.position = ccp(_player.contentSize.width/2, winSize.height/2);
-		[self addChild:_player z:1];
+		[self addChild:_player z:0];
 		
 		// Set up score and score label
         _score = 0;
         _oldScore = -1;
-        self.scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" dimensions:CGSizeMake(150, 50) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:32];
+        self.scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" dimensions:CGSizeMake(175, 50) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:32];
         _scoreLabel.position = ccp(winSize.width - _scoreLabel.contentSize.width/2, _scoreLabel.contentSize.height/2);
         _scoreLabel.color = ccc3(0,0,0);
-        [self addChild:_scoreLabel];
+        [self addChild:_scoreLabel z:1];
 		
+        // Max Score
 		_maxScore = 30;
 		
+        // Game Logic
 		[self schedule:@selector(gameLogic:) interval:1.0];
 		[self schedule:@selector(update:)];
 		
+        // Background Music
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
 	}
 	return self;
@@ -126,8 +129,8 @@
 	[self addChild:target];
 	
 	// Determine speed of the target
-	int minDuration = target.minMoveDuration; //2.0;
-	int maxDuration = target.maxMoveDuration; //4.0;
+	int minDuration = target.minMoveDuration;
+	int maxDuration = target.maxMoveDuration;
 	int rangeDuration = maxDuration - minDuration;
 	int actualDuration = (arc4random() % rangeDuration) + minDuration;
 	
