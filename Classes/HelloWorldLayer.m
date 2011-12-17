@@ -119,7 +119,7 @@
 		if (_health == 0) {
             _projectileOffScreen = 0;
 			GameOverScene *gameOverScene = [GameOverScene node];
-			[gameOverScene.layer.label setString:@"You Lose"];
+			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\nScore: %d",_score]];
 			[[CCDirector sharedDirector] replaceScene:gameOverScene];
 		}
 	} else if (sprite.tag == 2) { // projectile
