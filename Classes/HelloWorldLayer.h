@@ -19,6 +19,7 @@
 	int _score;
 	int _oldScore;
 	int _health;
+    int _projectileOffScreen;
     CCProgressTimer *_healthBar;
     CCSprite *_player;
     CCSprite *_nextProjectile;

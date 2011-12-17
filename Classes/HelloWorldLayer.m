@@ -75,7 +75,9 @@
         _healthBar.percentage = _health;
         [self addChild:_healthBar z:0];
         
-		
+		// Off Screen Projectiles
+        _projectileOffScreen = 0;
+        
         // Game Logic
 		[self schedule:@selector(gameLogic:) interval:1.0];
 		[self schedule:@selector(update:)];
@@ -114,11 +116,14 @@
         [_healthBar setPercentage:_health];
 		//NSLog(@"%d",_health);
 		if (_health == 0) {
+            _projectileOffScreen = 0;
 			GameOverScene *gameOverScene = [GameOverScene node];
 			[gameOverScene.layer.label setString:@"You Lose"];
 			[[CCDirector sharedDirector] replaceScene:gameOverScene];
 		}
 	} else if (sprite.tag == 2) { // projectile
+        _projectileOffScreen ++;
+        NSLog(@"Project Off Screen: %d",_projectileOffScreen);
 		[_projectiles removeObject:sprite];
 	}
 	
