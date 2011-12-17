@@ -66,14 +66,14 @@
 		_maxScore = 30;
 		
 		// Health
-		_health = 4;
+		_health = 100;
         
         // Health Bar
         self.healthBar = [CCProgressTimer progressWithFile:@"health.png"];
         _healthBar.type = kCCProgressTimerTypeHorizontalBarLR;
         _healthBar.position = ccp(30,30);
-        _healthBar.percentage = 400;
-        [self addChild:_healthBar z:1];
+        _healthBar.percentage = _health;
+        [self addChild:_healthBar z:0];
         
 		
         // Game Logic
@@ -110,7 +110,8 @@
 	[self removeChild:sprite cleanup:YES];
 	if (sprite.tag == 1) { // target
 		[_targets removeObject:sprite];
-		_health--;
+		_health -= 25;
+        [_healthBar setPercentage:_health];
 		//NSLog(@"%d",_health);
 		if (_health == 0) {
 			GameOverScene *gameOverScene = [GameOverScene node];
