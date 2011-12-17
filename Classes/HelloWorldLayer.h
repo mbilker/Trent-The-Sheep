@@ -18,6 +18,7 @@
 	CCLabelTTF *_scoreLabel;
 	int _score;
 	int _oldScore;
+	int _health;
     CCSprite *_player;
     CCSprite *_nextProjectile;
     NSMutableArray *_targets;

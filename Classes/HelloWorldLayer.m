@@ -63,6 +63,9 @@
         // Max Score
 		_maxScore = 30;
 		
+		// Health
+		_health = 4;
+		
         // Game Logic
 		[self schedule:@selector(gameLogic:) interval:1.0];
 		[self schedule:@selector(update:)];
@@ -97,9 +100,13 @@
 	[self removeChild:sprite cleanup:YES];
 	if (sprite.tag == 1) { // target
 		[_targets removeObject:sprite];
-		GameOverScene *gameOverScene = [GameOverScene node];
-		[gameOverScene.layer.label setString:@"You Lose :["];
-		[[CCDirector sharedDirector] replaceScene:gameOverScene];
+		_health--;
+		//NSLog(@"%d",_health);
+		if (_health == 0) {
+			GameOverScene *gameOverScene = [GameOverScene node];
+			[gameOverScene.layer.label setString:@"You Lose"];
+			[[CCDirector sharedDirector] replaceScene:gameOverScene];
+		}
 	} else if (sprite.tag == 2) { // projectile
 		[_projectiles removeObject:sprite];
 	}
