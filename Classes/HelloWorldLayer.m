@@ -70,8 +70,9 @@
         
         // Health Bar
         self.healthBar = [CCProgressTimer progressWithFile:@"health.png"];
+        _healthBar.scale = 0.35;
         _healthBar.type = kCCProgressTimerTypeHorizontalBarLR;
-        _healthBar.position = ccp(30,30);
+        _healthBar.position = ccp(100,45);
         _healthBar.percentage = _health;
         [self addChild:_healthBar z:0];
         
@@ -123,8 +124,14 @@
 		}
 	} else if (sprite.tag == 2) { // projectile
         _projectileOffScreen ++;
-        NSLog(@"Project Off Screen: %d",_projectileOffScreen);
+        //NSLog(@"Project Off Screen: %d",_projectileOffScreen);
 		[_projectiles removeObject:sprite];
+        if(_projectileOffScreen == 30) {
+            GameOverScene *gameOverScene = [GameOverScene node];
+			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\n%d projectiles went offscreen",_projectileOffScreen]];
+            _projectileOffScreen = 0;
+			[[CCDirector sharedDirector] replaceScene:gameOverScene];
+        }
 	}
 	
 }
@@ -287,7 +294,7 @@
 			if (_projectilesDestroyed > _maxScore) {
 				GameOverScene *gameOverScene = [GameOverScene node];
 				_projectilesDestroyed = 0;
-				[gameOverScene.layer.label setString:@"You Win!"];
+				[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Win!\nScore: %d", _score]];
 				[[CCDirector sharedDirector] replaceScene:gameOverScene];
 			}
 		}
