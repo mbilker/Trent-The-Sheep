@@ -19,6 +19,7 @@
 	int _score;
 	int _oldScore;
 	int _health;
+    CCProgressTimer *_healthBar;
     CCSprite *_player;
     CCSprite *_nextProjectile;
     NSMutableArray *_targets;
@@ -27,6 +28,8 @@
 
 @property (nonatomic, assign) CCLabelTTF *scoreLabel;
 @property (nonatomic, retain) CCSprite *nextProjectile;
+@property (nonatomic, retain) CCProgressTimer *healthBar;
+
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 

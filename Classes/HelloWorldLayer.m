@@ -37,6 +37,8 @@
 // on "init" you need to initialize your instance
 @synthesize scoreLabel = _scoreLabel;
 @synthesize nextProjectile = _nextProjectile;
+@synthesize healthBar = _healthBar;
+
 -(id) init
 {
 	if( (self=[super initWithColor:ccc4(255,255,255,255)] )) {
@@ -58,13 +60,21 @@
         self.scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" dimensions:CGSizeMake(175, 50) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:32];
         _scoreLabel.position = ccp(winSize.width - _scoreLabel.contentSize.width/2, _scoreLabel.contentSize.height/2);
         _scoreLabel.color = ccc3(0,0,0);
-        [self addChild:_scoreLabel z:1];
+        [self addChild:_scoreLabel z:0];
 		
         // Max Score
 		_maxScore = 30;
 		
 		// Health
 		_health = 4;
+        
+        // Health Bar
+        self.healthBar = [CCProgressTimer progressWithFile:@"health.png"];
+        _healthBar.type = kCCProgressTimerTypeHorizontalBarLR;
+        _healthBar.position = ccp(30,30);
+        _healthBar.percentage = 400;
+        [self addChild:_healthBar z:1];
+        
 		
         // Game Logic
 		[self schedule:@selector(gameLogic:) interval:1.0];
