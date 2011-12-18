@@ -152,7 +152,10 @@
 }
 
 -(void)addTarget {
-	
+    
+	NSUInteger n;
+    n = _score;
+    NSLog(@"Score Factorial: %d",n);
 	//CCSprite *target = [CCSprite spriteWithFile:@"Target.png" rect:CGRectMake(0, 0, 27, 40)]; 
 	Monster *target = nil;
 	if ((arc4random() % 2) == 0) {

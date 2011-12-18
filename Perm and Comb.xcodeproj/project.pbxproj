@@ -65,6 +65,18 @@
 		650FEF95149E87D8002496BD /* Arial.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF91149E87D8002496BD /* Arial.fnt */; };
 		650FEF96149E87D8002496BD /* Arial.png in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF92149E87D8002496BD /* Arial.png */; };
 		650FEFA2149EAC9B002496BD /* OpenFeint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFA1149EAC9B002496BD /* OpenFeint.framework */; };
+		650FEFA4149EAD76002496BD /* OFResources_iPhone_Landscape.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 650FEFA3149EAD75002496BD /* OFResources_iPhone_Landscape.bundle */; };
+		650FEFA6149EAF9A002496BD /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFA5149EAF9A002496BD /* GameKit.framework */; };
+		650FEFA8149EAFA6002496BD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFA7149EAFA6002496BD /* AddressBook.framework */; };
+		650FEFAA149EAFAC002496BD /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFA9149EAFAB002496BD /* AddressBookUI.framework */; };
+		650FEFAC149EAFB8002496BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFAB149EAFB8002496BD /* CFNetwork.framework */; };
+		650FEFAE149EAFCA002496BD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFAD149EAFCA002496BD /* CoreLocation.framework */; };
+		650FEFB0149EAFD8002496BD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFAF149EAFD7002496BD /* CoreText.framework */; };
+		650FEFB2149EAFEE002496BD /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFB1149EAFEE002496BD /* libsqlite3.0.dylib */; };
+		650FEFB4149EB021002496BD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFB3149EB020002496BD /* MapKit.framework */; };
+		650FEFB6149EB02D002496BD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFB5149EB02D002496BD /* MobileCoreServices.framework */; };
+		650FEFB8149EB03C002496BD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFB7149EB03B002496BD /* Security.framework */; };
+		650FEFBA149EB045002496BD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFB9149EB045002496BD /* SystemConfiguration.framework */; };
 		651432FA149E72FC0018A326 /* AboutScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 651432F9149E72FC0018A326 /* AboutScene.m */; };
 		652178AB149C3F3100BBF004 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = 652178AA149C3F3100BBF004 /* health.png */; };
 		6525F26B149D33D50075AB9D /* factorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6525F26A149D33D50075AB9D /* factorial.m */; };
@@ -333,6 +345,18 @@
 		650FEF91149E87D8002496BD /* Arial.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Arial.fnt; sourceTree = "<group>"; };
 		650FEF92149E87D8002496BD /* Arial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arial.png; sourceTree = "<group>"; };
 		650FEFA1149EAC9B002496BD /* OpenFeint.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenFeint.framework; sourceTree = "<group>"; };
+		650FEFA3149EAD75002496BD /* OFResources_iPhone_Landscape.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = OFResources_iPhone_Landscape.bundle; sourceTree = "<group>"; };
+		650FEFA5149EAF9A002496BD /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		650FEFA7149EAFA6002496BD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		650FEFA9149EAFAB002496BD /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		650FEFAB149EAFB8002496BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		650FEFAD149EAFCA002496BD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		650FEFAF149EAFD7002496BD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		650FEFB1149EAFEE002496BD /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		650FEFB3149EB020002496BD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		650FEFB5149EB02D002496BD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		650FEFB7149EB03B002496BD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		650FEFB9149EB045002496BD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		651432F8149E72FB0018A326 /* AboutScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutScene.h; sourceTree = "<group>"; };
 		651432F9149E72FC0018A326 /* AboutScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutScene.m; sourceTree = "<group>"; };
 		652178AA149C3F3100BBF004 /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = health.png; sourceTree = "<group>"; };
@@ -537,6 +561,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				650FEFBA149EB045002496BD /* SystemConfiguration.framework in Frameworks */,
+				650FEFB8149EB03C002496BD /* Security.framework in Frameworks */,
+				650FEFB6149EB02D002496BD /* MobileCoreServices.framework in Frameworks */,
+				650FEFB4149EB021002496BD /* MapKit.framework in Frameworks */,
+				650FEFB2149EAFEE002496BD /* libsqlite3.0.dylib in Frameworks */,
+				650FEFB0149EAFD8002496BD /* CoreText.framework in Frameworks */,
+				650FEFAE149EAFCA002496BD /* CoreLocation.framework in Frameworks */,
+				650FEFAC149EAFB8002496BD /* CFNetwork.framework in Frameworks */,
+				650FEFAA149EAFAC002496BD /* AddressBookUI.framework in Frameworks */,
+				650FEFA8149EAFA6002496BD /* AddressBook.framework in Frameworks */,
+				650FEFA6149EAF9A002496BD /* GameKit.framework in Frameworks */,
 				DCCBF1B70F6022AE0040855A /* CoreGraphics.framework in Frameworks */,
 				DCCBF1B90F6022AE0040855A /* Foundation.framework in Frameworks */,
 				DCCBF1BB0F6022AE0040855A /* OpenGLES.framework in Frameworks */,
@@ -580,8 +615,20 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				650FEFB9149EB045002496BD /* SystemConfiguration.framework */,
+				650FEFB7149EB03B002496BD /* Security.framework */,
+				650FEFB5149EB02D002496BD /* MobileCoreServices.framework */,
+				650FEFB3149EB020002496BD /* MapKit.framework */,
+				650FEFB1149EAFEE002496BD /* libsqlite3.0.dylib */,
+				650FEFAF149EAFD7002496BD /* CoreText.framework */,
+				650FEFAD149EAFCA002496BD /* CoreLocation.framework */,
+				650FEFAB149EAFB8002496BD /* CFNetwork.framework */,
+				650FEFA9149EAFAB002496BD /* AddressBookUI.framework */,
+				650FEFA7149EAFA6002496BD /* AddressBook.framework */,
+				650FEFA5149EAF9A002496BD /* GameKit.framework */,
 				504DFC6810AF1739006D82FE /* LICENSE.cocos2d */,
 				504DFC6910AF1739006D82FE /* LICENSE.cocosdenshion */,
+				650FEFA3149EAD75002496BD /* OFResources_iPhone_Landscape.bundle */,
 				650FEF8D149E8755002496BD /* Fonts */,
 				506EDAA3102F461B00A389B3 /* cocos2d Sources */,
 				2D500B1D0D5A766B00DBA0E3 /* Classes */,
@@ -1195,6 +1242,7 @@
 				650FEF94149E87D8002496BD /* Arial-hd.png in Resources */,
 				650FEF95149E87D8002496BD /* Arial.fnt in Resources */,
 				650FEF96149E87D8002496BD /* Arial.png in Resources */,
+				650FEFA4149EAD76002496BD /* OFResources_iPhone_Landscape.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1344,7 +1392,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Perm_and_Comb_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1371,7 +1419,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Perm_and_Comb_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;
