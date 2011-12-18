@@ -60,6 +60,10 @@
 		616D15AC14927DBF00A6B895 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 616D15AB14927DBF00A6B895 /* background-music-aac.caf */; };
 		616D15B214927DEB00A6B895 /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 616D15B114927DEB00A6B895 /* pew-pew-lei.caf */; };
 		650581C7149E675500FFCC21 /* Probability.m in Sources */ = {isa = PBXBuildFile; fileRef = 650581C6149E675500FFCC21 /* Probability.m */; };
+		650FEF93149E87D8002496BD /* Arial-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF8F149E87D8002496BD /* Arial-hd.fnt */; };
+		650FEF94149E87D8002496BD /* Arial-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF90149E87D8002496BD /* Arial-hd.png */; };
+		650FEF95149E87D8002496BD /* Arial.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF91149E87D8002496BD /* Arial.fnt */; };
+		650FEF96149E87D8002496BD /* Arial.png in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF92149E87D8002496BD /* Arial.png */; };
 		651432FA149E72FC0018A326 /* AboutScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 651432F9149E72FC0018A326 /* AboutScene.m */; };
 		652178AB149C3F3100BBF004 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = 652178AA149C3F3100BBF004 /* health.png */; };
 		6525F26B149D33D50075AB9D /* factorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6525F26A149D33D50075AB9D /* factorial.m */; };
@@ -323,6 +327,10 @@
 		616D15B114927DEB00A6B895 /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
 		650581C5149E675500FFCC21 /* Probability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Probability.h; sourceTree = "<group>"; };
 		650581C6149E675500FFCC21 /* Probability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Probability.m; sourceTree = "<group>"; };
+		650FEF8F149E87D8002496BD /* Arial-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Arial-hd.fnt"; sourceTree = "<group>"; };
+		650FEF90149E87D8002496BD /* Arial-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Arial-hd.png"; sourceTree = "<group>"; };
+		650FEF91149E87D8002496BD /* Arial.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Arial.fnt; sourceTree = "<group>"; };
+		650FEF92149E87D8002496BD /* Arial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arial.png; sourceTree = "<group>"; };
 		651432F8149E72FB0018A326 /* AboutScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutScene.h; sourceTree = "<group>"; };
 		651432F9149E72FC0018A326 /* AboutScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutScene.m; sourceTree = "<group>"; };
 		652178AA149C3F3100BBF004 /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = health.png; sourceTree = "<group>"; };
@@ -571,6 +579,7 @@
 			children = (
 				504DFC6810AF1739006D82FE /* LICENSE.cocos2d */,
 				504DFC6910AF1739006D82FE /* LICENSE.cocosdenshion */,
+				650FEF8D149E8755002496BD /* Fonts */,
 				506EDAA3102F461B00A389B3 /* cocos2d Sources */,
 				2D500B1D0D5A766B00DBA0E3 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -718,6 +727,18 @@
 				50F414EF1069373D002A0D5E /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		650FEF8D149E8755002496BD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				650FEF8F149E87D8002496BD /* Arial-hd.fnt */,
+				650FEF90149E87D8002496BD /* Arial-hd.png */,
+				650FEF91149E87D8002496BD /* Arial.fnt */,
+				650FEF92149E87D8002496BD /* Arial.png */,
+			);
+			name = Fonts;
+			path = Resources/Fonts;
 			sourceTree = "<group>";
 		};
 		E02BB764126CC223006E46A2 /* cocos2d */ = {
@@ -1166,6 +1187,10 @@
 				615667A2149290E4009288EB /* explosion.caf in Resources */,
 				652178AB149C3F3100BBF004 /* health.png in Resources */,
 				653775D1149E665A002CD765 /* about.png in Resources */,
+				650FEF93149E87D8002496BD /* Arial-hd.fnt in Resources */,
+				650FEF94149E87D8002496BD /* Arial-hd.png in Resources */,
+				650FEF95149E87D8002496BD /* Arial.fnt in Resources */,
+				650FEF96149E87D8002496BD /* Arial.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@
 #import "Monster.h"
 #import "Projectile.h"
 #import "factorial.h"
+#import "AboutScene.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -98,7 +99,9 @@
 }
 
 - (void)aboutButtonTapped:(id)sender {
-    NSLog(@"About Button Tapped");
+    //NSLog(@"About Button Tapped");
+    AboutScene *aboutlayer = [AboutLayer node];
+    [[CCDirector sharedDirector] replaceScene:aboutlayer];
 }
 
 // on "dealloc" you need to release all your retained objects

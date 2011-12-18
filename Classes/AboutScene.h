@@ -9,9 +9,9 @@
 #import "cocos2d.h"
 
 @interface AboutLayer : CCLayerColor {
-    
+    CCLabelBMFont *_label;
 }
-
+@property (nonatomic, retain) CCLabelBMFont *label;
 @end
 
 @interface AboutScene : CCScene {
