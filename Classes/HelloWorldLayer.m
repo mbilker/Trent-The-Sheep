@@ -49,11 +49,18 @@
 		_targets = [[NSMutableArray alloc] init];
 		_projectiles = [[NSMutableArray alloc] init];
 		
+        // Setup Player
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
-		
 		_player = [[CCSprite spriteWithFile:@"Player.png"] retain];
 		_player.position = ccp(_player.contentSize.width/2, winSize.height/2);
 		[self addChild:_player z:0];
+        
+        // Setup about window
+        CCMenuItem *aboutMenuItem = [CCMenuItemImage itemFromNormalImage:@"about.png" selectedImage:@"about.png" target:self selector:@selector(aboutButtonTapped:)];
+        aboutMenuItem.position = ccp((winSize.width - 20),(winSize.height - 20));
+        CCMenu *aboutMenu = [CCMenu menuWithItems:aboutMenuItem, nil];
+        aboutMenu.position = CGPointZero;
+        [self addChild:aboutMenu];
 		
 		// Set up score and score label
         _score = 0;
@@ -88,6 +95,10 @@
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
 	}
 	return self;
+}
+
+- (void)aboutButtonTapped:(id)sender {
+    NSLog(@"About Button Tapped");
 }
 
 // on "dealloc" you need to release all your retained objects

@@ -60,6 +60,7 @@
 		616D15AC14927DBF00A6B895 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 616D15AB14927DBF00A6B895 /* background-music-aac.caf */; };
 		616D15B214927DEB00A6B895 /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 616D15B114927DEB00A6B895 /* pew-pew-lei.caf */; };
 		650581C7149E675500FFCC21 /* Probability.m in Sources */ = {isa = PBXBuildFile; fileRef = 650581C6149E675500FFCC21 /* Probability.m */; };
+		651432FA149E72FC0018A326 /* AboutScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 651432F9149E72FC0018A326 /* AboutScene.m */; };
 		652178AB149C3F3100BBF004 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = 652178AA149C3F3100BBF004 /* health.png */; };
 		6525F26B149D33D50075AB9D /* factorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6525F26A149D33D50075AB9D /* factorial.m */; };
 		653775D1149E665A002CD765 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 653775D0149E665A002CD765 /* about.png */; };
@@ -322,6 +323,8 @@
 		616D15B114927DEB00A6B895 /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
 		650581C5149E675500FFCC21 /* Probability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Probability.h; sourceTree = "<group>"; };
 		650581C6149E675500FFCC21 /* Probability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Probability.m; sourceTree = "<group>"; };
+		651432F8149E72FB0018A326 /* AboutScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutScene.h; sourceTree = "<group>"; };
+		651432F9149E72FC0018A326 /* AboutScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutScene.m; sourceTree = "<group>"; };
 		652178AA149C3F3100BBF004 /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = health.png; sourceTree = "<group>"; };
 		6525F269149D33D50075AB9D /* factorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factorial.h; sourceTree = "<group>"; };
 		6525F26A149D33D50075AB9D /* factorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = factorial.m; sourceTree = "<group>"; };
@@ -613,6 +616,8 @@
 				E0F80F5D120A0182005866B8 /* GameConfig.h */,
 				506EDC2F102F528A00A389B3 /* HelloWorldLayer.h */,
 				506EDC30102F528A00A389B3 /* HelloWorldLayer.m */,
+				651432F8149E72FB0018A326 /* AboutScene.h */,
+				651432F9149E72FC0018A326 /* AboutScene.m */,
 				61124727149A5E5A00114AE3 /* Projectile.h */,
 				61124728149A5E5A00114AE3 /* Projectile.m */,
 				6525F269149D33D50075AB9D /* factorial.h */,
@@ -1180,6 +1185,7 @@
 				61124729149A5E5A00114AE3 /* Projectile.m in Sources */,
 				6525F26B149D33D50075AB9D /* factorial.m in Sources */,
 				650581C7149E675500FFCC21 /* Probability.m in Sources */,
+				651432FA149E72FC0018A326 /* AboutScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
