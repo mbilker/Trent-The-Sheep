@@ -13,6 +13,7 @@
 #import "GameOverScene.h"
 #import "Monster.h"
 #import "Projectile.h"
+#import "factorial.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
