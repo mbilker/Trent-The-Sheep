@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class OFDelegate;
+@class OFNotificationDelegate;
 @class RootViewController;
 
 @interface Perm_and_CombAppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
+    OFDelegate *ofDelegate;
+    OFNotificationDelegate *ofNotificationDelegate;
 }
 
 @property (nonatomic, retain) UIWindow *window;

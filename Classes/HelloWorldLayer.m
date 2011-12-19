@@ -44,7 +44,7 @@
 -(id) init
 {
 	if( (self=[super initWithColor:ccc4(255,255,255,255)] )) {
-		
+        
 		self.isTouchEnabled = YES;
 		
 		_targets = [[NSMutableArray alloc] init];
@@ -155,7 +155,7 @@
     
 	NSUInteger n;
     n = _score;
-    NSLog(@"Score Factorial: %d",n);
+    NSLog(@"Score Factorial: %d",RRFactorial(n));
 	//CCSprite *target = [CCSprite spriteWithFile:@"Target.png" rect:CGRectMake(0, 0, 27, 40)]; 
 	Monster *target = nil;
 	if ((arc4random() % 2) == 0) {
