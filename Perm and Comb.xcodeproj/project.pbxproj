@@ -59,6 +59,9 @@
 		616D157C14927AF100A6B895 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 616D157B14927AF100A6B895 /* Projectile.png */; };
 		616D15AC14927DBF00A6B895 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 616D15AB14927DBF00A6B895 /* background-music-aac.caf */; };
 		616D15B214927DEB00A6B895 /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 616D15B114927DEB00A6B895 /* pew-pew-lei.caf */; };
+		65001511149F0DC500DCA0B5 /* OpenFeint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65001510149F0DC500DCA0B5 /* OpenFeint.framework */; };
+		65001518149F0F3D00DCA0B5 /* Delegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65001515149F0F3D00DCA0B5 /* Delegate.mm */; };
+		65001519149F0F3D00DCA0B5 /* NotificationDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65001517149F0F3D00DCA0B5 /* NotificationDelegate.mm */; };
 		650581C7149E675500FFCC21 /* Probability.m in Sources */ = {isa = PBXBuildFile; fileRef = 650581C6149E675500FFCC21 /* Probability.m */; };
 		650FEF93149E87D8002496BD /* Arial-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF8F149E87D8002496BD /* Arial-hd.fnt */; };
 		650FEF94149E87D8002496BD /* Arial-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF90149E87D8002496BD /* Arial-hd.png */; };
@@ -78,7 +81,6 @@
 		651432FA149E72FC0018A326 /* AboutScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 651432F9149E72FC0018A326 /* AboutScene.m */; };
 		651D42AF149EECFC00C98D96 /* openfeint_offline_config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 651D42AE149EECFC00C98D96 /* openfeint_offline_config.xml */; };
 		651D42C1149EFD2700C98D96 /* OFResources_iPhone_Landscape.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 651D42C0149EFD2700C98D96 /* OFResources_iPhone_Landscape.bundle */; };
-		651D42C8149F085000C98D96 /* OpenFeint Delegates in Resources */ = {isa = PBXBuildFile; fileRef = 651D42C7149F085000C98D96 /* OpenFeint Delegates */; };
 		652178AB149C3F3100BBF004 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = 652178AA149C3F3100BBF004 /* health.png */; };
 		6525F26B149D33D50075AB9D /* factorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6525F26A149D33D50075AB9D /* factorial.m */; };
 		653775D1149E665A002CD765 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 653775D0149E665A002CD765 /* about.png */; };
@@ -339,6 +341,11 @@
 		616D157B14927AF100A6B895 /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
 		616D15AB14927DBF00A6B895 /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
 		616D15B114927DEB00A6B895 /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
+		65001510149F0DC500DCA0B5 /* OpenFeint.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenFeint.framework; sourceTree = "<group>"; };
+		65001514149F0F3D00DCA0B5 /* Delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Delegate.h; path = "../OpenFeint Delegates/Delegate.h"; sourceTree = "<group>"; };
+		65001515149F0F3D00DCA0B5 /* Delegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Delegate.mm; path = "../OpenFeint Delegates/Delegate.mm"; sourceTree = "<group>"; };
+		65001516149F0F3D00DCA0B5 /* NotificationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationDelegate.h; path = "../OpenFeint Delegates/NotificationDelegate.h"; sourceTree = "<group>"; };
+		65001517149F0F3D00DCA0B5 /* NotificationDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NotificationDelegate.mm; path = "../OpenFeint Delegates/NotificationDelegate.mm"; sourceTree = "<group>"; };
 		650581C5149E675500FFCC21 /* Probability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Probability.h; sourceTree = "<group>"; };
 		650581C6149E675500FFCC21 /* Probability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Probability.m; sourceTree = "<group>"; };
 		650FEF8F149E87D8002496BD /* Arial-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Arial-hd.fnt"; sourceTree = "<group>"; };
@@ -360,7 +367,6 @@
 		651432F9149E72FC0018A326 /* AboutScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutScene.m; sourceTree = "<group>"; };
 		651D42AE149EECFC00C98D96 /* openfeint_offline_config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = openfeint_offline_config.xml; path = ../openfeint_offline_config.xml; sourceTree = "<group>"; };
 		651D42C0149EFD2700C98D96 /* OFResources_iPhone_Landscape.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = OFResources_iPhone_Landscape.bundle; sourceTree = "<group>"; };
-		651D42C7149F085000C98D96 /* OpenFeint Delegates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "OpenFeint Delegates"; sourceTree = "<group>"; };
 		652178AA149C3F3100BBF004 /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = health.png; sourceTree = "<group>"; };
 		6525F269149D33D50075AB9D /* factorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factorial.h; sourceTree = "<group>"; };
 		6525F26A149D33D50075AB9D /* factorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = factorial.m; sourceTree = "<group>"; };
@@ -584,6 +590,7 @@
 				506EDB88102F4C4000A389B3 /* libz.dylib in Frameworks */,
 				506EDBA5102F4C9F00A389B3 /* AVFoundation.framework in Frameworks */,
 				506EE1A91030508200A389B3 /* libcocos2d libraries.a in Frameworks */,
+				65001511149F0DC500DCA0B5 /* OpenFeint.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,7 +625,6 @@
 			children = (
 				504DFC6810AF1739006D82FE /* LICENSE.cocos2d */,
 				504DFC6910AF1739006D82FE /* LICENSE.cocosdenshion */,
-				651D42C7149F085000C98D96 /* OpenFeint Delegates */,
 				650FEF8D149E8755002496BD /* Fonts */,
 				506EDAA3102F461B00A389B3 /* cocos2d Sources */,
 				2D500B1D0D5A766B00DBA0E3 /* Classes */,
@@ -642,6 +648,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65001510149F0DC500DCA0B5 /* OpenFeint.framework */,
 				650FEFB9149EB045002496BD /* SystemConfiguration.framework */,
 				650FEFB7149EB03B002496BD /* Security.framework */,
 				650FEFB5149EB02D002496BD /* MobileCoreServices.framework */,
@@ -669,6 +676,10 @@
 		2D500B1D0D5A766B00DBA0E3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				65001514149F0F3D00DCA0B5 /* Delegate.h */,
+				65001515149F0F3D00DCA0B5 /* Delegate.mm */,
+				65001516149F0F3D00DCA0B5 /* NotificationDelegate.h */,
+				65001517149F0F3D00DCA0B5 /* NotificationDelegate.mm */,
 				615667A5149290F3009288EB /* Monster.h */,
 				615667A6149290F3009288EB /* Monster.m */,
 				6156672C149289F5009288EB /* GameOverScene.h */,
@@ -1246,7 +1257,6 @@
 				650FEF96149E87D8002496BD /* Arial.png in Resources */,
 				651D42AF149EECFC00C98D96 /* openfeint_offline_config.xml in Resources */,
 				651D42C1149EFD2700C98D96 /* OFResources_iPhone_Landscape.bundle in Resources */,
-				651D42C8149F085000C98D96 /* OpenFeint Delegates in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1267,6 +1277,8 @@
 				6525F26B149D33D50075AB9D /* factorial.m in Sources */,
 				650581C7149E675500FFCC21 /* Probability.m in Sources */,
 				651432FA149E72FC0018A326 /* AboutScene.m in Sources */,
+				65001518149F0F3D00DCA0B5 /* Delegate.mm in Sources */,
+				65001519149F0F3D00DCA0B5 /* NotificationDelegate.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

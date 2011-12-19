@@ -44,7 +44,7 @@
         [self addChild:_label];
         
         [_label runAction:[CCSequence actions:
-                           [CCScaleTo actionWithDuration:0.5 scale:0.75],[CCDelayTime actionWithDuration:5],
+                           [CCScaleTo actionWithDuration:0.5 scale:0.75],[CCDelayTime actionWithDuration:5],[CCScaleTo actionWithDuration:0.5 scale:0.1],
                            [CCCallFunc actionWithTarget:self selector:@selector(aboutDone)],
                            nil]];
 	}	
