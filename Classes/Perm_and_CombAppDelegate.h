@@ -7,16 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "cocos2d.h"
 
-@class Delegate;
-@class NotificationDelegate;
 @class RootViewController;
 
 @interface Perm_and_CombAppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
-    Delegate *ofDelegate;
-    NotificationDelegate *ofNotificationDelegate;
 }
 
 @property (nonatomic, retain) UIWindow *window;

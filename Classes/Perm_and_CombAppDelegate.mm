@@ -10,13 +10,12 @@
 
 #import "Perm_and_CombAppDelegate.h"
 #import "GameConfig.h"
+#import "SplashScene.h"
 #import "HelloWorldLayer.h"
 #import "RootViewController.h"
 
 #import "OpenFeint/OpenFeint.h"
 #import "OpenFeint/OFControllerLoaderObjC.h"
-#import "Delegate.h"
-#import "NotificationDelegate.h"
 
 @implementation Perm_and_CombAppDelegate
 
@@ -44,30 +43,6 @@
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
 
-- (void)performApplicationStartupLogic
-{
-    // Override point for customization after app launch    
-    window.frame = [UIScreen mainScreen].bounds;
-    [window addSubview:viewController.view];
-    [window makeKeyAndVisible];
-    
-    // OpenFeint
-    ofDelegate = [Delegate new];
-    //ofNotificationDelegate = [OFNotificationDelegate new];
-    
-    OFDelegatesContainer* delegates = [OFDelegatesContainer containerWithOpenFeintDelegate:ofDelegate];
-    
-    NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight], OpenFeintSettingDashboardOrientation, "Perm and Comb", OpenFeintSettingShortDisplayName, [NSNumber numberWithBool:YES], OpenFeintSettingEnablePushNotifications, [NSNumber numberWithBool:NO], nil
-                              ];
-    
-    [OpenFeint initializeWithProductKey:@"tP4D0ok3O3c2Ynat3EVizg"
-                              andSecret:@"0cQG9feASEVdcLlIVE4tWu8owTktlxaohLaMUeQmA"
-                         andDisplayName:@"Perm and Comb"
-                            andSettings:settings
-                           andDelegates:delegates
-     ];
-}
 
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
@@ -143,8 +118,8 @@
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
-    //[self performApplicationStartupLogic];
+	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+    [[CCDirector sharedDirector] runWithScene: [SplashLayer scene]];
     
 }
 
@@ -189,7 +164,6 @@
 
 - (void)dealloc {
 	[[CCDirector sharedDirector] release];
-    [ofDelegate release];
 	[window release];
 	[super dealloc];
 }

@@ -8,7 +8,14 @@
 
 
 // When you import this file, you import all the cocos2d classes
+#import <Foundation/Foundation.h>
+
 #import "cocos2d.h"
+
+NSUInteger RRFactorial(NSUInteger n);
+// Answers the factorial of n, or NSUIntegerMax if factorial exceeds
+// NSUInteger type's upper boundary. Uses Foundation framework's NSUInteger
+// type to carry factorials.
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayerColor
@@ -25,6 +32,7 @@
     CCSprite *_nextProjectile;
     NSMutableArray *_targets;
     NSMutableArray *_projectiles;
+    BOOL openfeintdone;
 }
 
 @property (nonatomic, assign) CCLabelTTF *scoreLabel;
