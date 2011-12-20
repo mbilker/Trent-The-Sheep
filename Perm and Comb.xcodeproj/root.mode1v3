@@ -273,7 +273,7 @@
 							<array>
 								<array>
 									<integer>11</integer>
-									<integer>4</integer>
+									<integer>5</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -313,7 +313,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>HelloWorldLayer.m</string>
+								<string>HelloWorldLayer.mm</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -321,11 +321,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>HelloWorldLayer.m</string>
+										<string>HelloWorldLayer.mm</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>61428FD3149BD7E400B7F04E</string>
+										<string>617549F614A0D6B50077F4DA</string>
 										<key>history</key>
 										<array>
 											<string>616D158114927B1200A6B895</string>
@@ -348,7 +348,7 @@
 											<string>61428FCF149BD7E400B7F04E</string>
 											<string>61428FD0149BD7E400B7F04E</string>
 											<string>61428FD1149BD7E400B7F04E</string>
-											<string>61428FD2149BD7E400B7F04E</string>
+											<string>61428FD3149BD7E400B7F04E</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -360,14 +360,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1072, 304}}</string>
+								<string>{{0, 0}, {1072, 294}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 146 1280 632 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>304pt</string>
+							<string>294pt</string>
 						</dict>
 						<dict>
 							<key>BecomeActive</key>
@@ -382,14 +382,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 309}, {1072, 282}}</string>
+								<string>{{0, 299}, {1072, 292}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 146 1280 632 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>282pt</string>
+							<string>292pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -408,9 +408,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>61428FD4149BD7E400B7F04E</string>
+				<string>617549F714A0D6B50077F4DA</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>61428FD5149BD7E400B7F04E</string>
+				<string>617549F814A0D6B50077F4DA</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -548,10 +548,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>61428FDE149BD7E400B7F04E</string>
-		<string>61428FDF149BD7E400B7F04E</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>616D15501492764600A6B895</string>
 		<string>/Volumes/MBILKER/Perm and Comb/Perm and Comb.xcodeproj</string>
 	</array>
@@ -633,7 +629,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>616D15501492764600A6B895</string>
-				<string>61428FD6149BD7E400B7F04E</string>
+				<string>617549F914A0D6B50077F4DA</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
