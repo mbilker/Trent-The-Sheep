@@ -8,17 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
-#import "OpenFeint/OpenFeint.h"
-#import "OpenFeint/OpenFeintSettings.h"
-#import "Perm_and_CombAppDelegate.h"
 
-@class Delegate;
-@class NotificationDelegate;
-
-@interface SplashLayer : CCLayer
-{
-    Delegate *ofDelegate;
-    NotificationDelegate *ofNotificationDelegate;
-}
+@interface SplashLayer : CCLayer {}
 
 @end

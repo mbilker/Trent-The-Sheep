@@ -151,7 +151,6 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         // Game Logic
 		[self schedule:@selector(gameLogic:) interval:1.0];
 		[self schedule:@selector(update:)];
-        //[self schedule:@selector(initOpenFeint:) interval:3.0];
 		
         // Background Music
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];

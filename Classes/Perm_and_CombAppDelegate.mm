@@ -13,13 +13,12 @@
 #import "SplashScene.h"
 #import "HelloWorldLayer.h"
 #import "RootViewController.h"
-
-#import "OpenFeint/OpenFeint.h"
-#import "OpenFeint/OFControllerLoaderObjC.h"
+#import "GCHelper.h"
 
 @implementation Perm_and_CombAppDelegate
 
 @synthesize window;
+@synthesize viewController;
 
 - (void) removeStartupFlicker
 {
@@ -43,9 +42,9 @@
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
 
-
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
+    application.statusBarHidden = YES;
     // Init the window
     window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -91,7 +90,7 @@
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
 	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
 #else
-	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
+	[director setDeviceOrientation:kCCDeviceOrientationLandscapeRight];
 #endif
 	
 	[director setAnimationInterval:1.0/60];
@@ -119,6 +118,8 @@
     
 	// Run the intro Scene
 	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+    
+    [[GCHelper sharedInstance] authenticateLocalUser];
     [[CCDirector sharedDirector] runWithScene: [SplashLayer scene]];
     
 }
@@ -154,8 +155,6 @@
 	[window release];
 	
 	[director end];
-    
-    [OpenFeint shutdown];
 }
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {

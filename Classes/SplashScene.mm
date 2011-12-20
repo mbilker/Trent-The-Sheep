@@ -1,10 +1,6 @@
 #import "SplashScene.h"
 #import "HelloWorldLayer.h"
-
-#import "OpenFeint/OpenFeint.h"
-#import "OpenFeint/OFControllerLoaderObjC.h"
-#import "Delegate.h"
-#import "NotificationDelegate.h"
+#import "RootViewController.h"
 
 @implementation SplashLayer
 +(CCScene *) scene
@@ -24,30 +20,6 @@
 	return scene;
 }
 
-- (void)initOpenFeint
-{
-    //[self unschedule:@selector(initOpenFeint)];
-    
-    // OpenFeint
-    ofDelegate = [Delegate new];
-    ofNotificationDelegate = [NotificationDelegate new];
-    
-    OFDelegatesContainer* delegates = [OFDelegatesContainer containerWithOpenFeintDelegate:ofDelegate
-                                                                      andChallengeDelegate:nil
-                                                                   andNotificationDelegate:ofNotificationDelegate];
-    
-    NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight], OpenFeintSettingDashboardOrientation, "Perm and Comb", OpenFeintSettingShortDisplayName, [NSNumber numberWithBool:YES], OpenFeintSettingEnablePushNotifications, [NSNumber numberWithBool:NO], nil
-                              ];
-    
-    [OpenFeint initializeWithProductKey:@"tP4D0ok3O3c2Ynat3EVizg"
-                              andSecret:@"0cQG9feASEVdcLlIVE4tWu8owTktlxaohLaMUeQmA"
-                         andDisplayName:@"Perm and Comb"
-                            andSettings:settings
-                           andDelegates:delegates
-     ];
-}
-
 - (id) init {
     if ((self = [super init])) {
 		
@@ -64,7 +36,6 @@
 
 -(void)aaa
 {
-	//[self initializeOpenfeint];
 	[self unschedule:@selector(aaa)];
 	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:2 scene:[HelloWorldLayer node]]];
@@ -75,8 +46,6 @@
 -(void)dealloc
 {
 	//	[[TextureMgr sharedTextureMgr] removeUnusedTextures];
-    [ofDelegate release];
-    [ofNotificationDelegate release];
 	[super dealloc];
 }
 
