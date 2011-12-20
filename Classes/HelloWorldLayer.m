@@ -15,6 +15,9 @@
 #import "Projectile.h"
 #import "AboutScene.h"
 
+#import "Achievements.h"
+#import "GCHelper.h"
+
 NSUInteger RRFactorial(NSUInteger n)
 {
     // Use preprocessor macros to determine the maximum value of n computable
@@ -158,10 +161,63 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	return self;
 }
 
+#pragma mark Score Handlers
+- (void) checkAchievements
+{
+	NSString* identifier= NULL;
+	double percentComplete= 0;
+	switch(_score)
+	{
+		case 1:
+		{
+			identifier= kAchievementGotOneTap;
+			percentComplete= 100.0;
+			break;
+		}
+		case 10:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 50.0;
+			break;
+		}
+		case 20:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 100.0;
+			break;
+		}
+		case 25:
+		{
+			identifier= kAchievementBigOneHundred;
+			percentComplete= 50.0;
+			break;
+		}
+		case 27:
+		{
+			identifier= kAchievementBigOneHundred;
+			percentComplete= 75.0;
+			break;
+		}
+		case 31:
+		{
+			identifier= kAchievementBigOneHundred;
+			percentComplete= 100.0;
+			break;
+		}
+			
+	}
+	if(identifier!= NULL)
+	{
+		[[GCHelper sharedInstance] reportAchievementIdentifier:identifier percentComplete:percentComplete];
+
+	}
+}
+
 - (void)aboutButtonTapped:(id)sender {
     //NSLog(@"About Button Tapped");
-    AboutScene *aboutlayer = [AboutLayer node];
-    [[CCDirector sharedDirector] replaceScene:aboutlayer];
+    //AboutScene *aboutlayer = [AboutLayer node];
+    //[[CCDirector sharedDirector] replaceScene:aboutlayer];
+    [[GCHelper sharedInstance] showAchievements];
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -362,6 +418,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 				//NSLog(@"%d",monster.hp);
 				if (monster.hp <= 0) {
 					_score ++;
+					[self checkAchievements];
 					[targetsToDelete addObject:target];
 				}
 				break;				
@@ -380,13 +437,10 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 			}
 		}
 		
-		//if (targetsToDelete.count > 0) {
-		//	[projectilesToDelete addObject:projectile];
         if (monsterHit) {
             [projectilesToDelete addObject:projectile];
             [[SimpleAudioEngine sharedEngine] playEffect:@"explosion.caf"];
         }
-		//}
 		[targetsToDelete release];
 	}
 	

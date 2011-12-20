@@ -14,8 +14,8 @@
          endingColumnNumber = "2147483647"
          startingLineNumber = "48"
          endingLineNumber = "48"
-         landmarkName = "-init"
-         landmarkType = "5">
+         landmarkName = "nPr()"
+         landmarkType = "7">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -28,8 +28,8 @@
          endingColumnNumber = "2147483647"
          startingLineNumber = "52"
          endingLineNumber = "52"
-         landmarkName = "-init"
-         landmarkType = "5">
+         landmarkName = "nPr()"
+         landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
