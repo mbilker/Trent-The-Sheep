@@ -42,7 +42,7 @@
          endingColumnNumber = "2147483647"
          startingLineNumber = "234"
          endingLineNumber = "234"
-         landmarkName = "-gameCenterButtonTapped:"
+         landmarkName = "-aboutButtonTapped:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

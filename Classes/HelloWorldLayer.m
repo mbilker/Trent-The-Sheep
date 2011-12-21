@@ -56,7 +56,7 @@ NSUInteger nPr(NSUInteger n, NSUInteger r)
     if (n > N) return NSUIntegerMax;
     if (r > N) return NSUIntegerMax;
     NSUInteger n1 = RRFactorial(n);
-    NSUInteger bottom = n1 - r;
+    NSUInteger bottom = n - r;
     NSUInteger bottom1 = RRFactorial(bottom);
     float output = (n1 / bottom1);
     NSLog(@"Numbers: n=%d r=%d bottom=%lu n1=%lu bottom1=%lu output=%f",n,r,(unsigned long)bottom,(unsigned long)n1,(unsigned long)bottom1,(float)output);
@@ -74,7 +74,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
     if (r > N) return NSUIntegerMax;
     NSUInteger n1 = RRFactorial(n);
     NSUInteger r1 = RRFactorial(r);
-    NSUInteger bottom = n1 - r;
+    NSUInteger bottom = n - r;
     NSUInteger bottom1 = RRFactorial(bottom);
     float output = (r1 * (n1 / bottom1));
     NSLog(@"Numbers: n=%d r=%d bottom=%lu n1=%lu r1=%lu bottom1=%lu output=%f",n,r,(unsigned long)bottom,(unsigned long)n1,(unsigned long)r1,(unsigned long)bottom1,(float)output);
@@ -136,8 +136,12 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         [self addChild:gameCenterMenu];
 		
 		// Set up score and score label
-        _score = 0;
-        _oldScore = -1;
+		if (!_firstime)
+		{
+			BOOL _firstime = YES;
+			_score = 0;
+			_oldScore = -1;
+		}
         self.scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" dimensions:CGSizeMake(175, 50) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:32];
         _scoreLabel.position = ccp(winSize.width - _scoreLabel.contentSize.width/2, _scoreLabel.contentSize.height/2);
         _scoreLabel.color = ccc3(0,0,0);
@@ -272,7 +276,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         _projectileOffScreen ++;
         //NSLog(@"Project Off Screen: %d",_projectileOffScreen);
 		[_projectiles removeObject:sprite];
-        if(_projectileOffScreen == 30) {
+        if(_projectileOffScreen == 45) {
             GameOverScene *gameOverScene = [GameOverScene node];
 			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\n%d projectiles went offscreen",_projectileOffScreen]];
             _projectileOffScreen = 0;
@@ -310,7 +314,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	int maxDuration = target.maxMoveDuration;
 	int rangeDuration = maxDuration - minDuration;
     //int actualDuration = (arc4random() % rangeDuration) + minDuration;
-    int actualDuration = (nCr(maxDuration, rangeDuration) % rangeDuration) + minDuration;
+    int actualDuration = (nPr(maxDuration, minDuration) % rangeDuration) + minDuration;
+    NSLog(@"%d",actualDuration);
 	
 	// Create the actions
 	id actionMove = [CCMoveTo actionWithDuration:actualDuration 
@@ -447,7 +452,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 			if (_projectilesDestroyed > _maxScore) {
 				GameOverScene *gameOverScene = [GameOverScene node];
 				_projectilesDestroyed = 0;
-				[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Win!\nScore: %d", _score]];
+				[gameOverScene.layer.label setString:[NSString stringWithFormat:@"Wave %d Complete!\nScore: %d", _wave, _score]];
 				[[CCDirector sharedDirector] replaceScene:gameOverScene];
 			}
 		}
