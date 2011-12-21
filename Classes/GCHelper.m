@@ -12,6 +12,8 @@
 @implementation GCHelper
 
 @synthesize gameCenterAvailable;
+@synthesize myViewController;
+@synthesize achievements;
 
 #pragma mark Initialization
 
@@ -47,15 +49,15 @@ static GCHelper *sharedHelper = nil;
                        name:GKPlayerAuthenticationDidChangeNotificationName 
                      object:nil];
 			// Load player achievements
-			[GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
+			[GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *listAchievements, NSError *error) {
 				if (error != nil)
 				{
 					// handle errors
 				}
-				if (achievements != nil)
+				if (listAchievements != nil)
 				{
 					// process array of achievements
-					for (GKAchievement* achievement in achievements)
+					for (GKAchievement* achievement in listAchievements)
 						[achievementsDictionary setObject:achievement forKey:achievement.identifier];
 				}
 			}];
@@ -74,6 +76,14 @@ static GCHelper *sharedHelper = nil;
         userAuthenticated = FALSE;
     }
     
+}
+
+- (void) showAlertWithTitle: (NSString*) title message: (NSString*) message
+{
+	UIAlertView* alert= [[[UIAlertView alloc] initWithTitle: title message: message 
+                                                   delegate: NULL cancelButtonTitle: @"OK" otherButtonTitles: NULL] autorelease];
+	[alert show];
+	
 }
 
 #pragma mark User functions
@@ -141,22 +151,19 @@ static GCHelper *sharedHelper = nil;
 /**
  * Create a GKAchievementViewController and display it on top of cocos2d's OpenGL view
  */
-- (void)showAchievements
+- (void)showAchievements:(UIViewController *)viewController
 {
 	if (gameCenterAvailable)
 	{
-		GKAchievementViewController *achievements = [[GKAchievementViewController alloc] init];
+		self.achievements = [[GKAchievementViewController alloc] init];
 		if (achievements != nil)
 		{
 			achievements.achievementDelegate = self;
-			
-			// Create an additional UIViewController to attach the GKAchievementViewController to
-			myViewController = [[UIViewController alloc] init];
+            self.myViewController = viewController;
+            [myViewController dismissModalViewControllerAnimated:NO];
             
-			// Add the temporary UIViewController to the main OpenGL view
             [[CCDirector sharedDirector] pause];
             [[CCDirector sharedDirector] stopAnimation];
-			[[[CCDirector sharedDirector] openGLView] addSubview:myViewController.view];
 			
 			[myViewController presentModalViewController:achievements animated:YES];
 		}
@@ -170,7 +177,11 @@ static GCHelper *sharedHelper = nil;
 - (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
 {
 	[myViewController dismissModalViewControllerAnimated:YES];
-	[myViewController release];
+    // BUG: If released 3 times, a EXC_BAD_ACCESS is made.
+    // SOLUTION: Don't release, game still functions fine.
+	//[myViewController release];
+    [[CCDirector sharedDirector] resume];
+    [[CCDirector sharedDirector] startAnimation];
 }
 
 

@@ -14,6 +14,8 @@
 #import "Monster.h"
 #import "Projectile.h"
 #import "AboutScene.h"
+#import "Perm_and_CombAppDelegate.h"
+#import "RootViewController.h"
 
 #import "Achievements.h"
 #import "GCHelper.h"
@@ -125,6 +127,13 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         CCMenu *aboutMenu = [CCMenu menuWithItems:aboutMenuItem, nil];
         aboutMenu.position = CGPointZero;
         [self addChild:aboutMenu];
+        
+        // Setup GameCenter window
+        CCMenuItem *gameCenterButton = [CCMenuItemImage itemFromNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png" target:self selector:@selector(gameCenterButtonTapped:)];
+        gameCenterButton.position = ccp((winSize.width - 52),(winSize.height - 20));
+        CCMenu *gameCenterMenu = [CCMenu menuWithItems:gameCenterButton, nil];
+        gameCenterMenu.position = CGPointZero;
+        [self addChild:gameCenterMenu];
 		
 		// Set up score and score label
         _score = 0;
@@ -157,6 +166,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		
         // Background Music
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
+        
+        delegate = (Perm_and_CombAppDelegate *) [UIApplication sharedApplication].delegate;
 	}
 	return self;
 }
@@ -215,9 +226,13 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 
 - (void)aboutButtonTapped:(id)sender {
     //NSLog(@"About Button Tapped");
-    //AboutScene *aboutlayer = [AboutLayer node];
-    //[[CCDirector sharedDirector] replaceScene:aboutlayer];
-    [[GCHelper sharedInstance] showAchievements];
+    AboutScene *aboutlayer = [AboutLayer node];
+    [[CCDirector sharedDirector] replaceScene:aboutlayer];
+}
+
+- (void)gameCenterButtonTapped:(id)sender {
+    //NSLog(@"Opening Achievements");
+    [[GCHelper sharedInstance] showAchievements:delegate.viewController];
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -270,7 +285,6 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 -(void)addTarget {
     
 	//nPr(_projectileOffScreen, _score);
-    nCr(_projectileOffScreen, _score);
 	//CCSprite *target = [CCSprite spriteWithFile:@"Target.png" rect:CGRectMake(0, 0, 27, 40)]; 
 	Monster *target = nil;
 	if ((arc4random() % 2) == 0) {
@@ -295,7 +309,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	int minDuration = target.minMoveDuration;
 	int maxDuration = target.maxMoveDuration;
 	int rangeDuration = maxDuration - minDuration;
-	int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    //int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    int actualDuration = (nCr(maxDuration, rangeDuration) % rangeDuration) + minDuration;
 	
 	// Create the actions
 	id actionMove = [CCMoveTo actionWithDuration:actualDuration 

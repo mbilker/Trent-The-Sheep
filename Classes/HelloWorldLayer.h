@@ -11,6 +11,8 @@
 #import <Foundation/Foundation.h>
 
 #import "cocos2d.h"
+#import "Perm_and_CombAppDelegate.h"
+#import "RootViewController.h"
 
 NSUInteger RRFactorial(NSUInteger n);
 // Answers the factorial of n, or NSUIntegerMax if factorial exceeds
@@ -32,7 +34,7 @@ NSUInteger RRFactorial(NSUInteger n);
     CCSprite *_nextProjectile;
     NSMutableArray *_targets;
     NSMutableArray *_projectiles;
-    BOOL openfeintdone;
+    Perm_and_CombAppDelegate *delegate;
 }
 
 @property (nonatomic, assign) CCLabelTTF *scoreLabel;

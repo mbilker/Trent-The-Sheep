@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/HelloWorldLayer.m"
-         timestampString = "345965583.545721"
+         timestampString = "346119210.75886"
          startingColumnNumber = "2147483647"
          endingColumnNumber = "2147483647"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
          landmarkName = "nPr()"
          landmarkType = "7">
       </FileBreakpoint>
@@ -23,13 +23,27 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/HelloWorldLayer.m"
-         timestampString = "345965583.545721"
+         timestampString = "346119210.75886"
          startingColumnNumber = "2147483647"
          endingColumnNumber = "2147483647"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
+         startingLineNumber = "54"
+         endingLineNumber = "54"
          landmarkName = "nPr()"
          landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/HelloWorldLayer.m"
+         timestampString = "346122650.411031"
+         startingColumnNumber = "2147483647"
+         endingColumnNumber = "2147483647"
+         startingLineNumber = "234"
+         endingLineNumber = "234"
+         landmarkName = "-gameCenterButtonTapped:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
