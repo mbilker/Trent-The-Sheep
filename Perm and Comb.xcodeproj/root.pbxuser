@@ -64,8 +64,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 346182830;
-			PBXWorkspaceStateSaveDate = 346182830;
+			PBXPerProjectTemplateStateSaveDate = 346270017;
+			PBXWorkspaceStateSaveDate = 346270017;
 		};
 		perUserProjectItems = {
 			61124776149A635E00114AE3 /* PBXTextBookmark */ = 61124776149A635E00114AE3 /* PBXTextBookmark */;
@@ -73,8 +73,6 @@
 			612B378D149A521200D41FC9 /* PBXTextBookmark */ = 612B378D149A521200D41FC9 /* PBXTextBookmark */;
 			6132FECF14A2592B0019C845 /* PlistBookmark */ = 6132FECF14A2592B0019C845 /* PlistBookmark */;
 			6132FED014A2592B0019C845 /* PBXTextBookmark */ = 6132FED014A2592B0019C845 /* PBXTextBookmark */;
-			6132FED114A2592B0019C845 /* PBXTextBookmark */ = 6132FED114A2592B0019C845 /* PBXTextBookmark */;
-			6132FED314A259600019C845 /* PBXTextBookmark */ = 6132FED314A259600019C845 /* PBXTextBookmark */;
 			61428FCB149BD7E400B7F04E /* PBXTextBookmark */ = 61428FCB149BD7E400B7F04E /* PBXTextBookmark */;
 			61428FCC149BD7E400B7F04E /* PBXTextBookmark */ = 61428FCC149BD7E400B7F04E /* PBXTextBookmark */;
 			61428FCD149BD7E400B7F04E /* PBXTextBookmark */ = 61428FCD149BD7E400B7F04E /* PBXTextBookmark */;
@@ -91,10 +89,12 @@
 			617568D4149A84ED00144250 /* PBXTextBookmark */ = 617568D4149A84ED00144250 /* PBXTextBookmark */;
 			61AF5D4B14A0DF720023894B /* PBXTextBookmark */ = 61AF5D4B14A0DF720023894B /* PBXTextBookmark */;
 			61CC90E314A0DD8F009B57A9 /* PBXTextBookmark */ = 61CC90E314A0DD8F009B57A9 /* PBXTextBookmark */;
+			61DAB44E14A3741500D752EE /* PBXTextBookmark */ = 61DAB44E14A3741500D752EE /* PBXTextBookmark */;
 			61EC51A11498EA1900D8EF97 /* PBXBookmark */ = 61EC51A11498EA1900D8EF97 /* PBXBookmark */;
 			61ED358C14A11F920031F762 /* PBXTextBookmark */ = 61ED358C14A11F920031F762 /* PBXTextBookmark */;
 			61F64E771498F47F0040B733 /* PBXTextBookmark */ = 61F64E771498F47F0040B733 /* PBXTextBookmark */;
 			61F64E781498F47F0040B733 /* PBXTextBookmark */ = 61F64E781498F47F0040B733 /* PBXTextBookmark */;
+			61FF18C414A3AA3A003DA84A /* PBXTextBookmark */ = 61FF18C414A3AA3A003DA84A /* PBXTextBookmark */;
 		};
 		sourceControlManager = 616D15591492764600A6B895 /* Source Control */;
 		userBuildSettings = {
@@ -117,9 +117,9 @@
 	};
 	506EDC30102F528A00A389B3 /* HelloWorldLayer.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1293, 6201}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1650, 7137}}";
 			sepNavSelRange = "{4163, 0}";
-			sepNavVisRange = "{3502, 1255}";
+			sepNavVisRange = "{3592, 1788}";
 			sepNavWindowFrame = "{{530, 218}, {750, 558}}";
 		};
 	};
@@ -184,7 +184,7 @@
 		);
 		name = "/Volumes/MBILKER/Perm and Comb/Resources/Info.plist";
 		rLen = 0;
-		rLoc = 9223372036854775807;
+		rLoc = 9223372036854775808;
 	};
 	6132FED014A2592B0019C845 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -195,26 +195,6 @@
 		rType = 0;
 		vrLen = 700;
 		vrLoc = 537;
-	};
-	6132FED114A2592B0019C845 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 506EDC30102F528A00A389B3 /* HelloWorldLayer.m */;
-		name = "HelloWorldLayer.m: 142";
-		rLen = 0;
-		rLoc = 4328;
-		rType = 0;
-		vrLen = 1174;
-		vrLoc = 3584;
-	};
-	6132FED314A259600019C845 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 506EDC30102F528A00A389B3 /* HelloWorldLayer.m */;
-		name = "HelloWorldLayer.m: 135";
-		rLen = 0;
-		rLoc = 4163;
-		rType = 0;
-		vrLen = 1255;
-		vrLoc = 3502;
 	};
 	61428FCB149BD7E400B7F04E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -424,6 +404,16 @@
 		vrLen = 654;
 		vrLoc = 2374;
 	};
+	61DAB44E14A3741500D752EE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 506EDC30102F528A00A389B3 /* HelloWorldLayer.m */;
+		name = "HelloWorldLayer.m: 136";
+		rLen = 0;
+		rLoc = 4163;
+		rType = 0;
+		vrLen = 704;
+		vrLoc = 2459;
+	};
 	61EC51A11498EA1900D8EF97 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 6156679F149290E0009288EB /* Target2.png */;
@@ -457,6 +447,16 @@
 		rType = 0;
 		vrLen = 973;
 		vrLoc = 3095;
+	};
+	61FF18C414A3AA3A003DA84A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 506EDC30102F528A00A389B3 /* HelloWorldLayer.m */;
+		name = "HelloWorldLayer.m: 136";
+		rLen = 0;
+		rLoc = 4163;
+		rType = 0;
+		vrLen = 1788;
+		vrLoc = 3592;
 	};
 	6523D85F14A004F90038B391 /* SplashScene.mm */ = {
 		uiCtxt = {

@@ -195,115 +195,115 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	{
 		case 1:
 		{
-			identifier= kAchievementGotOneTap;
+			identifier= kAchievementOneHit;
 			percentComplete= 100.0;
 			break;
 		}
 		case 2:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 10.0;
+			identifier= kAchievementFiveHit;
+			percentComplete= 40.0;
 			break;
 		}
         case 3:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 15.0;
+			identifier= kAchievementFiveHit;
+			percentComplete= 60.0;
 			break;
 		}
         case 4:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 20.0;
+			identifier= kAchievementFiveHit;
+			percentComplete= 80.0;
 			break;
 		}
         case 5:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 25.0;
+			identifier= kAchievementFiveHit;
+			percentComplete= 100.0;
 			break;
 		}
         case 6:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 30.0;
+			identifier= kAchievementTenHit;
+			percentComplete= 60.0;
 			break;
 		}
         case 7:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 35.0;
+			identifier= kAchievementTenHit;
+			percentComplete= 70.0;
 			break;
 		}
         case 8:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 40.0;
+			identifier= kAchievementTenHit;
+			percentComplete= 80.0;
 			break;
 		}
         case 9:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 45.0;
+			identifier= kAchievementTenHit;
+			percentComplete= 90.0;
 			break;
 		}
         case 10:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 50.0;
+			identifier= kAchievementTenHit;
+			percentComplete= 100.0;
 			break;
 		}
         case 11:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 55.0;
+			identifier= kAchievementFifthteenHit;
+			percentComplete= 73.0;
 			break;
 		}
         case 12:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 60.0;
+			identifier= kAchievementFifthteenHit;
+			percentComplete= 80.0;
 			break;
 		}
         case 13:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 65.0;
+			identifier= kAchievementFifthteenHit;
+			percentComplete= 86.0;
 			break;
 		}
         case 14:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 70.0;
+			identifier= kAchievementFifthteenHit;
+			percentComplete= 93.0;
 			break;
 		}
         case 15:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 75.0;
+			identifier= kAchievementFifthteenHit;
+			percentComplete= 100.0;
 			break;
 		}
 		case 20:
 		{
-			identifier= kAchievementHidden20Taps;
-			percentComplete= 100.0;
+			identifier= kAchievementThirtyHit;
+			percentComplete= 66.0;
 			break;
 		}
 		case 25:
 		{
-			identifier= kAchievementBigOneHundred;
-			percentComplete= 50.0;
+			identifier= kAchievementThirtyHit;
+			percentComplete= 83.0;
 			break;
 		}
 		case 27:
 		{
-			identifier= kAchievementBigOneHundred;
-			percentComplete= 75.0;
+			identifier= kAchievementThirtyHit;
+			percentComplete= 90.0;
 			break;
 		}
 		case 30:
 		{
-			identifier= kAchievementBigOneHundred;
+			identifier= kAchievementThirtyHit;
 			percentComplete= 100.0;
 			break;
 		}

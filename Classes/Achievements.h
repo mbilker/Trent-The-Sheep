@@ -7,12 +7,11 @@
 //
 
 //Leaderboard Category IDs
-#define kEasyLeaderboardID @"com.appledts.EasyTapList"
-#define kHardLeaderboardID @"com.appledts.HardTapList"
-#define kAwesomeLeaderboardID @"com.appledts.AwesomeTapList"
-
+#define kEasyLeaderboardID @"us.mbilker.easy"
 
 //Achievement IDs
-#define kAchievementGotOneTap @"com.appletest.one_tap"
-#define kAchievementHidden20Taps @"com.appledts.twenty_taps"
-#define kAchievementBigOneHundred @"com.appledts.one_hundred_taps"
+#define kAchievementOneHit @"us.mbilker.firsttarget"
+#define kAchievementFiveHit @"us.mbilker.five"
+#define kAchievementTenHit @"us.mbilker.ten"
+#define kAchievementFifthteenHit @"us.mbilker.fifthteen"
+#define kAchievementThirtyHit @"us.mbilker.thirty"
