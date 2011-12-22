@@ -9,11 +9,15 @@
 #import "GCHelper.h"
 #import "cocos2d.h"
 
+#import "Achievements.h"
+
 @implementation GCHelper
 
 @synthesize gameCenterAvailable;
 @synthesize myViewController;
 @synthesize achievements;
+@synthesize leaderboards;
+@synthesize currentLeaderBoard;
 
 #pragma mark Initialization
 
@@ -148,6 +152,8 @@ static GCHelper *sharedHelper = nil;
 	}
 }
 
+#pragma mark View Controllers
+
 /**
  * Create a GKAchievementViewController and display it on top of cocos2d's OpenGL view
  */
@@ -177,6 +183,39 @@ static GCHelper *sharedHelper = nil;
 - (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
 {
 	[myViewController dismissModalViewControllerAnimated:YES];
+    // BUG: If released 3 times, a EXC_BAD_ACCESS is made.
+    // SOLUTION: Don't release, game still functions fine.
+	//[myViewController release];
+    [[CCDirector sharedDirector] resume];
+    [[CCDirector sharedDirector] startAnimation];
+}
+
+- (void)showLeaderboards:(UIViewController *)viewController
+{
+    if (gameCenterAvailable)
+	{
+        self.leaderboards = [[GKLeaderboardViewController alloc] init];
+        if (leaderboards != nil)
+        {
+            self.currentLeaderBoard= kEasyLeaderboardID;
+            leaderboards.category = self.currentLeaderBoard;
+            leaderboards.timeScope = GKLeaderboardTimeScopeToday;
+            leaderboards.leaderboardDelegate = self;
+            self.myViewController = viewController;
+            [myViewController dismissModalViewControllerAnimated:NO];
+            
+            [[CCDirector sharedDirector] pause];
+            [[CCDirector sharedDirector] stopAnimation];
+            
+            [myViewController presentModalViewController:leaderboards animated:YES];
+        }
+        [leaderboards release];
+    }
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    [myViewController dismissModalViewControllerAnimated:YES];
     // BUG: If released 3 times, a EXC_BAD_ACCESS is made.
     // SOLUTION: Don't release, game still functions fine.
 	//[myViewController release];

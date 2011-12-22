@@ -11,4 +11,6 @@
 
 @interface SplashLayer : CCLayer {}
 
++(CCScene *) scene;
+
 @end

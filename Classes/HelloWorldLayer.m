@@ -58,8 +58,8 @@ NSUInteger nPr(NSUInteger n, NSUInteger r)
     NSUInteger n1 = RRFactorial(n);
     NSUInteger bottom = n - r;
     NSUInteger bottom1 = RRFactorial(bottom);
-    float output = (n1 / bottom1);
-    NSLog(@"Numbers: n=%d r=%d bottom=%lu n1=%lu bottom1=%lu output=%f",n,r,(unsigned long)bottom,(unsigned long)n1,(unsigned long)bottom1,(float)output);
+    NSUInteger output = (n1 / bottom1);
+    NSLog(@"Numbers: n=%d r=%d bottom=%lu n1=%lu bottom1=%lu output=%lu",n,r,(unsigned long)bottom,(unsigned long)n1,(unsigned long)bottom1,(unsigned long)output);
     return output;
 }
 
@@ -76,8 +76,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
     NSUInteger r1 = RRFactorial(r);
     NSUInteger bottom = n - r;
     NSUInteger bottom1 = RRFactorial(bottom);
-    float output = (r1 * (n1 / bottom1));
-    NSLog(@"Numbers: n=%d r=%d bottom=%lu n1=%lu r1=%lu bottom1=%lu output=%f",n,r,(unsigned long)bottom,(unsigned long)n1,(unsigned long)r1,(unsigned long)bottom1,(float)output);
+    NSUInteger output = (r1 * (n1 / bottom1));
+    NSLog(@"Numbers: n=%d r=%d bottom=%lu n1=%lu r1=%lu bottom1=%lu output=%lu",n,r,(unsigned long)bottom,(unsigned long)n1,(unsigned long)r1,(unsigned long)bottom1,(unsigned long)output);
     return output;
 }
 
@@ -134,15 +134,22 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         CCMenu *gameCenterMenu = [CCMenu menuWithItems:gameCenterButton, nil];
         gameCenterMenu.position = CGPointZero;
         [self addChild:gameCenterMenu];
+        
+        // Setup GameCenter Leaderboard window
+        CCMenuItem *gameCenterLeaderboardButton = [CCMenuItemImage itemFromNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png" target:self selector:@selector(gameCenterLeaderboardButtonTapped:)];
+        gameCenterLeaderboardButton.position = ccp((winSize.width - 86),(winSize.height - 20));
+        CCMenu *gameCenterLeaderboardMenu = [CCMenu menuWithItems:gameCenterLeaderboardButton, nil];
+        gameCenterLeaderboardMenu.position = CGPointZero;
+        [self addChild:gameCenterLeaderboardMenu];
 		
 		// Set up score and score label
 		if (!_firstime)
 		{
-			BOOL _firstime = YES;
+			_firstime = YES;
 			_score = 0;
 			_oldScore = -1;
 		}
-        self.scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" dimensions:CGSizeMake(175, 50) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:32];
+        self.scoreLabel = [CCLabelTTF labelWithString:@"Score: 0\nPossible Targeting Choices:\n0" dimensions:CGSizeMake(400, 100) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:28];
         _scoreLabel.position = ccp(winSize.width - _scoreLabel.contentSize.width/2, _scoreLabel.contentSize.height/2);
         _scoreLabel.color = ccc3(0,0,0);
         [self addChild:_scoreLabel z:0];
@@ -239,6 +246,11 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
     [[GCHelper sharedInstance] showAchievements:delegate.viewController];
 }
 
+- (void)gameCenterLeaderboardButtonTapped:(id)sender {
+    //NSLog(@"Opening Leaderboards");
+    [[GCHelper sharedInstance] showLeaderboards:delegate.viewController];
+}
+
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
@@ -313,9 +325,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	int minDuration = target.minMoveDuration;
 	int maxDuration = target.maxMoveDuration;
 	int rangeDuration = maxDuration - minDuration;
-    //int actualDuration = (arc4random() % rangeDuration) + minDuration;
-    int actualDuration = (nPr(maxDuration, minDuration) % rangeDuration) + minDuration;
-    NSLog(@"%d",actualDuration);
+    int actualDuration = (arc4random() % rangeDuration) + minDuration;
 	
 	// Create the actions
 	id actionMove = [CCMoveTo actionWithDuration:actualDuration 
@@ -333,7 +343,12 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 //}
 
 -(void)gameLogic:(ccTime)dt {
-	[self addTarget];
+    NSUInteger r = RRFactorial(2);
+    NSUInteger permutation = RRFactorial(_projectileOffScreen);
+    NSLog(@"%d %d",permutation,r);
+    if (permutation == 1 || permutation >= r) {
+        [self addTarget];
+    }
 }
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -437,7 +452,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 				monster.hp--;
 				//NSLog(@"%d",monster.hp);
 				if (monster.hp <= 0) {
-					_score ++;
+					_score += monster.points;
+                    _targetsDestroyed ++;
 					[self checkAchievements];
 					[targetsToDelete addObject:target];
 				}
@@ -473,7 +489,13 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	// Update score only when it changes for efficiency
 	if (_score != _oldScore) {
 		_oldScore = _score;
-		[_scoreLabel setString:[NSString stringWithFormat:@"Score: %d", _score]];
+        NSUInteger choices = nCr(_score, _targetsDestroyed);
+        //NSLog(@"%lu",choices);
+        if (choices == 4294967295) {
+            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\nMax Number", _score]];
+        } else {
+            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\n%lu", _score, choices]];
+        }
 	}
 }
 

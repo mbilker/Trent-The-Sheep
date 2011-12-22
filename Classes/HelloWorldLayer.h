@@ -29,6 +29,7 @@ NSUInteger RRFactorial(NSUInteger n);
 	int _oldScore;
 	int _health;
 	int _wave;
+    int _targetsDestroyed;
     int _projectileOffScreen;
 	BOOL _firstime;
     CCProgressTimer *_healthBar;

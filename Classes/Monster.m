@@ -11,6 +11,7 @@
 @implementation Monster
 
 @synthesize hp = _curHp;
+@synthesize points = _points;
 @synthesize minMoveDuration = _minMoveDuration;
 @synthesize maxMoveDuration = _maxMoveDuration;
 
@@ -23,6 +24,7 @@
     WeakAndFastMonster *monster = nil;
     if ((monster = [[[super alloc] initWithFile:@"Target.png"] autorelease])) {
         monster.hp = 1;
+        monster.points = 1;
         monster.minMoveDuration = 4;
         monster.maxMoveDuration = 6;
     }
@@ -39,6 +41,7 @@
     StrongAndSlowMonster *monster = nil;
     if ((monster = [[[super alloc] initWithFile:@"Target2.png"] autorelease])) {
         monster.hp = 3;
+        monster.points = 2;
         monster.minMoveDuration = 6;
         monster.maxMoveDuration = 12;
     }

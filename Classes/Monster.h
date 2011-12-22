@@ -10,11 +10,13 @@
 
 @interface Monster : CCSprite {
     int _curHp;
+    int _points;
     int _minMoveDuration;
     int _maxMoveDuration;
 }
 
 @property (nonatomic, assign) int hp;
+@property (nonatomic, assign) int points;
 @property (nonatomic, assign) int minMoveDuration;
 @property (nonatomic, assign) int maxMoveDuration;
 
