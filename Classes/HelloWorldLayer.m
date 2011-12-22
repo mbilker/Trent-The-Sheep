@@ -59,7 +59,7 @@ NSUInteger nPr(NSUInteger n, NSUInteger r)
     NSUInteger bottom = n - r;
     NSUInteger bottom1 = RRFactorial(bottom);
     NSUInteger output = (n1 / bottom1);
-    NSLog(@"Numbers: n=%d r=%d bottom=%lu n1=%lu bottom1=%lu output=%lu",n,r,(unsigned long)bottom,(unsigned long)n1,(unsigned long)bottom1,(unsigned long)output);
+    //NSLog(@"Numbers: n=%d r=%d bottom=%lu n1=%lu bottom1=%lu output=%lu",n,r,(unsigned long)bottom,(unsigned long)n1,(unsigned long)bottom1,(unsigned long)output);
     return output;
 }
 
@@ -77,7 +77,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
     NSUInteger bottom = n - r;
     NSUInteger bottom1 = RRFactorial(bottom);
     NSUInteger output = (r1 * (n1 / bottom1));
-    NSLog(@"Numbers: n=%d r=%d bottom=%lu n1=%lu r1=%lu bottom1=%lu output=%lu",n,r,(unsigned long)bottom,(unsigned long)n1,(unsigned long)r1,(unsigned long)bottom1,(unsigned long)output);
+    //NSLog(@"Numbers: n=%d r=%d bottom=%lu n1=%lu r1=%lu bottom1=%lu output=%lu",n,r,(unsigned long)bottom,(unsigned long)n1,(unsigned long)r1,(unsigned long)bottom1,(unsigned long)output);
     return output;
 }
 
@@ -105,6 +105,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 @synthesize scoreLabel = _scoreLabel;
 @synthesize nextProjectile = _nextProjectile;
 @synthesize healthBar = _healthBar;
+@synthesize wave = _wave;
+@synthesize started = _started;
 
 -(id) init
 {
@@ -143,13 +145,14 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         [self addChild:gameCenterLeaderboardMenu];
 		
 		// Set up score and score label
-		if (!_firstime)
+		if (_started != 1)
 		{
-			_firstime = YES;
+            _started = 1;
+            NSLog(@"Started");
 			_score = 0;
 			_oldScore = -1;
 		}
-        self.scoreLabel = [CCLabelTTF labelWithString:@"Score: 0\nPossible Targeting Choices:\n0" dimensions:CGSizeMake(400, 100) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:28];
+        self.scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\n0",_score] dimensions:CGSizeMake(400, 100) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:28];
         _scoreLabel.position = ccp(winSize.width - _scoreLabel.contentSize.width/2, _scoreLabel.contentSize.height/2);
         _scoreLabel.color = ccc3(0,0,0);
         [self addChild:_scoreLabel z:0];
@@ -196,10 +199,88 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 			percentComplete= 100.0;
 			break;
 		}
-		case 10:
+		case 2:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 10.0;
+			break;
+		}
+        case 3:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 15.0;
+			break;
+		}
+        case 4:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 20.0;
+			break;
+		}
+        case 5:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 25.0;
+			break;
+		}
+        case 6:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 30.0;
+			break;
+		}
+        case 7:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 35.0;
+			break;
+		}
+        case 8:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 40.0;
+			break;
+		}
+        case 9:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 45.0;
+			break;
+		}
+        case 10:
 		{
 			identifier= kAchievementHidden20Taps;
 			percentComplete= 50.0;
+			break;
+		}
+        case 11:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 55.0;
+			break;
+		}
+        case 12:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 60.0;
+			break;
+		}
+        case 13:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 65.0;
+			break;
+		}
+        case 14:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 70.0;
+			break;
+		}
+        case 15:
+		{
+			identifier= kAchievementHidden20Taps;
+			percentComplete= 75.0;
 			break;
 		}
 		case 20:
@@ -220,7 +301,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 			percentComplete= 75.0;
 			break;
 		}
-		case 31:
+		case 30:
 		{
 			identifier= kAchievementBigOneHundred;
 			percentComplete= 100.0;
@@ -345,7 +426,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 -(void)gameLogic:(ccTime)dt {
     NSUInteger r = RRFactorial(2);
     NSUInteger permutation = RRFactorial(_projectileOffScreen);
-    NSLog(@"%d %d",permutation,r);
+    //NSLog(@"%d %d",permutation,r);
     if (permutation == 1 || permutation >= r) {
         [self addTarget];
     }
@@ -453,7 +534,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 				//NSLog(@"%d",monster.hp);
 				if (monster.hp <= 0) {
 					_score += monster.points;
-                    _targetsDestroyed ++;
+                    _targetsDestroyed++;
 					[self checkAchievements];
 					[targetsToDelete addObject:target];
 				}
@@ -465,10 +546,12 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 			[_targets removeObject:target];
 			[self removeChild:target cleanup:YES];
 			_projectilesDestroyed++;
-			if (_projectilesDestroyed > _maxScore) {
+			if (_projectilesDestroyed >= _maxScore) {
 				GameOverScene *gameOverScene = [GameOverScene node];
-				_projectilesDestroyed = 0;
-				[gameOverScene.layer.label setString:[NSString stringWithFormat:@"Wave %d Complete!\nScore: %d", _wave, _score]];
+                _projectilesDestroyed = 0;
+                [[GCHelper sharedInstance] reportScore:_score forCategory:kEasyLeaderboardID];
+				[gameOverScene.layer.label setString:[NSString stringWithFormat:@"Wave %d Complete!\nScore: %d", self.wave, _score]];
+                self.wave ++;
 				[[CCDirector sharedDirector] replaceScene:gameOverScene];
 			}
 		}
@@ -492,7 +575,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         NSUInteger choices = nCr(_score, _targetsDestroyed);
         //NSLog(@"%lu",choices);
         if (choices == 4294967295) {
-            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\nMax Number", _score]];
+            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\nMax Number (Over 4 Million)", _score]];
         } else {
             [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\n%lu", _score, choices]];
         }

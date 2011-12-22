@@ -152,6 +152,48 @@ static GCHelper *sharedHelper = nil;
 	}
 }
 
+- (void)reloadHighScoresForCategory: (NSString*) category
+{
+	GKLeaderboard* leaderBoard= [[[GKLeaderboard alloc] init] autorelease];
+	leaderBoard.category = category;
+	leaderBoard.timeScope= GKLeaderboardTimeScopeToday;
+	leaderBoard.range= NSMakeRange(1, 1);
+	
+	[leaderBoard loadScoresWithCompletionHandler:  ^(NSArray *scores, NSError *error)
+     {
+         if(error == NULL)
+         {
+             NSLog(@"No Error");
+         }
+
+     }];
+}
+
+- (void)scoreReported: (NSError*) error;
+{
+	if(error == NULL)
+	{
+		[self reloadHighScoresForCategory: kEasyLeaderboardID];
+		[self showAlertWithTitle: @"High Score Reported!"
+						 message: [NSString stringWithFormat: @"", [error localizedDescription]]];
+	}
+	else
+	{
+		[self showAlertWithTitle: @"Score Report Failed!"
+						 message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]];
+	}
+}
+
+- (void)reportScore: (int64_t) score forCategory: (NSString*) category
+{
+    GKScore *scoreReporter = [[[GKScore alloc] initWithCategory:category] autorelease];	
+	scoreReporter.value = score;
+	[scoreReporter reportScoreWithCompletionHandler: ^(NSError *error) 
+	 {
+		 [self scoreReported:error];
+	 }];
+}
+
 #pragma mark View Controllers
 
 /**
@@ -197,7 +239,7 @@ static GCHelper *sharedHelper = nil;
         self.leaderboards = [[GKLeaderboardViewController alloc] init];
         if (leaderboards != nil)
         {
-            self.currentLeaderBoard= kEasyLeaderboardID;
+            self.currentLeaderBoard = kEasyLeaderboardID;
             leaderboards.category = self.currentLeaderBoard;
             leaderboards.timeScope = GKLeaderboardTimeScopeToday;
             leaderboards.leaderboardDelegate = self;

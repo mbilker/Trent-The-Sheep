@@ -22,6 +22,8 @@
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;
     NSString *currentLeaderBoard;
+    NSString *personalBestScoreDescription;
+    NSString *personalBestScoreString;
 }
 
 @property (retain) UIViewController *myViewController;
@@ -35,6 +37,9 @@
 // Achievement methods
 - (GKAchievement *)getAchievementForIdentifier:(NSString *)identifier;
 - (void)reportAchievementIdentifier:(NSString *)identifier percentComplete:(float)percent;
+- (void)reloadHighScoresForCategory: (NSString*) category;
+- (void)scoreReported: (NSError*) error;
+- (void)reportScore: (int64_t) score forCategory: (NSString*) category;
 - (void)showAchievements:(UIViewController *)viewController;
 - (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController;
 - (void)showLeaderboards:(UIViewController *)viewController;

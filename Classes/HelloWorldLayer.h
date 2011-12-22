@@ -29,9 +29,9 @@ NSUInteger RRFactorial(NSUInteger n);
 	int _oldScore;
 	int _health;
 	int _wave;
+    int _started;
     int _targetsDestroyed;
     int _projectileOffScreen;
-	BOOL _firstime;
     CCProgressTimer *_healthBar;
     CCSprite *_player;
     CCSprite *_nextProjectile;
@@ -43,6 +43,8 @@ NSUInteger RRFactorial(NSUInteger n);
 @property (nonatomic, assign) CCLabelTTF *scoreLabel;
 @property (nonatomic, retain) CCSprite *nextProjectile;
 @property (nonatomic, retain) CCProgressTimer *healthBar;
+@property (nonatomic, assign) int wave;
+@property (nonatomic, assign) int started;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
