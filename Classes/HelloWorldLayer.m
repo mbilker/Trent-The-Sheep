@@ -158,7 +158,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         [self addChild:_scoreLabel z:0];
 		
         // Max Score
-		_maxScore = 30;
+		_maxScore = 50;
 		
 		// Health
 		_health = 100;
