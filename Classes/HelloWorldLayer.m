@@ -105,8 +105,9 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 @synthesize scoreLabel = _scoreLabel;
 @synthesize nextProjectile = _nextProjectile;
 @synthesize healthBar = _healthBar;
-@synthesize wave = _wave;
-@synthesize started = _started;
+@synthesize _score;
+@synthesize gameCenterManager;
+@synthesize status = _status;
 
 -(id) init
 {
@@ -123,32 +124,25 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		_player.position = ccp(_player.contentSize.width/2, winSize.height/2);
 		[self addChild:_player z:0];
         
-        // Setup about window
+        // Setup menu
         CCMenuItem *aboutMenuItem = [CCMenuItemImage itemFromNormalImage:@"about.png" selectedImage:@"about.png" target:self selector:@selector(aboutButtonTapped:)];
         aboutMenuItem.position = ccp((winSize.width - 20),(winSize.height - 20));
-        CCMenu *aboutMenu = [CCMenu menuWithItems:aboutMenuItem, nil];
-        aboutMenu.position = CGPointZero;
-        [self addChild:aboutMenu];
         
-        // Setup GameCenter window
         CCMenuItem *gameCenterButton = [CCMenuItemImage itemFromNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png" target:self selector:@selector(gameCenterButtonTapped:)];
         gameCenterButton.position = ccp((winSize.width - 52),(winSize.height - 20));
-        CCMenu *gameCenterMenu = [CCMenu menuWithItems:gameCenterButton, nil];
-        gameCenterMenu.position = CGPointZero;
-        [self addChild:gameCenterMenu];
         
-        // Setup GameCenter Leaderboard window
         CCMenuItem *gameCenterLeaderboardButton = [CCMenuItemImage itemFromNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png" target:self selector:@selector(gameCenterLeaderboardButtonTapped:)];
         gameCenterLeaderboardButton.position = ccp((winSize.width - 86),(winSize.height - 20));
-        CCMenu *gameCenterLeaderboardMenu = [CCMenu menuWithItems:gameCenterLeaderboardButton, nil];
-        gameCenterLeaderboardMenu.position = CGPointZero;
-        [self addChild:gameCenterLeaderboardMenu];
+        
+        CCMenu *Menu = [CCMenu menuWithItems:gameCenterLeaderboardButton, gameCenterButton, aboutMenuItem, nil];
+        Menu.position = CGPointZero;
+        [self addChild:Menu];
 		
 		// Set up score and score label
 		if (_started != 1)
 		{
             _started = 1;
-            NSLog(@"Started");
+            //NSLog(@"Started");
 			_score = 0;
 			_oldScore = -1;
 		}
@@ -182,6 +176,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
         
         delegate = (Perm_and_CombAppDelegate *) [UIApplication sharedApplication].delegate;
+        self.gameCenterManager = [[[GCHelper alloc] init] autorelease];
 	}
 	return self;
 }
@@ -191,7 +186,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 {
 	NSString* identifier= NULL;
 	double percentComplete= 0;
-	switch(_score)
+	switch(_projectilesDestroyed)
 	{
 		case 1:
 		{
@@ -329,6 +324,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 
 - (void)gameCenterLeaderboardButtonTapped:(id)sender {
     //NSLog(@"Opening Leaderboards");
+    //[[GCHelper sharedInstance] resetAchievements];
     [[GCHelper sharedInstance] showLeaderboards:delegate.viewController];
 }
 
@@ -363,6 +359,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
             _projectileOffScreen = 0;
 			GameOverScene *gameOverScene = [GameOverScene node];
 			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\nScore: %d",_score]];
+            [[GCHelper sharedInstance] reportScore:_score forCategory:kEasyLeaderboardID];
 			[[CCDirector sharedDirector] replaceScene:gameOverScene];
 		}
 	} else if (sprite.tag == 2) { // projectile
@@ -372,6 +369,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         if(_projectileOffScreen == 45) {
             GameOverScene *gameOverScene = [GameOverScene node];
 			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\n%d projectiles went offscreen",_projectileOffScreen]];
+            [[GCHelper sharedInstance] reportScore:_score forCategory:kEasyLeaderboardID];
             _projectileOffScreen = 0;
 			[[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
@@ -550,8 +548,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 				GameOverScene *gameOverScene = [GameOverScene node];
                 _projectilesDestroyed = 0;
                 [[GCHelper sharedInstance] reportScore:_score forCategory:kEasyLeaderboardID];
-				[gameOverScene.layer.label setString:[NSString stringWithFormat:@"Wave %d Complete!\nScore: %d", self.wave, _score]];
-                self.wave ++;
+				[gameOverScene.layer.label setString:[NSString stringWithFormat:@"Wave %d Complete!\nScore: %d", _wave, _score]];
+                _wave ++;
 				[[CCDirector sharedDirector] replaceScene:gameOverScene];
 			}
 		}

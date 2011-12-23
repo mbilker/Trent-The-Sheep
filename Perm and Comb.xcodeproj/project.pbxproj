@@ -62,13 +62,14 @@
 		650FEF94149E87D8002496BD /* Arial-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF90149E87D8002496BD /* Arial-hd.png */; };
 		650FEF95149E87D8002496BD /* Arial.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF91149E87D8002496BD /* Arial.fnt */; };
 		650FEF96149E87D8002496BD /* Arial.png in Resources */ = {isa = PBXBuildFile; fileRef = 650FEF92149E87D8002496BD /* Arial.png */; };
-		650FEFA6149EAF9A002496BD /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFA5149EAF9A002496BD /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		650FEFA6149EAF9A002496BD /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFA5149EAF9A002496BD /* GameKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		650FEFB6149EB02D002496BD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650FEFB5149EB02D002496BD /* MobileCoreServices.framework */; };
 		651432FA149E72FC0018A326 /* AboutScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 651432F9149E72FC0018A326 /* AboutScene.m */; };
 		652178AB149C3F3100BBF004 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = 652178AA149C3F3100BBF004 /* health.png */; };
 		6523D86014A004F90038B391 /* SplashScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6523D85F14A004F90038B391 /* SplashScene.mm */; };
 		652FE85D14A15E9200BDAB43 /* gamecenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 652FE85C14A15E9200BDAB43 /* gamecenter.png */; };
 		653775D1149E665A002CD765 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 653775D0149E665A002CD765 /* about.png */; };
+		65E00E4414A41C49008BDBA5 /* font1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65E00E4314A41C49008BDBA5 /* font1.ttf */; };
 		65FF64B514A03B7B001452A8 /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF64B414A03B7A001452A8 /* GCHelper.m */; };
 		65FF64C114A04283001452A8 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF64C014A04283001452A8 /* GameOverScene.m */; };
 		DC6640030F83B3EA000B3E49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */; };
@@ -340,6 +341,7 @@
 		6523D85F14A004F90038B391 /* SplashScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SplashScene.mm; sourceTree = "<group>"; };
 		652FE85C14A15E9200BDAB43 /* gamecenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamecenter.png; sourceTree = "<group>"; };
 		653775D0149E665A002CD765 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
+		65E00E4314A41C49008BDBA5 /* font1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font1.ttf; sourceTree = "<group>"; };
 		65FF64B314A03B7A001452A8 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
 		65FF64B414A03B7A001452A8 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
 		65FF64BF14A04283001452A8 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
@@ -718,6 +720,7 @@
 		50F414EB1069373D002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				65E00E4314A41C49008BDBA5 /* font1.ttf */,
 				652FE85C14A15E9200BDAB43 /* gamecenter.png */,
 				653775D0149E665A002CD765 /* about.png */,
 				652178AA149C3F3100BBF004 /* health.png */,
@@ -1205,6 +1208,7 @@
 				650FEF95149E87D8002496BD /* Arial.fnt in Resources */,
 				650FEF96149E87D8002496BD /* Arial.png in Resources */,
 				652FE85D14A15E9200BDAB43 /* gamecenter.png in Resources */,
+				65E00E4414A41C49008BDBA5 /* font1.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1356,7 +1360,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -1383,7 +1387,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -1441,8 +1445,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "153BD0B0-BB76-4DDF-ACB8-F86D59A2BDC4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "153BD0B0-BB76-4DDF-ACB8-F86D59A2BDC4";
+				PROVISIONING_PROFILE = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1467,8 +1471,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "153BD0B0-BB76-4DDF-ACB8-F86D59A2BDC4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "153BD0B0-BB76-4DDF-ACB8-F86D59A2BDC4";
+				PROVISIONING_PROFILE = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

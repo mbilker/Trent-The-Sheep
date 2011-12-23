@@ -9,7 +9,9 @@
 #import "GCHelper.h"
 #import "cocos2d.h"
 
+#import "HelloWorldLayer.h"
 #import "Achievements.h"
+#import <GameKit/GameKit.h>
 
 @implementation GCHelper
 
@@ -18,6 +20,10 @@
 @synthesize achievements;
 @synthesize leaderboards;
 @synthesize currentLeaderBoard;
+@synthesize delegate;
+
+@synthesize personalBestScoreString;
+@synthesize personalBestScoreDescription;
 
 #pragma mark Initialization
 
@@ -82,14 +88,6 @@ static GCHelper *sharedHelper = nil;
     
 }
 
-- (void) showAlertWithTitle: (NSString*) title message: (NSString*) message
-{
-	UIAlertView* alert= [[[UIAlertView alloc] initWithTitle: title message: message 
-                                                   delegate: NULL cancelButtonTitle: @"OK" otherButtonTitles: NULL] autorelease];
-	[alert show];
-	
-}
-
 #pragma mark User functions
 
 - (void)authenticateLocalUser { 
@@ -106,6 +104,14 @@ static GCHelper *sharedHelper = nil;
 
 #pragma mark -
 #pragma mark Achievement methods
+
+-(void)showAlertWithTitle: (NSString*) title message: (NSString*) message
+{
+	UIAlertView* alert= [[[UIAlertView alloc] initWithTitle: title message: message 
+                                                   delegate: NULL cancelButtonTitle: @"OK" otherButtonTitles: NULL] autorelease];
+	[alert show];
+	
+}
 
 /**
  * Get an achievement object in the locally stored dictionary
@@ -140,16 +146,55 @@ static GCHelper *sharedHelper = nil;
 			achievement.percentComplete = percent;
 			[achievement reportAchievementWithCompletionHandler:^(NSError *error)
 			 {
-				 if (error != nil)
-				 {
-					 // Retain the achievement object and try again later
-					 [unsentAchievements addObject:achievement];
+                if((error == NULL) && (achievement != NULL))
+                {
+                    if(achievement.percentComplete == 100.0)
+                    {
+                        //[self showAlertWithTitle: @"Achievement Earned!" message: [NSString stringWithFormat: @"Great job!  You earned an achievement: \"%@\"", NSLocalizedString(achievement.identifier, NULL)]];
+                    }
+                    else
+                    {
+                        if(achievement.percentComplete > 0)
+                        {
+                            //[self showAlertWithTitle: @"Achievement Progress!" message: [NSString stringWithFormat: @"Great job!  You're %.0f\%% of the way to: \"%@\"", achievement.percentComplete, NSLocalizedString(achievement.identifier, NULL)]];
+                        }
+                    }
+                }
+                else
+                {
+                    [self showAlertWithTitle: @"Achievement Submission Failed!"
+                                    message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]];
+                }
+                if (error != nil)
+                {
+                    // Retain the achievement object and try again later
+                    [unsentAchievements addObject:achievement];
 					 
-					 NSLog(@"Error sending achievement!");
-				 }
+                    NSLog(@"Error sending achievement!");
+                }
 			 }];
 		}
 	}
+}
+
+- (void) resetAchievements
+{
+	[GKAchievement resetAchievementsWithCompletionHandler: ^(NSError *error) 
+     {
+		 //[self callDelegateOnMainThread: @selector(achievementResetResult:) withArg: NULL error: error];
+         {
+            if(error != NULL)
+                {
+                    [self showAlertWithTitle: @"Achievement Reset Failed!"
+                                message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]];
+                }
+            else
+            {
+                [self showAlertWithTitle: @"Achievement Reset Successfull!"
+                                message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]];
+            }
+         }
+     }];
 }
 
 - (void)reloadHighScoresForCategory: (NSString*) category
@@ -161,27 +206,19 @@ static GCHelper *sharedHelper = nil;
 	
 	[leaderBoard loadScoresWithCompletionHandler:  ^(NSArray *scores, NSError *error)
      {
+        //[self performSelector:@selector(reloadScoresComplete:leaderBoard error: error)];
          if(error == NULL)
          {
-             NSLog(@"No Error");
+                int64_t personalBest= leaderBoard.localPlayerScore.value;
+                self.personalBestScoreDescription= @"Your Best:";
+                self.personalBestScoreString= [NSString stringWithFormat: @"%ld", personalBest];
          }
-
+         else
+         {
+             [self showAlertWithTitle: @"Score Reload Failed."
+                                      message: [NSString stringWithFormat: @"", [error localizedDescription]]];
+         }
      }];
-}
-
-- (void)scoreReported: (NSError*) error;
-{
-	if(error == NULL)
-	{
-		[self reloadHighScoresForCategory: kEasyLeaderboardID];
-		[self showAlertWithTitle: @"High Score Reported!"
-						 message: [NSString stringWithFormat: @"", [error localizedDescription]]];
-	}
-	else
-	{
-		[self showAlertWithTitle: @"Score Report Failed!"
-						 message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]];
-	}
 }
 
 - (void)reportScore: (int64_t) score forCategory: (NSString*) category
@@ -190,7 +227,19 @@ static GCHelper *sharedHelper = nil;
 	scoreReporter.value = score;
 	[scoreReporter reportScoreWithCompletionHandler: ^(NSError *error) 
 	 {
-		 [self scoreReported:error];
+        NSLog(@"Score Reported: %lld",score);
+        //[self performSelector:@selector(scoreReported:NULL error: error)];
+        if(error == NULL)
+        {
+            [self reloadHighScoresForCategory: kEasyLeaderboardID];
+            [self showAlertWithTitle: @"High Score Reported!"
+                            message: [NSString stringWithFormat: @"", [error localizedDescription]]];
+        }
+        else
+        {
+            [self showAlertWithTitle: @"Score Report Failed!"
+                            message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]];
+        }
 	 }];
 }
 
@@ -264,6 +313,5 @@ static GCHelper *sharedHelper = nil;
     [[CCDirector sharedDirector] resume];
     [[CCDirector sharedDirector] startAnimation];
 }
-
 
 @end
