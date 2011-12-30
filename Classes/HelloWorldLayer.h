@@ -14,7 +14,9 @@
 #import "cocos2d.h"
 #import "Perm_and_CombAppDelegate.h"
 #import "RootViewController.h"
-#import "GCHelper.h"
+
+//#import "GCHelper.h"
+#import "GameKitHelper.h"
 
 NSUInteger RRFactorial(NSUInteger n);
 // Answers the factorial of n, or NSUIntegerMax if factorial exceeds
@@ -22,8 +24,10 @@ NSUInteger RRFactorial(NSUInteger n);
 // type to carry factorials.
 
 // HelloWorldLayer
-@class GCHelper;
-@interface HelloWorldLayer : CCLayerColor <GameCenterManagerDelegate>
+//@class GCHelper;
+//@class GameKitHelper;
+
+@interface HelloWorldLayer : CCLayerColor <GameKitHelperProtocol>
 {
     int _projectilesDestroyed;
 	int _maxScore;
@@ -43,10 +47,10 @@ NSUInteger RRFactorial(NSUInteger n);
     NSMutableArray *_projectiles;
     
     Perm_and_CombAppDelegate *delegate;
-    GCHelper *gameCenterManager;
+    //GCHelper *gameCenterManager;
 }
 
-@property (nonatomic, retain) GCHelper *gameCenterManager;
+//@property (nonatomic, retain) GCHelper *gameCenterManager;
 @property (nonatomic, assign) CCLabelTTF *scoreLabel;
 @property (nonatomic, retain) CCSprite *nextProjectile;
 @property (nonatomic, retain) CCProgressTimer *healthBar;

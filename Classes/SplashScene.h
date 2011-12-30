@@ -2,8 +2,8 @@
 //  SplashScene.h
 //  PuffPuffV
 //
-//  Created by Pablo Ruiz on 4/23/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Created by Matt Bilker on 12/21/11.
+//  Copyright 2011 mbilker. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

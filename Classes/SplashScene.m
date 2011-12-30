@@ -27,7 +27,6 @@
 		CCSprite * bg2 = [CCSprite spriteWithFile:@"Default.png"];
         bg2.position = ccp(240, 160);
         [self addChild:bg2];
-        //[self initOpenFeint];
 		
 		[self schedule:@selector(aaa) interval:1];
     }
