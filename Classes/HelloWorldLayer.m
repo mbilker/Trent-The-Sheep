@@ -148,6 +148,12 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         _scoreLabel.position = ccp(winSize.width - _scoreLabel.contentSize.width/2, _scoreLabel.contentSize.height/2);
         _scoreLabel.color = ccc3(0,0,0);
         [self addChild:_scoreLabel z:0];
+        
+        // Status
+        self.status = [CCLabelTTF labelWithString:@"" dimensions:CGSizeMake(400,120) alignment:UITextAlignmentLeft fontName:@"Marker Felt" fontSize:24];
+        _status.position = ccp(220, winSize.height - 80);
+        _status.color = ccc3(0,0,0);
+        [self addChild:_status z:0];
 		
         // Max Score
 		_maxScore = 50;
@@ -183,120 +189,140 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 - (void) checkAchievements
 {
 	NSString* identifier= NULL;
+    NSString* info= NULL;
 	double percentComplete= 0;
 	switch(_projectilesDestroyed)
 	{
 		case 1:
 		{
 			identifier= kAchievementOneHit;
+            info= @"One Hit";
 			percentComplete= 100.0;
 			break;
 		}
 		case 2:
 		{
 			identifier= kAchievementFiveHit;
+            info= @"Five Hits";
 			percentComplete= 40.0;
 			break;
 		}
         case 3:
 		{
 			identifier= kAchievementFiveHit;
+            info= @"Five Hits";
 			percentComplete= 60.0;
 			break;
 		}
         case 4:
 		{
 			identifier= kAchievementFiveHit;
+            info= @"Five Hits";
 			percentComplete= 80.0;
 			break;
 		}
         case 5:
 		{
 			identifier= kAchievementFiveHit;
+            info= @"Five Hits";
 			percentComplete= 100.0;
 			break;
 		}
         case 6:
 		{
 			identifier= kAchievementTenHit;
+            info= @"Ten Hits";
 			percentComplete= 60.0;
 			break;
 		}
         case 7:
 		{
 			identifier= kAchievementTenHit;
+            info= @"Ten Hits";
 			percentComplete= 70.0;
 			break;
 		}
         case 8:
 		{
 			identifier= kAchievementTenHit;
+            info= @"Ten Hits";
 			percentComplete= 80.0;
 			break;
 		}
         case 9:
 		{
 			identifier= kAchievementTenHit;
+            info= @"Ten Hits";
 			percentComplete= 90.0;
 			break;
 		}
         case 10:
 		{
 			identifier= kAchievementTenHit;
+            info= @"Ten Hits";
 			percentComplete= 100.0;
 			break;
 		}
         case 11:
 		{
 			identifier= kAchievementFifthteenHit;
+            info= @"Fifthteen Hits";
 			percentComplete= 73.0;
 			break;
 		}
         case 12:
 		{
 			identifier= kAchievementFifthteenHit;
+            info= @"Fifthteen Hits";
 			percentComplete= 80.0;
 			break;
 		}
         case 13:
 		{
 			identifier= kAchievementFifthteenHit;
+            info= @"Fifthteen Hits";
 			percentComplete= 86.0;
 			break;
 		}
         case 14:
 		{
 			identifier= kAchievementFifthteenHit;
+            info= @"Fifthteen Hits";
 			percentComplete= 93.0;
 			break;
 		}
         case 15:
 		{
 			identifier= kAchievementFifthteenHit;
+            info= @"Fifthteen Hits";
 			percentComplete= 100.0;
 			break;
 		}
 		case 20:
 		{
 			identifier= kAchievementThirtyHit;
+            info= @"Thirty Hits";
 			percentComplete= 66.0;
 			break;
 		}
 		case 25:
 		{
 			identifier= kAchievementThirtyHit;
+            info= @"Thirty Hits";
 			percentComplete= 83.0;
 			break;
 		}
 		case 27:
 		{
 			identifier= kAchievementThirtyHit;
+            info= @"Thirty Hits";
 			percentComplete= 90.0;
 			break;
 		}
 		case 30:
 		{
 			identifier= kAchievementThirtyHit;
+            info= @"Thirty Hits";
 			percentComplete= 100.0;
 			break;
 		}
@@ -306,7 +332,10 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	{
         GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
         [gkHelper reportAchievementWithID:identifier percentComplete:percentComplete];
-	}
+        [_status setString:[NSString stringWithFormat:@"%@ is %d%%",info,(int)percentComplete]];
+	} else {
+        [_status setString:@""];
+    }
 }
 
 - (void)aboutButtonTapped:(id)sender {
