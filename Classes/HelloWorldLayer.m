@@ -16,7 +16,7 @@
 #import "AboutScene.h"
 
 #import "Achievements.h"
-#import "GameKitHelper.h"
+#import "DDGameKitHelper.h"
 
 NSUInteger RRFactorial(NSUInteger n)
 {
@@ -104,8 +104,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 @synthesize nextProjectile = _nextProjectile;
 @synthesize healthBar = _healthBar;
 @synthesize _score;
-//@synthesize gameCenterManager;
 @synthesize status = _status;
+@synthesize _wave;
 
 -(id) init
 {
@@ -179,9 +179,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         // Background Music
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
         
-        GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
-        gkHelper.delegate = self;
-        [gkHelper authenticateLocalPlayer];
+        [[DDGameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
 	}
 	return self;
 }
@@ -330,8 +328,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	}
 	if(identifier!= NULL)
 	{
-        GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
-        [gkHelper reportAchievementWithID:identifier percentComplete:percentComplete];
+        [[DDGameKitHelper sharedGameKitHelper] reportAchievement:identifier percentComplete:percentComplete];
         [_status setString:[NSString stringWithFormat:@"%@ is %d%%",info,(int)percentComplete]];
 	} else {
         [_status setString:@""];
@@ -346,15 +343,12 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 
 - (void)gameCenterButtonTapped:(id)sender {
     //NSLog(@"Opening Achievements");
-    GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
-    [gkHelper showAchievements];
+    [[DDGameKitHelper sharedGameKitHelper] showAchievements];
 }
 
 - (void)gameCenterLeaderboardButtonTapped:(id)sender {
     //NSLog(@"Opening Leaderboards");
-    GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
-    [gkHelper showLeaderboard];
-    //[gkHelper resetAchievements];
+    [[DDGameKitHelper sharedGameKitHelper] showLeaderboard];
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -388,8 +382,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
             _projectileOffScreen = 0;
 			GameOverScene *gameOverScene = [GameOverScene node];
 			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\nScore: %d",_score]];
-            GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
-            [gkHelper submitScore:_score category:kEasyLeaderboardID];
+            [[DDGameKitHelper sharedGameKitHelper] submitScore:_score category:kEasyLeaderboardID];
 			[[CCDirector sharedDirector] replaceScene:gameOverScene];
 		}
 	} else if (sprite.tag == 2) { // projectile
@@ -399,8 +392,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         if(_projectileOffScreen == 45) {
             GameOverScene *gameOverScene = [GameOverScene node];
 			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\n%d projectiles went offscreen",_projectileOffScreen]];
-            GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
-            [gkHelper submitScore:_score category:kEasyLeaderboardID];
+            [[DDGameKitHelper sharedGameKitHelper] submitScore:_score category:kEasyLeaderboardID];
             _projectileOffScreen = 0;
 			[[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
@@ -578,8 +570,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 			if (_projectilesDestroyed >= _maxScore) {
 				GameOverScene *gameOverScene = [GameOverScene node];
                 _projectilesDestroyed = 0;
-                GameKitHelper *gkHelper = [GameKitHelper sharedGameKitHelper];
-                [gkHelper submitScore:_score category:kEasyLeaderboardID];
+                [[DDGameKitHelper sharedGameKitHelper] submitScore:_score category:kEasyLeaderboardID];
 				[gameOverScene.layer.label setString:[NSString stringWithFormat:@"Wave %d Complete!\nScore: %d", _wave, _score]];
                 _wave ++;
 				[[CCDirector sharedDirector] replaceScene:gameOverScene];
@@ -604,110 +595,15 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		_oldScore = _score;
         NSUInteger score2 = _score;
         NSUInteger choices = nCr(score2, _targetsDestroyed);
-        NSLog(@"Choices: %lu",(unsigned long)choices);
-        //NSLog(@"%lu",choices);
+        NSString *number = [NSString stringWithFormat:@"%lu",(unsigned long)choices];
+        NSLog(@"%@",number);
+        NSLog(@"%lu",(unsigned long)choices);
         if (choices == 4294967295) {
             [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\nMax Number (Over 4 Million)", _score]];
         } else {
-            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\n%lu", _score, (unsigned long)choices]];
+            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\n%lu", _score, (unsigned long)number]];
         }
 	}
-}
-
-#pragma mark -
-#pragma mark GameKitHelper delegate methods
--(void) onLocalPlayerAuthenticationChanged
-{
-    GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
-    CCLOG(@"LocalPlayer isAuthenticated changed to: %@", localPlayer.authenticated ? @"YES" : @"NO");
-    
-    if (localPlayer.authenticated)
-    {
-        GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
-        [gkHelper getLocalPlayerFriends];
-        //[gkHelper resetAchievements];
-    }   
-}
--(void) onFriendListReceived:(NSArray*)friends
-{
-    CCLOG(@"onFriendListReceived: %@", [friends description]);
-    GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
-    [gkHelper getPlayerInfo:friends];
-}
--(void) onPlayerInfoReceived:(NSArray*)players
-{
-    CCLOG(@"onPlayerInfoReceived: %@", [players description]);
-    
-    
-}
--(void) onScoresSubmitted:(bool)success
-{
-    CCLOG(@"onScoresSubmitted: %@", success ? @"YES" : @"NO");
-}
--(void) onScoresReceived:(NSArray*)scores
-{
-    CCLOG(@"onScoresReceived: %@", [scores description]);
-    GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
-    [gkHelper showAchievements];
-}
--(void) onAchievementReported:(GKAchievement*)achievement
-{
-    CCLOG(@"onAchievementReported: %@", achievement);
-}
--(void) onAchievementsLoaded:(NSDictionary*)achievements
-{
-    CCLOG(@"onLocalPlayerAchievementsLoaded: %@", [achievements description]);
-}
--(void) onResetAchievements:(bool)success
-{
-    CCLOG(@"onResetAchievements: %@", success ? @"YES" : @"NO");
-}
--(void) onLeaderboardViewDismissed
-{
-    CCLOG(@"onLeaderboardViewDismissed");
-    
-    GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
-    [gkHelper retrieveTopTenAllTimeGlobalScores];
-}
--(void) onAchievementsViewDismissed
-{
-    CCLOG(@"onAchievementsViewDismissed");
-}
--(void) onReceivedMatchmakingActivity:(NSInteger)activity
-{
-    CCLOG(@"receivedMatchmakingActivity: %i", activity);
-}
--(void) onMatchFound:(GKMatch*)match
-{
-    CCLOG(@"onMatchFound: %@", match);
-}
--(void) onPlayersAddedToMatch:(bool)success
-{
-    CCLOG(@"onPlayersAddedToMatch: %@", success ? @"YES" : @"NO");
-}
--(void) onMatchmakingViewDismissed
-{
-    CCLOG(@"onMatchmakingViewDismissed");
-}
--(void) onMatchmakingViewError
-{
-    CCLOG(@"onMatchmakingViewError");
-}
--(void) onPlayerConnected:(NSString*)playerID
-{
-    CCLOG(@"onPlayerConnected: %@", playerID);
-}
--(void) onPlayerDisconnected:(NSString*)playerID
-{
-    CCLOG(@"onPlayerDisconnected: %@", playerID);
-}
--(void) onStartMatch
-{
-    CCLOG(@"onStartMatch");
-}
--(void) onReceivedData:(NSData*)data fromPlayer:(NSString*)playerID
-{
-    CCLOG(@"onReceivedData: %@ fromPlayer: %@", data, playerID);
 }
 
 #pragma mark -

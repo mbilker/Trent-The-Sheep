@@ -69,7 +69,14 @@
 		6523D86014A004F90038B391 /* SplashScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523D85F14A004F90038B391 /* SplashScene.m */; };
 		652FE85D14A15E9200BDAB43 /* gamecenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 652FE85C14A15E9200BDAB43 /* gamecenter.png */; };
 		653775D1149E665A002CD765 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 653775D0149E665A002CD765 /* about.png */; };
-		6572BB9F14AE65EB008030C4 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6572BB9E14AE65EB008030C4 /* GameKitHelper.m */; };
+		655E9FF414B2E65C0046ABA3 /* DDGameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 655E9FF114B2E65C0046ABA3 /* DDGameKitHelper.m */; };
+		655E9FF514B2E65C0046ABA3 /* DDGameKitHelperDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 655E9FF314B2E65C0046ABA3 /* DDGameKitHelperDelegate.m */; };
+		655EA00014B2E6680046ABA3 /* GKAchievementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 655E9FF814B2E6680046ABA3 /* GKAchievementHandler.m */; };
+		655EA00114B2E6680046ABA3 /* GKAchievementNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 655E9FFA14B2E6680046ABA3 /* GKAchievementNotification.m */; };
+		655EA00214B2E6680046ABA3 /* gk-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 655E9FFC14B2E6680046ABA3 /* gk-icon.png */; };
+		655EA00314B2E6680046ABA3 /* gk-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655E9FFD14B2E6680046ABA3 /* gk-icon@2x.png */; };
+		655EA00414B2E6680046ABA3 /* gk-notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 655E9FFE14B2E6680046ABA3 /* gk-notification.png */; };
+		655EA00514B2E6680046ABA3 /* gk-notification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655E9FFF14B2E6680046ABA3 /* gk-notification@2x.png */; };
 		65E00E4414A41C49008BDBA5 /* font1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65E00E4314A41C49008BDBA5 /* font1.ttf */; };
 		65FF64C114A04283001452A8 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF64C014A04283001452A8 /* GameOverScene.m */; };
 		DC6640030F83B3EA000B3E49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */; };
@@ -341,8 +348,18 @@
 		6523D85F14A004F90038B391 /* SplashScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScene.m; sourceTree = "<group>"; };
 		652FE85C14A15E9200BDAB43 /* gamecenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamecenter.png; sourceTree = "<group>"; };
 		653775D0149E665A002CD765 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
-		6572BB9D14AE65EB008030C4 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
-		6572BB9E14AE65EB008030C4 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
+		655E9FF014B2E65C0046ABA3 /* DDGameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelper.h; sourceTree = "<group>"; };
+		655E9FF114B2E65C0046ABA3 /* DDGameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelper.m; sourceTree = "<group>"; };
+		655E9FF214B2E65C0046ABA3 /* DDGameKitHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelperDelegate.h; sourceTree = "<group>"; };
+		655E9FF314B2E65C0046ABA3 /* DDGameKitHelperDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelperDelegate.m; sourceTree = "<group>"; };
+		655E9FF714B2E6680046ABA3 /* GKAchievementHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKAchievementHandler.h; sourceTree = "<group>"; };
+		655E9FF814B2E6680046ABA3 /* GKAchievementHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKAchievementHandler.m; sourceTree = "<group>"; };
+		655E9FF914B2E6680046ABA3 /* GKAchievementNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKAchievementNotification.h; sourceTree = "<group>"; };
+		655E9FFA14B2E6680046ABA3 /* GKAchievementNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKAchievementNotification.m; sourceTree = "<group>"; };
+		655E9FFC14B2E6680046ABA3 /* gk-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gk-icon.png"; sourceTree = "<group>"; };
+		655E9FFD14B2E6680046ABA3 /* gk-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gk-icon@2x.png"; sourceTree = "<group>"; };
+		655E9FFE14B2E6680046ABA3 /* gk-notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gk-notification.png"; sourceTree = "<group>"; };
+		655E9FFF14B2E6680046ABA3 /* gk-notification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gk-notification@2x.png"; sourceTree = "<group>"; };
 		65E00E4314A41C49008BDBA5 /* font1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font1.ttf; sourceTree = "<group>"; };
 		65FF64BF14A04283001452A8 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		65FF64C014A04283001452A8 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
@@ -631,6 +648,15 @@
 		2D500B1D0D5A766B00DBA0E3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				655E9FFB14B2E6680046ABA3 /* images */,
+				655E9FF714B2E6680046ABA3 /* GKAchievementHandler.h */,
+				655E9FF814B2E6680046ABA3 /* GKAchievementHandler.m */,
+				655E9FF914B2E6680046ABA3 /* GKAchievementNotification.h */,
+				655E9FFA14B2E6680046ABA3 /* GKAchievementNotification.m */,
+				655E9FF014B2E65C0046ABA3 /* DDGameKitHelper.h */,
+				655E9FF114B2E65C0046ABA3 /* DDGameKitHelper.m */,
+				655E9FF214B2E65C0046ABA3 /* DDGameKitHelperDelegate.h */,
+				655E9FF314B2E65C0046ABA3 /* DDGameKitHelperDelegate.m */,
 				65FF64BF14A04283001452A8 /* GameOverScene.h */,
 				65FF64C014A04283001452A8 /* GameOverScene.m */,
 				615667A5149290F3009288EB /* Monster.h */,
@@ -648,8 +674,6 @@
 				E0F80F5F120A0182005866B8 /* RootViewController.m */,
 				1F3B9A2C0EF2145700286867 /* Perm_and_CombAppDelegate.h */,
 				1F3B9A2B0EF2145700286867 /* Perm_and_CombAppDelegate.m */,
-				6572BB9D14AE65EB008030C4 /* GameKitHelper.h */,
-				6572BB9E14AE65EB008030C4 /* GameKitHelper.m */,
 				61CC90DE14A0DD54009B57A9 /* Achievements.h */,
 			);
 			path = Classes;
@@ -755,6 +779,17 @@
 			);
 			name = Fonts;
 			path = Resources/Fonts;
+			sourceTree = "<group>";
+		};
+		655E9FFB14B2E6680046ABA3 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				655E9FFC14B2E6680046ABA3 /* gk-icon.png */,
+				655E9FFD14B2E6680046ABA3 /* gk-icon@2x.png */,
+				655E9FFE14B2E6680046ABA3 /* gk-notification.png */,
+				655E9FFF14B2E6680046ABA3 /* gk-notification@2x.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		E02BB764126CC223006E46A2 /* cocos2d */ = {
@@ -1209,6 +1244,10 @@
 				650FEF96149E87D8002496BD /* Arial.png in Resources */,
 				652FE85D14A15E9200BDAB43 /* gamecenter.png in Resources */,
 				65E00E4414A41C49008BDBA5 /* font1.ttf in Resources */,
+				655EA00214B2E6680046ABA3 /* gk-icon.png in Resources */,
+				655EA00314B2E6680046ABA3 /* gk-icon@2x.png in Resources */,
+				655EA00414B2E6680046ABA3 /* gk-notification.png in Resources */,
+				655EA00514B2E6680046ABA3 /* gk-notification@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1228,7 +1267,10 @@
 				651432FA149E72FC0018A326 /* AboutScene.m in Sources */,
 				6523D86014A004F90038B391 /* SplashScene.m in Sources */,
 				65FF64C114A04283001452A8 /* GameOverScene.m in Sources */,
-				6572BB9F14AE65EB008030C4 /* GameKitHelper.m in Sources */,
+				655E9FF414B2E65C0046ABA3 /* DDGameKitHelper.m in Sources */,
+				655E9FF514B2E65C0046ABA3 /* DDGameKitHelperDelegate.m in Sources */,
+				655EA00014B2E6680046ABA3 /* GKAchievementHandler.m in Sources */,
+				655EA00114B2E6680046ABA3 /* GKAchievementNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
