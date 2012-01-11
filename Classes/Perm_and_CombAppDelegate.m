@@ -18,6 +18,8 @@
 
 @synthesize window;
 @synthesize viewController;
+@synthesize score = _score;
+@synthesize wave = _wave;
 
 - (void) removeStartupFlicker
 {
@@ -118,6 +120,8 @@
     
 	// Run the intro Scene
 	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+    self.wave = 0;
+    self.score = 0;
     
     [[CCDirector sharedDirector] runWithScene: [SplashLayer scene]];
     

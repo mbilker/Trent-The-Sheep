@@ -438,7 +438,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
         achievement.percentComplete = percent;
         [achievement reportAchievementWithCompletionHandler:^(NSError* error)
          {
-             [delegate onReportAchievement:(GKAchievement*)achievement];
+             [delegate onReportAchievement:(GKAchievement*)achievement percent:achievement.percentComplete];
          }];
         
         [self saveAchievements];

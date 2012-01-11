@@ -68,16 +68,11 @@
 		652178AB149C3F3100BBF004 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = 652178AA149C3F3100BBF004 /* health.png */; };
 		6523D86014A004F90038B391 /* SplashScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523D85F14A004F90038B391 /* SplashScene.m */; };
 		652FE85D14A15E9200BDAB43 /* gamecenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 652FE85C14A15E9200BDAB43 /* gamecenter.png */; };
+		6536C97214B7C9660085AEAC /* GKAchievementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6536C96F14B7C9660085AEAC /* GKAchievementHandler.m */; };
+		6536C97314B7C9660085AEAC /* GKAchievementNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 6536C97114B7C9660085AEAC /* GKAchievementNotification.m */; };
 		653775D1149E665A002CD765 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 653775D0149E665A002CD765 /* about.png */; };
 		655E9FF414B2E65C0046ABA3 /* DDGameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 655E9FF114B2E65C0046ABA3 /* DDGameKitHelper.m */; };
 		655E9FF514B2E65C0046ABA3 /* DDGameKitHelperDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 655E9FF314B2E65C0046ABA3 /* DDGameKitHelperDelegate.m */; };
-		655EA00014B2E6680046ABA3 /* GKAchievementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 655E9FF814B2E6680046ABA3 /* GKAchievementHandler.m */; };
-		655EA00114B2E6680046ABA3 /* GKAchievementNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 655E9FFA14B2E6680046ABA3 /* GKAchievementNotification.m */; };
-		655EA00214B2E6680046ABA3 /* gk-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 655E9FFC14B2E6680046ABA3 /* gk-icon.png */; };
-		655EA00314B2E6680046ABA3 /* gk-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655E9FFD14B2E6680046ABA3 /* gk-icon@2x.png */; };
-		655EA00414B2E6680046ABA3 /* gk-notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 655E9FFE14B2E6680046ABA3 /* gk-notification.png */; };
-		655EA00514B2E6680046ABA3 /* gk-notification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655E9FFF14B2E6680046ABA3 /* gk-notification@2x.png */; };
-		65E00E4414A41C49008BDBA5 /* font1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65E00E4314A41C49008BDBA5 /* font1.ttf */; };
 		65FF64C114A04283001452A8 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF64C014A04283001452A8 /* GameOverScene.m */; };
 		DC6640030F83B3EA000B3E49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */; };
 		DC6640050F83B3EA000B3E49 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640040F83B3EA000B3E49 /* OpenAL.framework */; };
@@ -347,20 +342,15 @@
 		6523D85E14A004F90038B391 /* SplashScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScene.h; sourceTree = "<group>"; };
 		6523D85F14A004F90038B391 /* SplashScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScene.m; sourceTree = "<group>"; };
 		652FE85C14A15E9200BDAB43 /* gamecenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamecenter.png; sourceTree = "<group>"; };
+		6536C96E14B7C9660085AEAC /* GKAchievementHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKAchievementHandler.h; sourceTree = "<group>"; };
+		6536C96F14B7C9660085AEAC /* GKAchievementHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKAchievementHandler.m; sourceTree = "<group>"; };
+		6536C97014B7C9660085AEAC /* GKAchievementNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKAchievementNotification.h; sourceTree = "<group>"; };
+		6536C97114B7C9660085AEAC /* GKAchievementNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKAchievementNotification.m; sourceTree = "<group>"; };
 		653775D0149E665A002CD765 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		655E9FF014B2E65C0046ABA3 /* DDGameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelper.h; sourceTree = "<group>"; };
 		655E9FF114B2E65C0046ABA3 /* DDGameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelper.m; sourceTree = "<group>"; };
 		655E9FF214B2E65C0046ABA3 /* DDGameKitHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelperDelegate.h; sourceTree = "<group>"; };
 		655E9FF314B2E65C0046ABA3 /* DDGameKitHelperDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelperDelegate.m; sourceTree = "<group>"; };
-		655E9FF714B2E6680046ABA3 /* GKAchievementHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKAchievementHandler.h; sourceTree = "<group>"; };
-		655E9FF814B2E6680046ABA3 /* GKAchievementHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKAchievementHandler.m; sourceTree = "<group>"; };
-		655E9FF914B2E6680046ABA3 /* GKAchievementNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKAchievementNotification.h; sourceTree = "<group>"; };
-		655E9FFA14B2E6680046ABA3 /* GKAchievementNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKAchievementNotification.m; sourceTree = "<group>"; };
-		655E9FFC14B2E6680046ABA3 /* gk-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gk-icon.png"; sourceTree = "<group>"; };
-		655E9FFD14B2E6680046ABA3 /* gk-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gk-icon@2x.png"; sourceTree = "<group>"; };
-		655E9FFE14B2E6680046ABA3 /* gk-notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gk-notification.png"; sourceTree = "<group>"; };
-		655E9FFF14B2E6680046ABA3 /* gk-notification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gk-notification@2x.png"; sourceTree = "<group>"; };
-		65E00E4314A41C49008BDBA5 /* font1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font1.ttf; sourceTree = "<group>"; };
 		65FF64BF14A04283001452A8 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		65FF64C014A04283001452A8 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -648,11 +638,10 @@
 		2D500B1D0D5A766B00DBA0E3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				655E9FFB14B2E6680046ABA3 /* images */,
-				655E9FF714B2E6680046ABA3 /* GKAchievementHandler.h */,
-				655E9FF814B2E6680046ABA3 /* GKAchievementHandler.m */,
-				655E9FF914B2E6680046ABA3 /* GKAchievementNotification.h */,
-				655E9FFA14B2E6680046ABA3 /* GKAchievementNotification.m */,
+				6536C96E14B7C9660085AEAC /* GKAchievementHandler.h */,
+				6536C96F14B7C9660085AEAC /* GKAchievementHandler.m */,
+				6536C97014B7C9660085AEAC /* GKAchievementNotification.h */,
+				6536C97114B7C9660085AEAC /* GKAchievementNotification.m */,
 				655E9FF014B2E65C0046ABA3 /* DDGameKitHelper.h */,
 				655E9FF114B2E65C0046ABA3 /* DDGameKitHelper.m */,
 				655E9FF214B2E65C0046ABA3 /* DDGameKitHelperDelegate.h */,
@@ -744,7 +733,6 @@
 		50F414EB1069373D002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				65E00E4314A41C49008BDBA5 /* font1.ttf */,
 				652FE85C14A15E9200BDAB43 /* gamecenter.png */,
 				653775D0149E665A002CD765 /* about.png */,
 				652178AA149C3F3100BBF004 /* health.png */,
@@ -779,17 +767,6 @@
 			);
 			name = Fonts;
 			path = Resources/Fonts;
-			sourceTree = "<group>";
-		};
-		655E9FFB14B2E6680046ABA3 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				655E9FFC14B2E6680046ABA3 /* gk-icon.png */,
-				655E9FFD14B2E6680046ABA3 /* gk-icon@2x.png */,
-				655E9FFE14B2E6680046ABA3 /* gk-notification.png */,
-				655E9FFF14B2E6680046ABA3 /* gk-notification@2x.png */,
-			);
-			path = images;
 			sourceTree = "<group>";
 		};
 		E02BB764126CC223006E46A2 /* cocos2d */ = {
@@ -1243,11 +1220,6 @@
 				650FEF95149E87D8002496BD /* Arial.fnt in Resources */,
 				650FEF96149E87D8002496BD /* Arial.png in Resources */,
 				652FE85D14A15E9200BDAB43 /* gamecenter.png in Resources */,
-				65E00E4414A41C49008BDBA5 /* font1.ttf in Resources */,
-				655EA00214B2E6680046ABA3 /* gk-icon.png in Resources */,
-				655EA00314B2E6680046ABA3 /* gk-icon@2x.png in Resources */,
-				655EA00414B2E6680046ABA3 /* gk-notification.png in Resources */,
-				655EA00514B2E6680046ABA3 /* gk-notification@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1269,8 +1241,8 @@
 				65FF64C114A04283001452A8 /* GameOverScene.m in Sources */,
 				655E9FF414B2E65C0046ABA3 /* DDGameKitHelper.m in Sources */,
 				655E9FF514B2E65C0046ABA3 /* DDGameKitHelperDelegate.m in Sources */,
-				655EA00014B2E6680046ABA3 /* GKAchievementHandler.m in Sources */,
-				655EA00114B2E6680046ABA3 /* GKAchievementNotification.m in Sources */,
+				6536C97214B7C9660085AEAC /* GKAchievementHandler.m in Sources */,
+				6536C97314B7C9660085AEAC /* GKAchievementNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1389,6 +1361,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1400,15 +1374,17 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Perm_and_Comb_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Perm and Comb";
+				PROVISIONING_PROFILE = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
 				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -1418,6 +1394,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1427,15 +1405,17 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Perm_and_Comb_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Perm and Comb";
+				PROVISIONING_PROFILE = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
 				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_CFLAGS = "-Wall";
 			};

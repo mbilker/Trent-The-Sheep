@@ -22,11 +22,7 @@
 {
     UIView         *_topView;  /**< Reference to top view of UIApplication. */
     NSMutableArray *_queue;    /**< Queue of achievement notifiers to display. */
-    UIImage        *_image;    /**< Logo to display in notifications. */
 }
-
-/** Logo to display in notifications. */
-@property (nonatomic, retain) UIImage *image;
 
 /**
  * Returns a reference to the singleton GKAchievementHandler.
@@ -41,10 +37,26 @@
 - (void)notifyAchievement:(GKAchievementDescription *)achievement;
 
 /**
+ * Show an achievement notification with an actual achievement and custom image.
+ * @param achievement  Achievement description object to notify user of.
+ # @param image        Image to display along the description. 
+ */
+- (void)notifyAchievement:(GKAchievementDescription *)achievement withImage:(UIImage *)image;
+
+/**
  * Show an achievement notification with a message manually added.
  * @param title    The title of the achievement.
  * @param message  Description of the achievement.
  */
 - (void)notifyAchievementTitle:(NSString *)title andMessage:(NSString *)message;
+
+/**
+ * Show an achievement notification with a message manually added.
+ * @param title    The title of the achievement.
+ * @param message  Description of the achievement.
+ # @param image    Image to display along the description. 
+ */
+
+- (void)notifyAchievementTitle:(NSString *)title message:(NSString *)message andImage:(UIImage *)image;
 
 @end

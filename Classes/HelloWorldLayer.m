@@ -17,6 +17,7 @@
 
 #import "Achievements.h"
 #import "DDGameKitHelper.h"
+#import "Perm_and_CombAppDelegate.h"
 
 NSUInteger RRFactorial(NSUInteger n)
 {
@@ -103,14 +104,14 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 @synthesize scoreLabel = _scoreLabel;
 @synthesize nextProjectile = _nextProjectile;
 @synthesize healthBar = _healthBar;
-@synthesize _score;
 @synthesize status = _status;
-@synthesize _wave;
+@synthesize delegate;
 
 -(id) init
 {
 	if( (self=[super initWithColor:ccc4(255,255,255,255)] )) {
         
+        self.delegate = [[UIApplication sharedApplication] delegate];
 		self.isTouchEnabled = YES;
 		
 		_targets = [[NSMutableArray alloc] init];
@@ -137,26 +138,14 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         [self addChild:Menu];
 		
 		// Set up score and score label
-		if (_started != 1)
-		{
-            _started = 1;
-            //NSLog(@"Started");
-			_score = 0;
-			_oldScore = -1;
-		}
-        self.scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\n0",_score] dimensions:CGSizeMake(400, 100) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:28];
+        _oldScore = -1;
+        self.scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\n0", delegate.score] dimensions:CGSizeMake(400, 100) alignment:UITextAlignmentRight fontName:@"Marker Felt" fontSize:28];
         _scoreLabel.position = ccp(winSize.width - _scoreLabel.contentSize.width/2, _scoreLabel.contentSize.height/2);
         _scoreLabel.color = ccc3(0,0,0);
         [self addChild:_scoreLabel z:0];
-        
-        // Status
-        self.status = [CCLabelTTF labelWithString:@"" dimensions:CGSizeMake(400,120) alignment:UITextAlignmentLeft fontName:@"Marker Felt" fontSize:24];
-        _status.position = ccp(220, winSize.height - 80);
-        _status.color = ccc3(0,0,0);
-        [self addChild:_status z:0];
 		
         // Max Score
-		_maxScore = 50;
+		_maxScore = 20;
 		
 		// Health
 		_health = 100;
@@ -295,7 +284,35 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
             info= @"Fifthteen Hits";
 			percentComplete= 100.0;
 			break;
-		}
+        }
+        case 16:
+        {
+            identifier= kAchievementFifthteenHit;
+            info= @"Thirty Hits";
+			percentComplete= 53.3;
+			break;
+        }
+        case 17:
+        {
+            identifier= kAchievementFifthteenHit;
+            info= @"Thirty Hits";
+			percentComplete= 56.6;
+			break;
+        }
+        case 18:
+        {
+            identifier= kAchievementFifthteenHit;
+            info= @"Thirty Hits";
+			percentComplete= 60.0;
+			break;
+        }
+        case 19:
+        {
+            identifier= kAchievementFifthteenHit;
+            info= @"Thirty Hits";
+			percentComplete= 63.3;
+			break;
+        }
 		case 20:
 		{
 			identifier= kAchievementThirtyHit;
@@ -329,10 +346,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	if(identifier!= NULL)
 	{
         [[DDGameKitHelper sharedGameKitHelper] reportAchievement:identifier percentComplete:percentComplete];
-        [_status setString:[NSString stringWithFormat:@"%@ is %d%%",info,(int)percentComplete]];
-	} else {
-        [_status setString:@""];
-    }
+	}
 }
 
 - (void)aboutButtonTapped:(id)sender {
@@ -349,6 +363,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 - (void)gameCenterLeaderboardButtonTapped:(id)sender {
     //NSLog(@"Opening Leaderboards");
     [[DDGameKitHelper sharedGameKitHelper] showLeaderboard];
+    //[[DDGameKitHelper sharedGameKitHelper] resetAchievements];
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -381,18 +396,18 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		if (_health == 0) {
             _projectileOffScreen = 0;
 			GameOverScene *gameOverScene = [GameOverScene node];
-			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\nScore: %d",_score]];
-            [[DDGameKitHelper sharedGameKitHelper] submitScore:_score category:kEasyLeaderboardID];
+			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\nScore: %d",delegate.score]];
+            [[DDGameKitHelper sharedGameKitHelper] submitScore:(int64_t)delegate.score category:kEasyLeaderboardID];
 			[[CCDirector sharedDirector] replaceScene:gameOverScene];
 		}
 	} else if (sprite.tag == 2) { // projectile
         _projectileOffScreen ++;
         //NSLog(@"Project Off Screen: %d",_projectileOffScreen);
 		[_projectiles removeObject:sprite];
-        if(_projectileOffScreen == 45) {
+        if(_projectileOffScreen == 50) {
             GameOverScene *gameOverScene = [GameOverScene node];
 			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\n%d projectiles went offscreen",_projectileOffScreen]];
-            [[DDGameKitHelper sharedGameKitHelper] submitScore:_score category:kEasyLeaderboardID];
+            [[DDGameKitHelper sharedGameKitHelper] submitScore:(int64_t)delegate.score category:kEasyLeaderboardID];
             _projectileOffScreen = 0;
 			[[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
@@ -522,13 +537,30 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
     // Release
     [_nextProjectile release];
     _nextProjectile = nil;
-	
+}
+
+-(void)checkWave {
+    GameOverScene *gameOverScene = [GameOverScene node];
+    if (delegate.wave >= 10)
+    {
+        _projectilesDestroyed = 0;
+        [[DDGameKitHelper sharedGameKitHelper] submitScore:(int64_t)delegate.score category:kEasyLeaderboardID];
+        [gameOverScene.layer.label setString:[NSString stringWithFormat:@"Game Complete!\n\nScore: %d", delegate.score]];
+        delegate.wave = 0;
+        [[CCDirector sharedDirector] replaceScene:gameOverScene];
+    } else {
+        _projectilesDestroyed = 0;
+        delegate.wave += 1;
+        [[DDGameKitHelper sharedGameKitHelper] submitScore:(int64_t)delegate.score category:kEasyLeaderboardID];
+        [gameOverScene.layer.label setString:[NSString stringWithFormat:@"Wave %d Complete!\nScore: %d", delegate.wave, delegate.score]];
+        [[CCDirector sharedDirector] replaceScene:gameOverScene];
+    }
 }
 
 - (void)update:(ccTime)dt {
 	
 	NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
-	for (CCSprite *projectile in _projectiles) {
+	for (Projectile *projectile in _projectiles) {
 		CGRect projectileRect = CGRectMake(
 										   projectile.position.x - (projectile.contentSize.width/2), 
 										   projectile.position.y - (projectile.contentSize.height/2), 
@@ -554,7 +586,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 				monster.hp--;
 				//NSLog(@"%d",monster.hp);
 				if (monster.hp <= 0) {
-					_score += monster.points;
+					delegate.score += monster.points;
                     _targetsDestroyed++;
 					[self checkAchievements];
 					[targetsToDelete addObject:target];
@@ -568,12 +600,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 			[self removeChild:target cleanup:YES];
 			_projectilesDestroyed++;
 			if (_projectilesDestroyed >= _maxScore) {
-				GameOverScene *gameOverScene = [GameOverScene node];
-                _projectilesDestroyed = 0;
-                [[DDGameKitHelper sharedGameKitHelper] submitScore:_score category:kEasyLeaderboardID];
-				[gameOverScene.layer.label setString:[NSString stringWithFormat:@"Wave %d Complete!\nScore: %d", _wave, _score]];
-                _wave ++;
-				[[CCDirector sharedDirector] replaceScene:gameOverScene];
+				[self checkWave];
 			}
 		}
 		
@@ -591,17 +618,12 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	[projectilesToDelete release];
 	
 	// Update score only when it changes for efficiency
-	if (_score != _oldScore) {
-		_oldScore = _score;
-        NSUInteger score2 = _score;
-        NSUInteger choices = nCr(score2, _targetsDestroyed);
-        NSString *number = [NSString stringWithFormat:@"%lu",(unsigned long)choices];
-        NSLog(@"%@",number);
-        NSLog(@"%lu",(unsigned long)choices);
-        if (choices == 4294967295) {
-            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\nMax Number (Over 4 Million)", _score]];
+	if (delegate.score != _oldScore) {
+        _oldScore = delegate.score;
+        if (nCr(delegate.score, _targetsDestroyed) == 4294967295) {
+            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\nMax Number (Over 4 Million)", delegate.score]];
         } else {
-            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\n%lu", _score, (unsigned long)number]];
+            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\n%u", delegate.score, nCr(delegate.score, _targetsDestroyed)]];
         }
 	}
 }

@@ -14,9 +14,14 @@
 @interface Perm_and_CombAppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
+    
+    int _score;
+    int _wave;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) RootViewController *viewController;
+@property (nonatomic, assign) int score;
+@property (nonatomic, assign) int wave;
 
 @end

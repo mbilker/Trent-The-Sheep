@@ -9,7 +9,7 @@
 @protocol DDGameKitHelperProtocol
 -(bool) compare:(int64_t)score1 to:(int64_t)score2;
 -(void) onSubmitScore:(int64_t)score;
--(void) onReportAchievement:(GKAchievement*)achievement;
+-(void) onReportAchievement:(GKAchievement*)achievement percent:(int64_t)percent;
 @end
 
 @interface DDGameKitHelper : NSObject <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate>

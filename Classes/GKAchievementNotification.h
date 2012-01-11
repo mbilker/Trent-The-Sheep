@@ -13,14 +13,14 @@
 #define kGKAchievementAnimeTime     0.4f
 #define kGKAchievementDisplayTime   1.75f
 
-#define kGKAchievementDefaultSize   CGRectMake(0.0f, 0.0f, 284.0f, 52.0f);
-#define kGKAchievementFrameStart    CGRectMake(18.0f, -53.0f, 284.0f, 52.0f);
-#define kGKAchievementFrameEnd      CGRectMake(18.0f, 10.0f, 284.0f, 52.0f);
+#define kGKAchievementBarWidthRatioPhone 0.88f
+#define kGKAchievementBarWidthRatioPad   0.60f
 
-#define kGKAchievementText1         CGRectMake(10.0, 6.0f, 264.0f, 22.0f);
-#define kGKAchievementText2         CGRectMake(10.0, 20.0f, 264.0f, 22.0f);
-#define kGKAchievementText1WLogo    CGRectMake(45.0, 6.0f, 229.0f, 22.0f);
-#define kGKAchievementText2WLogo    CGRectMake(45.0, 20.0f, 229.0f, 22.0f);
+#define kGKAchievementFrameHeight   52.0f
+#define kGKAchievementTextHeight    22.0f
+#define kGKAchievementImageSize     34.0f
+
+#define kGKAchievementMoveOffset    (kGKAchievementFrameHeight + 11.0f)
 
 #pragma mark -
 
@@ -76,6 +76,8 @@
     UILabel      *_textLabel;    /**< Text label used to display achievement title. */
     UILabel      *_detailLabel;  /**< Text label used to display achievement description. */
 
+    CGFloat _barWidthRatio; /**< What percentage of the width of the status bar we use for the notification. */
+    
     id<GKAchievementHandlerDelegate> _handlerDelegate;  /**< Reference to nofification handler. */
 }
 
@@ -119,7 +121,7 @@
 - (void)animateIn;
 
 /**
- * Hide the notificaiton.
+ * Hide the notification.
  */
 - (void)animateOut;
 
@@ -128,5 +130,22 @@
  * @param image  The image to display.
  */
 - (void)setImage:(UIImage *)image;
+
+#pragma mark - Compute the geometry of the notification
+
+/*
+ * The size of the rectangle holding the notification, depending on device.
+ */
+- (CGRect)defaultSize;
+
+/**
+ * Compute the frame at the start of animations, taking into account device and orientation.
+ */
+- (CGRect)startFrame;
+
+/*
+ * Compute the frame at the end of animations.
+ */
+- (CGRect)endFrame;
 
 @end

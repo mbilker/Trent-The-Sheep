@@ -21,10 +21,16 @@
 }
 
 // display the achievement using GKAchievement class
--(void) onReportAchievement:(GKAchievement*)achievement
+-(void) onReportAchievement:(GKAchievement*)achievement percent:(int64_t)percent
 {
-    DDGameKitHelper* gkHelper = [DDGameKitHelper sharedGameKitHelper];
-    [[GKAchievementHandler defaultHandler] notifyAchievement:[gkHelper getAchievementDescription:achievement.identifier]];
+    if (percent == 100)
+    {
+        NSLog(@"Showed Notification");
+        DDGameKitHelper* gkHelper = [DDGameKitHelper sharedGameKitHelper];
+        [[GKAchievementHandler defaultHandler] notifyAchievement:[gkHelper getAchievementDescription:achievement.identifier]];
+    } else {
+        NSLog(@"Achievement is only %lld percent",percent);
+    }
 }
 
 @end
