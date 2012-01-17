@@ -8,6 +8,8 @@
 #import "DDGameKitHelperDelegate.h"
 #import <CommonCrypto/CommonDigest.h>
 
+#import "cocos2d.h"
+
 static NSString* kAchievementsFile = @".achievements";
 static NSString* kScoresFile = @".scores";
 
@@ -508,6 +510,8 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 -(void) presentViewController:(UIViewController*)vc
 {
     UIViewController* rootVC = [self getRootViewController];
+    [[CCDirector sharedDirector] pause];
+    [[CCDirector sharedDirector] stopAnimation];
     [rootVC presentModalViewController:vc animated:YES];
 }
 
@@ -538,6 +542,8 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 
 -(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController*)viewController
 {
+    [[CCDirector sharedDirector] resume];
+    [[CCDirector sharedDirector] startAnimation];
     [self dismissModalViewController];
 }
 
@@ -562,6 +568,8 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 
 -(void) achievementViewControllerDidFinish:(GKAchievementViewController*)viewController
 {
+    [[CCDirector sharedDirector] resume];
+    [[CCDirector sharedDirector] startAnimation];
     [self dismissModalViewController];
 }
 

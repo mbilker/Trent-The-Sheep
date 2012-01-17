@@ -351,6 +351,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 
 - (void)aboutButtonTapped:(id)sender {
     //NSLog(@"About Button Tapped");
+    _projectileOffScreen = 0;
+    delegate.score = 0;
     AboutScene *aboutlayer = [AboutLayer node];
     [[CCDirector sharedDirector] replaceScene:aboutlayer];
 }
@@ -394,10 +396,11 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         [_healthBar setPercentage:_health];
 		//NSLog(@"%d",_health);
 		if (_health == 0) {
-            _projectileOffScreen = 0;
 			GameOverScene *gameOverScene = [GameOverScene node];
 			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\nScore: %d",delegate.score]];
             [[DDGameKitHelper sharedGameKitHelper] submitScore:(int64_t)delegate.score category:kEasyLeaderboardID];
+            delegate.score = 0;
+            _projectileOffScreen = 0;
 			[[CCDirector sharedDirector] replaceScene:gameOverScene];
 		}
 	} else if (sprite.tag == 2) { // projectile
@@ -408,6 +411,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
             GameOverScene *gameOverScene = [GameOverScene node];
 			[gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose\n%d projectiles went offscreen",_projectileOffScreen]];
             [[DDGameKitHelper sharedGameKitHelper] submitScore:(int64_t)delegate.score category:kEasyLeaderboardID];
+            delegate.score = 0;
             _projectileOffScreen = 0;
 			[[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
@@ -547,11 +551,12 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         [[DDGameKitHelper sharedGameKitHelper] submitScore:(int64_t)delegate.score category:kEasyLeaderboardID];
         [gameOverScene.layer.label setString:[NSString stringWithFormat:@"Game Complete!\n\nScore: %d", delegate.score]];
         delegate.wave = 0;
+        delegate.score = 0;
         [[CCDirector sharedDirector] replaceScene:gameOverScene];
     } else {
         _projectilesDestroyed = 0;
         delegate.wave += 1;
-        [[DDGameKitHelper sharedGameKitHelper] submitScore:(int64_t)delegate.score category:kEasyLeaderboardID];
+        [[DDGameKitHelper sharedGameKitHelper] submitScore:delegate.score category:kEasyLeaderboardID];
         [gameOverScene.layer.label setString:[NSString stringWithFormat:@"Wave %d Complete!\nScore: %d", delegate.wave, delegate.score]];
         [[CCDirector sharedDirector] replaceScene:gameOverScene];
     }

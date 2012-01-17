@@ -1361,8 +1361,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lawrence Bilker";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lawrence Bilker";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1383,8 +1383,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Perm and Comb";
-				PROVISIONING_PROFILE = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
+				PROVISIONING_PROFILE = "4B2D1E21-D3B4-43CD-B1F7-DBAA28B6CC50";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B2D1E21-D3B4-43CD-B1F7-DBAA28B6CC50";
 				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -1394,8 +1394,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lawrence Bilker";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lawrence Bilker";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1414,8 +1414,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Perm and Comb";
-				PROVISIONING_PROFILE = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
+				PROVISIONING_PROFILE = "4B2D1E21-D3B4-43CD-B1F7-DBAA28B6CC50";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B2D1E21-D3B4-43CD-B1F7-DBAA28B6CC50";
 				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -1453,8 +1453,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lawrence Bilker";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lawrence Bilker";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -1468,8 +1468,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
+				PROVISIONING_PROFILE = "4B2D1E21-D3B4-43CD-B1F7-DBAA28B6CC50";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B2D1E21-D3B4-43CD-B1F7-DBAA28B6CC50";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1480,8 +1480,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lawrence Bilker (5Z6HTAU5ST)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lawrence Bilker";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lawrence Bilker";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NS_BLOCK_ASSERTIONS,
@@ -1494,8 +1494,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "78794FFC-2BA9-4DA8-919C-D68E187C8199";
+				PROVISIONING_PROFILE = "4B2D1E21-D3B4-43CD-B1F7-DBAA28B6CC50";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B2D1E21-D3B4-43CD-B1F7-DBAA28B6CC50";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
