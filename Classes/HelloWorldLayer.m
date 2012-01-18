@@ -107,6 +107,59 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 @synthesize status = _status;
 @synthesize delegate;
 
+-(CCSprite *)spriteWithColor:(ccColor4F)bgColor textureSize:(float)textureSize {
+    
+    // 1: Create new CCRenderTexture
+    CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureSize height:textureSize];
+    
+    // 2: Call CCRenderTexture:begin
+    [rt beginWithClear:bgColor.r g:bgColor.g b:bgColor.b a:bgColor.a];
+    
+    // 3: Draw into the texture
+    CCSprite *noise = [CCSprite spriteWithFile:@"Noise.png"];
+    [noise setBlendFunc:(ccBlendFunc){GL_DST_COLOR, GL_ZERO}];
+    noise.position = ccp(textureSize/2, textureSize/2);
+    [noise visit];
+    
+    // 4: Call CCRenderTexture:end
+    [rt end];
+    
+    // 5: Create a new Sprite from the texture
+    return [CCSprite spriteWithTexture:rt.sprite.texture];
+    
+}
+
+- (ccColor4F)randomBrightColor {
+    
+    while (true) {
+        float requiredBrightness = 200;
+        ccColor4B randomColor = 
+        ccc4(arc4random() % 255,
+             arc4random() % 255, 
+             arc4random() % 255, 
+             255);
+        if (randomColor.r > requiredBrightness || 
+            randomColor.g > requiredBrightness ||
+            randomColor.b > requiredBrightness) {
+            return ccc4FFromccc4B(randomColor);
+        }        
+    }
+    
+}
+
+- (void)genBackground {
+    
+    [_background removeFromParentAndCleanup:YES];
+    
+    ccColor4F bgColor = [self randomBrightColor];
+    _background = [self spriteWithColor:bgColor textureSize:512];
+    
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    _background.position = ccp(winSize.width/2, winSize.height/2);        
+    [self addChild:_background z:-1];
+    
+}
+
 -(id) init
 {
 	if( (self=[super init] )) {
@@ -166,9 +219,6 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         // Game Logic
 		[self schedule:@selector(gameLogic:) interval:1.0];
 		[self schedule:@selector(update:)];
-		
-        // Background Music
-		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
         
         [[DDGameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
 	}
@@ -474,6 +524,14 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
     }
 }
 
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    _number++;
+    if (_number == 9) {
+        [self genBackground];
+        _number = 0;
+    }
+}
+
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	
     if (_nextProjectile != nil) return;
@@ -629,7 +687,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	if (delegate.score != _oldScore) {
         _oldScore = delegate.score;
         if (nCr(delegate.score, _targetsDestroyed) == 4294967295) {
-            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\nMax Number (Over 4 Million)", delegate.score]];
+            [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\nOver 4 Million", delegate.score]];
         } else {
             [_scoreLabel setString:[NSString stringWithFormat:@"Score: %d\nPossible Targeting Choices:\n%u", delegate.score, nCr(delegate.score, _targetsDestroyed)]];
         }
@@ -637,66 +695,5 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 }
 
 #pragma mark -
-
--(CCSprite *)spriteWithColor:(ccColor4F)bgColor textureSize:(float)textureSize {
-    
-    // 1: Create new CCRenderTexture
-    CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureSize height:textureSize];
-    
-    // 2: Call CCRenderTexture:begin
-    [rt beginWithClear:bgColor.r g:bgColor.g b:bgColor.b a:bgColor.a];
-    
-    // 3: Draw into the texture
-    CCSprite *noise = [CCSprite spriteWithFile:@"Noise.png"];
-    [noise setBlendFunc:(ccBlendFunc){GL_DST_COLOR, GL_ZERO}];
-    noise.position = ccp(textureSize/2, textureSize/2);
-    [noise visit];
-    
-    // 4: Call CCRenderTexture:end
-    [rt end];
-    
-    // 5: Create a new Sprite from the texture
-    return [CCSprite spriteWithTexture:rt.sprite.texture];
-    
-}
-
-- (ccColor4F)randomBrightColor {
-    
-    while (true) {
-        float requiredBrightness = 200;
-        ccColor4B randomColor = 
-        ccc4(arc4random() % 255,
-             arc4random() % 255, 
-             arc4random() % 255, 
-             255);
-        if (randomColor.r > requiredBrightness || 
-            randomColor.g > requiredBrightness ||
-            randomColor.b > requiredBrightness) {
-            return ccc4FFromccc4B(randomColor);
-        }        
-    }
-    
-}
-
-- (void)genBackground {
-    
-    [_background removeFromParentAndCleanup:YES];
-    
-    ccColor4F bgColor = [self randomBrightColor];
-    _background = [self spriteWithColor:bgColor textureSize:512];
-    
-    CGSize winSize = [CCDirector sharedDirector].winSize;
-    _background.position = ccp(winSize.width/2, winSize.height/2);        
-    [self addChild:_background z:-1];
-    
-}
-
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    _number++;
-    if (_number == 9) {
-        [self genBackground];
-        _number = 0;
-    }
-}
 
 @end

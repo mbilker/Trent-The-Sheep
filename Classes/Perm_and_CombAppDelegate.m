@@ -14,6 +14,8 @@
 #import "HelloWorldLayer.h"
 #import "RootViewController.h"
 
+#import "SimpleAudioEngine.h"
+
 @implementation Perm_and_CombAppDelegate
 
 @synthesize window;
@@ -123,8 +125,10 @@
     self.wave = 0;
     self.score = 0;
     
-    [[CCDirector sharedDirector] runWithScene: [SplashLayer scene]];
+    // Background Music
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"NyanCat.caf" loop:TRUE];
     
+    [[CCDirector sharedDirector] runWithScene: [SplashLayer scene]];
 }
 
 
