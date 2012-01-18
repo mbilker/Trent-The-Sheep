@@ -109,10 +109,12 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 
 -(id) init
 {
-	if( (self=[super initWithColor:ccc4(255,255,255,255)] )) {
+	if( (self=[super init] )) {
         
         self.delegate = [[UIApplication sharedApplication] delegate];
 		self.isTouchEnabled = YES;
+        
+        [self genBackground];
 		
 		_targets = [[NSMutableArray alloc] init];
 		_projectiles = [[NSMutableArray alloc] init];
@@ -495,7 +497,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
     if (offX <= 0) return;
 	
     // Play a sound!
-    [[SimpleAudioEngine sharedEngine] playEffect:@"pew-pew-lei.caf"];
+    //[[SimpleAudioEngine sharedEngine] playEffect:@"pew-pew-lei.caf"];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"pew.caf"];
 	
     // Determine where we wish to shoot the projectile to
     int realX = winSize.width + (_nextProjectile.contentSize.width/2);
@@ -634,5 +637,66 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 }
 
 #pragma mark -
+
+-(CCSprite *)spriteWithColor:(ccColor4F)bgColor textureSize:(float)textureSize {
+    
+    // 1: Create new CCRenderTexture
+    CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureSize height:textureSize];
+    
+    // 2: Call CCRenderTexture:begin
+    [rt beginWithClear:bgColor.r g:bgColor.g b:bgColor.b a:bgColor.a];
+    
+    // 3: Draw into the texture
+    CCSprite *noise = [CCSprite spriteWithFile:@"Noise.png"];
+    [noise setBlendFunc:(ccBlendFunc){GL_DST_COLOR, GL_ZERO}];
+    noise.position = ccp(textureSize/2, textureSize/2);
+    [noise visit];
+    
+    // 4: Call CCRenderTexture:end
+    [rt end];
+    
+    // 5: Create a new Sprite from the texture
+    return [CCSprite spriteWithTexture:rt.sprite.texture];
+    
+}
+
+- (ccColor4F)randomBrightColor {
+    
+    while (true) {
+        float requiredBrightness = 200;
+        ccColor4B randomColor = 
+        ccc4(arc4random() % 255,
+             arc4random() % 255, 
+             arc4random() % 255, 
+             255);
+        if (randomColor.r > requiredBrightness || 
+            randomColor.g > requiredBrightness ||
+            randomColor.b > requiredBrightness) {
+            return ccc4FFromccc4B(randomColor);
+        }        
+    }
+    
+}
+
+- (void)genBackground {
+    
+    [_background removeFromParentAndCleanup:YES];
+    
+    ccColor4F bgColor = [self randomBrightColor];
+    _background = [self spriteWithColor:bgColor textureSize:512];
+    
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    _background.position = ccp(winSize.width/2, winSize.height/2);        
+    [self addChild:_background z:-1];
+    
+}
+
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    _number++;
+    if (_number == 9) {
+        [self genBackground];
+        _number = 0;
+    }
+}
 
 @end

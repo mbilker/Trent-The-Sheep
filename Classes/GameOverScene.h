@@ -8,8 +8,9 @@
 
 #import "cocos2d.h"
 
-@interface GameOverLayer : CCLayerColor {
+@interface GameOverLayer : CCLayer {
 	CCLabelTTF *_label;
+    CCSprite *_background;
 }
 @property (nonatomic, retain) CCLabelTTF *label;
 @end

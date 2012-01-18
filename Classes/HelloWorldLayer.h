@@ -23,8 +23,10 @@ NSUInteger RRFactorial(NSUInteger n);
 
 // HelloWorldLayer
 
-@interface HelloWorldLayer : CCLayerColor
+@interface HelloWorldLayer : CCLayer
 {
+    CCSprite * _background;
+    
     int _projectilesDestroyed;
 	int _maxScore;
 	CCLabelTTF *_scoreLabel;
@@ -33,6 +35,7 @@ NSUInteger RRFactorial(NSUInteger n);
     int _started;
     int _targetsDestroyed;
     int _projectileOffScreen;
+    int _number;
     CCProgressTimer *_healthBar;
     CCLabelTTF *_status;
     CCSprite *_player;
