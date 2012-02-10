@@ -178,13 +178,13 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		[self addChild:_player z:0];
         
         // Setup menu
-        CCMenuItem *aboutMenuItem = [CCMenuItemImage itemFromNormalImage:@"about.png" selectedImage:@"about.png" target:self selector:@selector(aboutButtonTapped:)];
+        CCMenuItem *aboutMenuItem = [CCMenuItemImage itemWithNormalImage:@"about.png" selectedImage:@"about.png" target:self selector:@selector(aboutButtonTapped:)];
         aboutMenuItem.position = ccp((winSize.width - 20),(winSize.height - 20));
         
-        CCMenuItem *gameCenterButton = [CCMenuItemImage itemFromNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png" target:self selector:@selector(gameCenterButtonTapped:)];
+        CCMenuItem *gameCenterButton = [CCMenuItemImage itemWithNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png" target:self selector:@selector(gameCenterButtonTapped:)];
         gameCenterButton.position = ccp((winSize.width - 52),(winSize.height - 20));
         
-        CCMenuItem *gameCenterLeaderboardButton = [CCMenuItemImage itemFromNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png" target:self selector:@selector(gameCenterLeaderboardButtonTapped:)];
+        CCMenuItem *gameCenterLeaderboardButton = [CCMenuItemImage itemWithNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png" target:self selector:@selector(gameCenterLeaderboardButtonTapped:)];
         gameCenterLeaderboardButton.position = ccp((winSize.width - 86),(winSize.height - 20));
         
         CCMenu *Menu = [CCMenu menuWithItems:gameCenterLeaderboardButton, gameCenterButton, aboutMenuItem, nil];
@@ -205,7 +205,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		_health = 100;
         
         // Health Bar
-        self.healthBar = [CCProgressTimer progressWithSprite:@"health.png"];
+        self.healthBar = [CCProgressTimer progressWithSprite:[CCSprite spriteWithFile:@"health.png"]];
         _healthBar.scale = 0.35;
         _healthBar.type = kCCProgressTimerTypeBar;
         _healthBar.position = ccp(100,45);
@@ -217,7 +217,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         
         _pauseScreenUp = FALSE;
         CCMenuItem *pauseMenuItem = [CCMenuItemImage
-                                     itemFromNormalImage:@"pausebutton.gif" selectedImage:@"pausebutton.gif"
+                                     itemWithNormalImage:@"pausebutton.gif" selectedImage:@"pausebutton.gif"
                                      target:self selector:@selector(PauseButtonTapped:)];
         pauseMenuItem.position = ccp(440, 285);
         CCMenu *upgradeMenu = [CCMenu menuWithItems:pauseMenuItem, nil];
@@ -252,7 +252,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         [self addChild:_pauseScreen z:8];
         
         CCMenuItem *ResumeMenuItem = [CCMenuItemImage
-                                      itemFromNormalImage:@"continuebutton.gif" selectedImage:@"continuebutton.gif"
+                                      itemWithNormalImage:@"continuebutton.gif" selectedImage:@"continuebutton.gif"
                                       target:self selector:@selector(ResumeButtonTapped:)];
         ResumeMenuItem.position = ccp(250, 190);
         
