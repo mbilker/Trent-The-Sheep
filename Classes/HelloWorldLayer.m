@@ -104,7 +104,6 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 @synthesize scoreLabel = _scoreLabel;
 @synthesize nextProjectile = _nextProjectile;
 @synthesize healthBar = _healthBar;
-@synthesize status = _status;
 @synthesize delegate;
 
 -(CCSprite *)spriteWithColor:(ccColor4F)bgColor textureSize:(float)textureSize {
@@ -216,6 +215,15 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		// Off Screen Projectiles
         _projectileOffScreen = 0;
         
+        _pauseScreenUp = FALSE;
+        CCMenuItem *pauseMenuItem = [CCMenuItemImage
+                                     itemFromNormalImage:@"pausebutton.gif" selectedImage:@"pausebutton.gif"
+                                     target:self selector:@selector(PauseButtonTapped:)];
+        pauseMenuItem.position = ccp(440, 285);
+        CCMenu *upgradeMenu = [CCMenu menuWithItems:pauseMenuItem, nil];
+        upgradeMenu.position = CGPointZero;
+        [self addChild:upgradeMenu z:2];
+        
         // Game Logic
 		[self schedule:@selector(gameLogic:) interval:1.0];
 		[self schedule:@selector(update:)];
@@ -223,6 +231,44 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         [[DDGameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
 	}
 	return self;
+}
+
+-(void)PauseButtonTapped:(id)sender
+{
+    if(_pauseScreenUp ==FALSE)
+    {
+        _pauseScreenUp = TRUE;
+        //if you have music uncomment the line bellow
+        [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+        [[CCDirector sharedDirector] pause];
+        
+        CGSize s = [[CCDirector sharedDirector] winSize];
+        pauseLayer = [CCLayerColor layerWithColor: ccc4(150, 150, 150, 125) width: s.width height: s.height];
+        pauseLayer.position = CGPointZero;
+        [self addChild: pauseLayer z:8];
+        
+        _pauseScreen = [[CCSprite spriteWithFile:@"pauseBackground.gif"] retain];
+        _pauseScreen.position = ccp(250,150);
+        [self addChild:_pauseScreen z:8];
+        
+        CCMenuItem *ResumeMenuItem = [CCMenuItemImage
+                                      itemFromNormalImage:@"continuebutton.gif" selectedImage:@"continuebutton.gif"
+                                      target:self selector:@selector(ResumeButtonTapped:)];
+        ResumeMenuItem.position = ccp(250, 190);
+        
+        _pauseScreenMenu = [CCMenu menuWithItems:ResumeMenuItem, nil];
+        _pauseScreenMenu.position = ccp(0,0);
+        [self addChild:_pauseScreenMenu z:10];
+    }
+}
+
+-(void)ResumeButtonTapped:(id)sender{
+    [self removeChild:_pauseScreen cleanup:YES];
+    [self removeChild:_pauseScreenMenu cleanup:YES];
+    [self removeChild:pauseLayer cleanup:YES];
+    [[CCDirector sharedDirector] resume];
+    [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
+    _pauseScreenUp = FALSE;
 }
 
 - (void) checkAchievements
@@ -433,6 +479,13 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	_projectiles = nil;
 	[_player release];
 	_player = nil;
+    
+    [_healthBar release];
+    _healthBar = nil;
+    
+    // Crashes App
+    //[_background release];
+    //_background = nil;
 	
 	// don't forget to call "super dealloc"
 	[super dealloc];

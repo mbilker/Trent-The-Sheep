@@ -27,6 +27,12 @@ NSUInteger RRFactorial(NSUInteger n);
 {
     CCSprite * _background;
     
+    CCSprite *_movingSpring;
+    bool _pauseScreenUp;
+    CCLayer *pauseLayer;
+    CCSprite *_pauseScreen;
+    CCMenu *_pauseScreenMenu;
+    
     int _projectilesDestroyed;
 	int _maxScore;
 	CCLabelTTF *_scoreLabel;
@@ -37,7 +43,6 @@ NSUInteger RRFactorial(NSUInteger n);
     int _projectileOffScreen;
     int _number;
     CCProgressTimer *_healthBar;
-    CCLabelTTF *_status;
     CCSprite *_player;
     CCSprite *_nextProjectile;
     NSMutableArray *_targets;
@@ -49,7 +54,6 @@ NSUInteger RRFactorial(NSUInteger n);
 @property (nonatomic, assign) CCLabelTTF *scoreLabel;
 @property (nonatomic, retain) CCSprite *nextProjectile;
 @property (nonatomic, retain) CCProgressTimer *healthBar;
-@property (nonatomic, retain) CCLabelTTF *status;
 @property (nonatomic, retain) Perm_and_CombAppDelegate *delegate;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

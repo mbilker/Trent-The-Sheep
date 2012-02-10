@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -44,7 +44,7 @@ For example, you can simulate a Ping Pong effect running the action normally and
 then running it again in Reverse mode.
 
 Example:
- 
+
 	CCAction * pingPongAction = [CCSequence actions: action, [action reverse], nil];
 */
 @interface CCActionInterval: CCFiniteTimeAction <NSCopying>
@@ -92,6 +92,8 @@ Example:
 {
 	NSUInteger times_;
 	NSUInteger total_;
+	ccTime nextDt_;
+	BOOL isActionInstant_;
 	CCFiniteTimeAction *innerAction_;
 }
 
@@ -124,7 +126,7 @@ Example:
 /**  Rotates a CCNode object to a certain angle by modifying it's
  rotation attribute.
  The direction will be decided by the shortest angle.
-*/ 
+*/
 @interface CCRotateTo : CCActionInterval <NSCopying>
 {
 	float dstAngle_;
@@ -137,7 +139,7 @@ Example:
 -(id) initWithDuration:(ccTime)duration angle:(float)angle;
 @end
 
-/** Rotates a CCNode object clockwise a number of degrees by modiying it's rotation attribute.
+/** Rotates a CCNode object clockwise a number of degrees by modiying its rotation attribute.
 */
 @interface CCRotateBy : CCActionInterval <NSCopying>
 {
@@ -150,7 +152,7 @@ Example:
 -(id) initWithDuration:(ccTime)duration angle:(float)deltaAngle;
 @end
 
-/** Moves a CCNode object to the position x,y. x and y are absolute coordinates by modifying it's position attribute.
+/** Moves a CCNode object to the position x,y. x and y are absolute coordinates by modifying its position attribute.
 */
 @interface CCMoveTo : CCActionInterval <NSCopying>
 {
@@ -164,10 +166,10 @@ Example:
 -(id) initWithDuration:(ccTime)duration position:(CGPoint)position;
 @end
 
-/**  Moves a CCNode object x,y pixels by modifying it's position attribute.
+/**  Moves a CCNode object x,y pixels by modifying its position attribute.
  x and y are relative to the position of the object.
  Duration is is seconds.
-*/ 
+*/
 @interface CCMoveBy : CCMoveTo <NSCopying>
 {
 }
@@ -177,7 +179,7 @@ Example:
 -(id) initWithDuration: (ccTime)duration position:(CGPoint)deltaPosition;
 @end
 
-/** Skews a CCNode object to given angles by modifying it's skewX and skewY attributes
+/** Skews a CCNode object to given angles by modifying its skewX and skewY attributes
  @since v1.0
  */
 @interface CCSkewTo : CCActionInterval <NSCopying>
@@ -205,7 +207,7 @@ Example:
 }
 @end
 
-/** Moves a CCNode object simulating a parabolic jump movement by modifying it's position attribute.
+/** Moves a CCNode object simulating a parabolic jump movement by modifying its position attribute.
 */
  @interface CCJumpBy : CCActionInterval <NSCopying>
 {
@@ -220,8 +222,8 @@ Example:
 -(id) initWithDuration: (ccTime)duration position:(CGPoint)position height:(ccTime)height jumps:(NSUInteger)jumps;
 @end
 
-/** Moves a CCNode object to a parabolic position simulating a jump movement by modifying it's position attribute.
-*/ 
+/** Moves a CCNode object to a parabolic position simulating a jump movement by modifying its position attribute.
+*/
  @interface CCJumpTo : CCJumpBy <NSCopying>
 {
 }
@@ -261,7 +263,7 @@ typedef struct _ccBezierConfig {
 }
 @end
 
-/** Scales a CCNode object to a zoom factor by modifying it's scale attribute.
+/** Scales a CCNode object to a zoom factor by modifying its scale attribute.
  @warning This action doesn't support "reverse"
  */
 @interface CCScaleTo : CCActionInterval <NSCopying>
@@ -285,14 +287,14 @@ typedef struct _ccBezierConfig {
 -(id) initWithDuration: (ccTime)duration scaleX:(float) sx scaleY:(float)sy;
 @end
 
-/** Scales a CCNode object a zoom factor by modifying it's scale attribute.
+/** Scales a CCNode object a zoom factor by modifying its scale attribute.
 */
 @interface CCScaleBy : CCScaleTo <NSCopying>
 {
 }
 @end
 
-/** Blinks a CCNode object by modifying it's visible attribute
+/** Blinks a CCNode object by modifying its visible attribute
 */
 @interface CCBlink : CCActionInterval <NSCopying>
 {
@@ -371,7 +373,7 @@ typedef struct _ccBezierConfig {
 @end
 
 /** Executes an action in reverse order, from time=duration to time=0
- 
+
  @warning Use this action carefully. This action is not
  sequenceable. Use it as the default "reversed" method
  of your own actions, but using it outside the "reversed"
