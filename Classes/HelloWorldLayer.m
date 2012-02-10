@@ -88,7 +88,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
-	[[CCDirector sharedDirector] setDisplayFPS:NO];
+	[[CCDirector sharedDirector] setDisplayStats:NO];
 	
 	// 'layer' is an autorelease object.
 	HelloWorldLayer *layer = [HelloWorldLayer node];
@@ -205,9 +205,9 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		_health = 100;
         
         // Health Bar
-        self.healthBar = [CCProgressTimer progressWithFile:@"health.png"];
+        self.healthBar = [CCProgressTimer progressWithSprite:@"health.png"];
         _healthBar.scale = 0.35;
-        _healthBar.type = kCCProgressTimerTypeHorizontalBarLR;
+        _healthBar.type = kCCProgressTimerTypeBar;
         _healthBar.position = ccp(100,45);
         _healthBar.percentage = _health;
         [self addChild:_healthBar z:0];
