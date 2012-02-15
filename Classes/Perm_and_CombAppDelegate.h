@@ -11,16 +11,19 @@
 
 @class RootViewController;
 
-@interface Perm_and_CombAppDelegate : NSObject <UIApplicationDelegate> {
-	UIWindow			*window;
-	RootViewController	*viewController;
+@interface Perm_and_CombAppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate> {
+	UIWindow			*window_;
+	UINavigationController	*navController_;
+    
+    CCDirectorIOS *director_;
     
     int _score;
     int _wave;
 }
 
 @property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) RootViewController *viewController;
+@property (readonly) UINavigationController *navController;
+@property (readonly) CCDirectorIOS *director;
 @property (nonatomic, assign) int score;
 @property (nonatomic, assign) int wave;
 

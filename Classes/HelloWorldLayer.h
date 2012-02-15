@@ -23,7 +23,7 @@ NSUInteger RRFactorial(NSUInteger n);
 
 // HelloWorldLayer
 
-@interface HelloWorldLayer : CCLayer
+@interface HelloWorldLayer : CCLayer <GKLeaderboardViewControllerDelegate>
 {
     CCSprite * _background;
     

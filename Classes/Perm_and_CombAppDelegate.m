@@ -7,118 +7,85 @@
 //
 
 #import "cocos2d.h"
+#import "SimpleAudioEngine.h"
 
 #import "Perm_and_CombAppDelegate.h"
 #import "GameConfig.h"
 #import "SplashScene.h"
 #import "HelloWorldLayer.h"
-#import "RootViewController.h"
 
-#import "SimpleAudioEngine.h"
+#import "DDGameKitHelper.h"
 
 @implementation Perm_and_CombAppDelegate
 
-@synthesize window;
-@synthesize viewController;
+@synthesize window = window_;
+@synthesize navController = navController_;
+@synthesize director = director_;
 @synthesize score = _score;
 @synthesize wave = _wave;
 
-- (void) removeStartupFlicker
-{
-	//
-	// THIS CODE REMOVES THE STARTUP FLICKER
-	//
-	// Uncomment the following code if you Application only supports landscape mode
-	//
-//if GAME_AUTOROTATION == kGameAutorotationUIViewController
-
-//	CC_ENABLE_DEFAULT_GL_STATES();
-//	CCDirector *director = [CCDirector sharedDirector];
-//	CGSize size = [director winSize];
-//	CCSprite *sprite = [CCSprite spriteWithFile:@"Default.png"];
-//  sprite.position = ccp(size.width/2, size.height/2);
-//	sprite.rotation = -90;
-//	[sprite visit];
-//	[[director openGLView] swapBuffers];
-//	CC_ENABLE_DEFAULT_GL_STATES();
-	
-//endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
-}
-
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
-    application.statusBarHidden = YES;
-    // Init the window
-    window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Create the main window
+	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-	// Try to use CADisplayLink director
-	// if it fails (SDK < 3.1) use the default director
-	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
-		[CCDirector setDirectorType:kCCDirectorTypeDefault];
-	
-	
-	CCDirector *director = [CCDirector sharedDirector];
-	
-	// Init the View Controller
-	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-	viewController.wantsFullScreenLayout = YES;
-	
-	//
-	// Create the EAGLView manually
-	//  1. Create a RGB565 format. Alternative: RGBA8
-	//	2. depth format of 0 bit. Use 16 or 24 bit for 3d effects, like CCPageTurnTransition
-	//
-	//
-	CCGLView *glView = [CCGLView viewWithFrame:[window bounds]
-								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
-								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
-						];
-	
+    
+	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
+	CCGLView *glView = [CCGLView viewWithFrame:[window_ bounds]
+								   pixelFormat:kEAGLColorFormatRGB565	//kEAGLColorFormatRGBA8
+								   depthFormat:0	//GL_DEPTH_COMPONENT24_OES
+							preserveBackbuffer:NO
+									sharegroup:nil
+								 multiSampling:NO
+							   numberOfSamples:0];
+    
+	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
+    
+	director_.wantsFullScreenLayout = YES;
+    
+	// Display FSP and SPF
+	[director_ setDisplayStats:YES];
+    
+	// set FPS at 60
+	[director_ setAnimationInterval:1.0/60];
+    
 	// attach the openglView to the director
-	[director setOpenGLView:glView];
-	
-//	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-//	if( ! [director enableRetinaDisplay:YES] )
-//		CCLOG(@"Retina Display Not supported");
-	
-	//
-	// VERY IMPORTANT:
-	// If the rotation is going to be controlled by a UIViewController
-	// then the device orientation should be "Portrait".
-	//
-	// IMPORTANT:
-	// By default, this template only supports Landscape orientations.
-	// Edit the RootViewController.m file to edit the supported orientations.
-	//
-#if GAME_AUTOROTATION == kGameAutorotationUIViewController
-	[director setDeviceOrientation:UIDeviceOrientationPortrait];
-#else
-	[director setDeviceOrientation:UIDeviceOrientationPortrait];
-#endif
-	
-	[director setAnimationInterval:1.0/60];
-	
-	
-	// make the OpenGLView a child of the view controller
-	[viewController setView:glView];
-	
-	// make the View Controller a child of the main window
-	//[window addSubview: viewController.view];
-    window.rootViewController = viewController;
-	
-	[window makeKeyAndVisible];
-	
+	[director_ setView:glView];
+    
+	// for rotation and other messages
+	[director_ setDelegate:self];
+    
+	// 2D projection
+	[director_ setProjection:kCCDirectorProjection2D];
+    //	[director setProjection:kCCDirectorProjection3D];
+    
+	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
+	//if( ! [director_ enableRetinaDisplay:YES] )
+	//	CCLOG(@"Retina Display Not supported");
+    
+	// Create a Navigation Controller with the Director
+	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
+	navController_.navigationBarHidden = YES;
+    
+	// set the Navigation Controller as the root view controller
+    //	[window_ setRootViewController:rootViewController_];
+	[window_ addSubview:navController_.view];
+    
+	// make main window visible
+	[window_ makeKeyAndVisible];
+    
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
-
-	
-	// Removes the startup flicker
-	[self removeStartupFlicker];
-	
-    // Init the window
-	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+	// When in iPad / RetinaDisplay mode, CCFileUtils will append the "-ipad" / "-hd" to all loaded files
+	// If the -ipad  / -hdfile is not found, it will load the non-suffixed version
+	[CCFileUtils setiPadSuffix:@"-ipad"];			// Default on iPad is "" (empty string)
+	[CCFileUtils setRetinaDisplaySuffix:@"-hd"];	// Default on RetinaDisplay is "-hd"
+    
+	// Assume that PVR images have premultiplied alpha
+	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
 	// Run the intro Scene
 	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
@@ -127,41 +94,41 @@
     
     // Background Music
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"NyanCat.caf" loop:TRUE];
+    [[DDGameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
     
-    [[CCDirector sharedDirector] runWithScene: [SplashLayer scene]];
+    [director_ pushScene:[SplashLayer scene]];
 }
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-	[[CCDirector sharedDirector] pause];
+	[director_ pause];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	[[CCDirector sharedDirector] resume];
+	[director_ resume];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-	[[CCDirector sharedDirector] purgeCachedData];
+	[director_ purgeCachedData];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {
-	[[CCDirector sharedDirector] stopAnimation];
+	[director_ stopAnimation];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application {
-	[[CCDirector sharedDirector] startAnimation];
+	[director_ startAnimation];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	CCDirector *director = [CCDirector sharedDirector];
 	
-	[[director openGLView] removeFromSuperview];
+	[[director_ view] removeFromSuperview];
 	
-	[viewController release];
+	[navController_ release];
 	
-	[window release];
+	[window_ release];
 	
-	[director end];
+	[director_ end];
 }
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
@@ -169,9 +136,14 @@
 }
 
 - (void)dealloc {
-	[[CCDirector sharedDirector] release];
-	[window release];
+	[director_ release];
+	[window_ release];
 	[super dealloc];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 @end

@@ -14,10 +14,13 @@
 #import "Monster.h"
 #import "Projectile.h"
 #import "AboutScene.h"
+#import "cocos2d.h"
 
 #import "Achievements.h"
 #import "DDGameKitHelper.h"
 #import "Perm_and_CombAppDelegate.h"
+
+#import <GameKit/GameKit.h>
 
 NSUInteger RRFactorial(NSUInteger n)
 {
@@ -80,6 +83,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
     return output;
 }
 
+#pragma mark - HelloWorldLayer
+
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
 
@@ -87,8 +92,6 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
-	
-	[[CCDirector sharedDirector] setDisplayStats:NO];
 	
 	// 'layer' is an autorelease object.
 	HelloWorldLayer *layer = [HelloWorldLayer node];
@@ -163,17 +166,21 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 {
 	if( (self=[super init] )) {
         
-        self.delegate = [[UIApplication sharedApplication] delegate];
+        self.delegate = (Perm_and_CombAppDelegate*) [[UIApplication sharedApplication] delegate];
 		self.isTouchEnabled = YES;
         
         [self genBackground];
 		
 		_targets = [[NSMutableArray alloc] init];
 		_projectiles = [[NSMutableArray alloc] init];
+        
+        // Sprite Sheets
+        //[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Targets.plist"];
 		
         // Setup Player
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
-		_player = [[CCSprite spriteWithFile:@"Player.png"] retain];
+		//_player = [[CCSprite spriteWithFile:@"Player.png"] retain];
+        _player = [[CCSprite spriteWithFile:@"TrentSheep.small.png"] retain];
 		_player.position = ccp(_player.contentSize.width/2, winSize.height/2);
 		[self addChild:_player z:0];
         
@@ -205,9 +212,11 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		_health = 100;
         
         // Health Bar
-        self.healthBar = [CCProgressTimer progressWithSprite:[CCSprite spriteWithFile:@"health.png"]];
+        CCSprite *healthImage = [CCSprite spriteWithFile:@"health.png"];
+        self.healthBar = [CCProgressTimer progressWithSprite:healthImage];
         _healthBar.scale = 0.35;
         _healthBar.type = kCCProgressTimerTypeBar;
+        _healthBar.midpoint = ccp(0,healthImage.contentSize.height/2);
         _healthBar.position = ccp(100,45);
         _healthBar.percentage = _health;
         [self addChild:_healthBar z:0];
@@ -217,9 +226,9 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         
         _pauseScreenUp = FALSE;
         CCMenuItem *pauseMenuItem = [CCMenuItemImage
-                                     itemWithNormalImage:@"pausebutton.gif" selectedImage:@"pausebutton.gif"
+                                     itemWithNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png"
                                      target:self selector:@selector(PauseButtonTapped:)];
-        pauseMenuItem.position = ccp(440, 285);
+        pauseMenuItem.position = ccp(100, 65);
         CCMenu *upgradeMenu = [CCMenu menuWithItems:pauseMenuItem, nil];
         upgradeMenu.position = CGPointZero;
         [self addChild:upgradeMenu z:2];
@@ -228,14 +237,14 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		[self schedule:@selector(gameLogic:) interval:1.0];
 		[self schedule:@selector(update:)];
         
-        [[DDGameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
+        //[[DDGameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
 	}
 	return self;
 }
 
 -(void)PauseButtonTapped:(id)sender
 {
-    if(_pauseScreenUp ==FALSE)
+    if(_pauseScreenUp == FALSE)
     {
         _pauseScreenUp = TRUE;
         //if you have music uncomment the line bellow
@@ -252,12 +261,12 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         [self addChild:_pauseScreen z:8];
         
         CCMenuItem *ResumeMenuItem = [CCMenuItemImage
-                                      itemWithNormalImage:@"continuebutton.gif" selectedImage:@"continuebutton.gif"
+                                      itemWithNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png"
                                       target:self selector:@selector(ResumeButtonTapped:)];
         ResumeMenuItem.position = ccp(250, 190);
         
         _pauseScreenMenu = [CCMenu menuWithItems:ResumeMenuItem, nil];
-        _pauseScreenMenu.position = ccp(0,0);
+        _pauseScreenMenu.position = CGPointZero;
         [self addChild:_pauseScreenMenu z:10];
     }
 }
@@ -460,10 +469,27 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
     [[DDGameKitHelper sharedGameKitHelper] showAchievements];
 }
 
-- (void)gameCenterLeaderboardButtonTapped:(id)sender {
+- (void) gameCenterLeaderboardButtonTapped:(id)sender {
     //NSLog(@"Opening Leaderboards");
-    [[DDGameKitHelper sharedGameKitHelper] showLeaderboard];
+    //[[DDGameKitHelper sharedGameKitHelper] showLeaderboard];
     //[[DDGameKitHelper sharedGameKitHelper] resetAchievements];
+    GKLeaderboardViewController* leaderboardVC = [[[GKLeaderboardViewController alloc] init] autorelease];
+    if (leaderboardVC != nil)
+    {
+        leaderboardVC.leaderboardDelegate = self;
+        [[CCDirector sharedDirector] pause];
+        [[CCDirector sharedDirector] stopAnimation];
+        Perm_and_CombAppDelegate *app = (Perm_and_CombAppDelegate*) [[UIApplication sharedApplication] delegate];
+        [[app navController] presentModalViewController:leaderboardVC animated:YES];
+    }
+}
+
+- (void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController*)viewController
+{
+    [[CCDirector sharedDirector] resume];
+    [[CCDirector sharedDirector] startAnimation];
+    Perm_and_CombAppDelegate *app = (Perm_and_CombAppDelegate*) [[UIApplication sharedApplication] delegate];
+	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -532,7 +558,8 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 	if ((arc4random() % 2) == 0) {
 		target = [WeakAndFastMonster monster];
 	} else {
-		target = [StrongAndSlowMonster monster];
+	//	target = [StrongAndSlowMonster monster];
+        target = [Pig monster];
 	}
 	
 	// Determine where to spawn the target along the Y axis
@@ -558,7 +585,13 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 										position:ccp(-target.contentSize.width/2, actualY)];
 	id actionMoveDone = [CCCallFuncN actionWithTarget:self 
 											 selector:@selector(spriteMoveFinished:)];
-	[target runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+    if (target.animation == nil) {
+        [target runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+    } else {
+        CCAction *animate = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:target.animation]];
+        [target runAction:animate];
+        [target runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+    }
 	
 	target.tag = 1;
 	[_targets addObject:target];
@@ -598,7 +631,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     //self.nextProjectile = [[CCSprite spriteWithFile:@"Projectile.png"] retain];
 	self.nextProjectile = [[[Projectile alloc] initWithFile:@"Projectile.png"] autorelease];
-    _nextProjectile.position = ccp(20, winSize.height/2);
+    _nextProjectile.position = ccp(60, winSize.height/2);
 	
     // Determine offset of location to projectile
     int offX = location.x - _nextProjectile.position.x;

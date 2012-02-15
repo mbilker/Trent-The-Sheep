@@ -10,6 +10,8 @@
 
 #import "cocos2d.h"
 
+#import "Perm_and_CombAppDelegate.h"
+
 static NSString* kAchievementsFile = @".achievements";
 static NSString* kScoresFile = @".scores";
 
@@ -509,16 +511,18 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 
 -(void) presentViewController:(UIViewController*)vc
 {
-    UIViewController* rootVC = [self getRootViewController];
     [[CCDirector sharedDirector] pause];
     [[CCDirector sharedDirector] stopAnimation];
-    [rootVC presentModalViewController:vc animated:YES];
+    Perm_and_CombAppDelegate *app = (Perm_and_CombAppDelegate*) [[UIApplication sharedApplication] delegate];
+    [[app navController] presentModalViewController:vc animated:YES];
 }
 
 -(void) dismissModalViewController
 {
-    UIViewController* rootVC = [self getRootViewController];
-    [rootVC dismissModalViewControllerAnimated:YES];
+    [[CCDirector sharedDirector] resume];
+    [[CCDirector sharedDirector] startAnimation];
+    Perm_and_CombAppDelegate *app = (Perm_and_CombAppDelegate*) [[UIApplication sharedApplication] delegate];
+	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 
 -(void) showLeaderboard
@@ -544,7 +548,8 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 {
     [[CCDirector sharedDirector] resume];
     [[CCDirector sharedDirector] startAnimation];
-    [self dismissModalViewController];
+    Perm_and_CombAppDelegate *app = (Perm_and_CombAppDelegate*) [[UIApplication sharedApplication] delegate];
+	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 
 -(void) showAchievements
@@ -570,7 +575,8 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 {
     [[CCDirector sharedDirector] resume];
     [[CCDirector sharedDirector] startAnimation];
-    [self dismissModalViewController];
+    Perm_and_CombAppDelegate *app = (Perm_and_CombAppDelegate*) [[UIApplication sharedApplication] delegate];
+	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 
 @end
