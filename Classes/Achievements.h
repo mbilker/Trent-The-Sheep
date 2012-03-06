@@ -7,11 +7,11 @@
 //
 
 //Leaderboard Category IDs
-#define kEasyLeaderboardID @"us.mbilker.easy"
+#define kEasyLeaderboardID @"easy"
 
 //Achievement IDs
-#define kAchievementOneHit @"us.mbilker.firsttarget"
-#define kAchievementFiveHit @"us.mbilker.five"
-#define kAchievementTenHit @"us.mbilker.ten"
-#define kAchievementFifthteenHit @"us.mbilker.fifthteen"
-#define kAchievementThirtyHit @"us.mbilker.thirty"
+#define kAchievementOneHit @"oneanimal"
+#define kAchievementFiveHit @"fiveanimals"
+#define kAchievementTenHit @"tenanimals"
+#define kAchievementFifthteenHit @"15animals"
+#define kAchievementThirtyHit @"30animals"

@@ -14,66 +14,43 @@
 @synthesize points = _points;
 @synthesize minMoveDuration = _minMoveDuration;
 @synthesize maxMoveDuration = _maxMoveDuration;
-@synthesize animation = _animation;
-
-@end
-
-@implementation WeakAndFastMonster
-
-+ (id)monster {
-	
-    WeakAndFastMonster *monster = nil;
-    if ((monster = [[[super alloc] initWithFile:@"Target.png"] autorelease])) {
-        monster.animation = nil;
-        monster.hp = 1;
-        monster.points = 1;
-        monster.minMoveDuration = 4;
-        monster.maxMoveDuration = 6;
-    }
-    return monster;
-	
-}
-
-@end
-
-@implementation StrongAndSlowMonster
-
-+ (id)monster {
-	
-    StrongAndSlowMonster *monster = nil;
-    if ((monster = [[[super alloc] initWithFile:@"Target2.png"] autorelease])) {
-        monster.animation = nil;
-        monster.hp = 3;
-        monster.points = 2;
-        monster.minMoveDuration = 6;
-        monster.maxMoveDuration = 12;
-    }
-    return monster;
-	
-}
+@synthesize animate = _animate;
+@synthesize name = _name;
+@synthesize amount = _amount;
 
 @end
 
 @implementation Pig
 
 + (id)monster {
-    CCAnimation *animation = [CCAnimation animation];
-    
-    [animation addFrame:[CCSprite spriteWithFile:@"farm_1.png"]];
-    [animation addFrame:[CCSprite spriteWithFile:@"farm_2.png"]];
-    [animation addFrame:[CCSprite spriteWithFile:@"farm_3.png"]];
-    [animation addFrame:[CCSprite spriteWithFile:@"farm_4.png"]];
-    
     Pig *monster = nil;
-    if ((monster = [[[super alloc] initWithFile:@"farm_1.png"] autorelease])) {
-        monster.scale = 0.35;
-        monster.animation = animation;
+    if ((monster = [[[super alloc] initWithSpriteFrameName:@"Pig_1.png"] autorelease])) {
+        monster.name = @"Pig";
+        monster.animate = TRUE;
+        monster.amount = 4;
         monster.hp = 3;
-        monster.points = 2;
+        monster.points = 1;
         monster.minMoveDuration = 5;
         monster.maxMoveDuration = 30;
     }
     return monster;
 }
 
+@end
+
+@implementation Ram
+
++ (id)monster {
+    Ram *monster = nil;
+    if ((monster = [[[super alloc] initWithSpriteFrameName:@"Ram_1.png"] autorelease])) {
+        monster.name = @"Ram";
+        monster.animate = TRUE;
+        monster.amount = 4;
+        monster.hp = 4;
+        monster.points = 2;
+        monster.minMoveDuration = 4;
+        monster.maxMoveDuration = 25;
+    }
+    return monster;
+}
 @end

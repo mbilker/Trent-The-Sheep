@@ -175,12 +175,13 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 		_projectiles = [[NSMutableArray alloc] init];
         
         // Sprite Sheets
-        //[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Targets.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Sprites.plist"];
+        
 		
         // Setup Player
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		//_player = [[CCSprite spriteWithFile:@"Player.png"] retain];
-        _player = [[CCSprite spriteWithFile:@"TrentSheep.small.png"] retain];
+        _player = [[CCSprite spriteWithFile:@"TrentSheep.png"] retain];
 		_player.position = ccp(_player.contentSize.width/2, winSize.height/2);
 		[self addChild:_player z:0];
         
@@ -216,7 +217,7 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         self.healthBar = [CCProgressTimer progressWithSprite:healthImage];
         _healthBar.scale = 0.35;
         _healthBar.type = kCCProgressTimerTypeBar;
-        _healthBar.midpoint = ccp(0,healthImage.contentSize.height/2);
+        _healthBar.midpoint = ccp(0,healthImage.contentSize.height);
         _healthBar.position = ccp(100,45);
         _healthBar.percentage = _health;
         [self addChild:_healthBar z:0];
@@ -226,9 +227,9 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         
         _pauseScreenUp = FALSE;
         CCMenuItem *pauseMenuItem = [CCMenuItemImage
-                                     itemWithNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png"
+                                     itemWithNormalImage:@"pause.jpg" selectedImage:@"pause.jpg"
                                      target:self selector:@selector(PauseButtonTapped:)];
-        pauseMenuItem.position = ccp(100, 65);
+        pauseMenuItem.position = ccp(pauseMenuItem.contentSize.width/2, winSize.height - (pauseMenuItem.contentSize.height/2));
         CCMenu *upgradeMenu = [CCMenu menuWithItems:pauseMenuItem, nil];
         upgradeMenu.position = CGPointZero;
         [self addChild:upgradeMenu z:2];
@@ -551,15 +552,12 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 }
 
 -(void)addTarget {
-    
-	//nPr(_projectileOffScreen, _score);
 	//CCSprite *target = [CCSprite spriteWithFile:@"Target.png" rect:CGRectMake(0, 0, 27, 40)]; 
 	Monster *target = nil;
 	if ((arc4random() % 2) == 0) {
-		target = [WeakAndFastMonster monster];
+		target = [Pig monster];
 	} else {
-	//	target = [StrongAndSlowMonster monster];
-        target = [Pig monster];
+        target = [Ram monster];
 	}
 	
 	// Determine where to spawn the target along the Y axis
@@ -585,12 +583,15 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
 										position:ccp(-target.contentSize.width/2, actualY)];
 	id actionMoveDone = [CCCallFuncN actionWithTarget:self 
 											 selector:@selector(spriteMoveFinished:)];
-    if (target.animation == nil) {
-        [target runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
-    } else {
-        CCAction *animate = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:target.animation]];
-        [target runAction:animate];
-        [target runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+    [target runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+    if (target.animate == TRUE) {
+        CCAnimation *animation = [CCAnimation animation];
+        animation.delay = 0.15;
+        for(int i = 1; i <= target.amount; ++i) {
+            [animation addFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@_%d.png", target.name, i]]];
+        }
+        [target runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animation]]];
+        //NSLog(@"Animating");
     }
 	
 	target.tag = 1;

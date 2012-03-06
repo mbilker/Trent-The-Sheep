@@ -9,14 +9,18 @@
 #import "cocos2d.h"
 
 @interface Monster : CCSprite {
-    CCAnimation *_animation;
+    NSString *_name;
+    BOOL _animate;
+    int _amount;
     int _curHp;
     int _points;
     int _minMoveDuration;
     int _maxMoveDuration;
 }
 
-@property (nonatomic, assign) CCAnimation *animation;
+@property (nonatomic, assign) NSString *name;
+@property (nonatomic, assign) BOOL animate;
+@property (nonatomic, assign) int amount;
 @property (nonatomic, assign) int hp;
 @property (nonatomic, assign) int points;
 @property (nonatomic, assign) int minMoveDuration;
@@ -24,18 +28,12 @@
 
 @end
 
-@interface WeakAndFastMonster : Monster {
-}
-+(id)monster;
-@end
-
-@interface StrongAndSlowMonster : Monster {
-}
-+(id)monster;
-@end
-
 @interface Pig : Monster {
 }
 +(id)monster;
 @end
 
+@interface Ram : Monster {
+}
++(id)monster;
+@end
