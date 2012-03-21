@@ -15,14 +15,10 @@
 	UINavigationController *navController_;
 
 	CCDirectorIOS	*director_;							// weak ref
-    int _score;
-    int _wave;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (readonly) UINavigationController *navController;
 @property (readonly) CCDirectorIOS *director;
-@property (nonatomic, assign) int score;
-@property (nonatomic, assign) int wave;
 
 @end
