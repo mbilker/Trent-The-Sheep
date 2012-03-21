@@ -1,21 +1,19 @@
+//
+//  AppDelegate.m
+//  Trent the Sheep
+//
+//  Created by Matt Bilker on 3/20/12.
+//  Copyright __MyCompanyName__ 2012. All rights reserved.
+//
 
 #import "cocos2d.h"
-#import "SimpleAudioEngine.h"
 
 #import "AppDelegate.h"
-#import "GameConfig.h"
-#import "SplashScene.h"
 #import "HelloWorldLayer.h"
-
-#import "DDGameKitHelper.h"
 
 @implementation AppController
 
-@synthesize window = window_;
-@synthesize navController = navController_;
-@synthesize director = director_;
-@synthesize score = _score;
-@synthesize wave = _wave;
+@synthesize window=window_, navController=navController_, director=director_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -82,18 +80,7 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	//[director_ pushScene: [HelloWorldLayer scene]];
-    
-    // Run the intro Scene
-	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
-    self.wave = 0;
-    self.score = 0;
-    
-    // Background Music
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"NyanCat.caf" loop:TRUE];
-    [[DDGameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
-    
-    [director_ pushScene:[SplashLayer scene]];
+	[director_ pushScene: [HelloWorldLayer scene]]; 
 
 	return YES;
 }
