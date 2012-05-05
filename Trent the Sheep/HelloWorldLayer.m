@@ -253,16 +253,16 @@ NSUInteger nCr(NSUInteger n, NSUInteger r)
         [[CCDirector sharedDirector] pause];
         
         CGSize s = [[CCDirector sharedDirector] winSize];
-        pauseLayer = [CCLayerColor layerWithColor: ccc4(150, 150, 150, 125) width: s.width height: s.height];
+        pauseLayer = [CCLayerColor layerWithColor: ccc4(150, 150, 150, 125) width:s.width height:s.height];
         pauseLayer.position = CGPointZero;
         [self addChild: pauseLayer z:8];
         
-        _pauseScreen = [[CCSprite spriteWithFile:@"pauseBackground.gif"] retain];
-        _pauseScreen.position = ccp(250,150);
-        [self addChild:_pauseScreen z:8];
+        //_pauseScreen = [[CCSprite spriteWithFile:@"pauseBackground.gif"] retain];
+        //_pauseScreen.position = ccp(250,150);
+        //[self addChild:_pauseScreen z:8];
         
         CCMenuItem *ResumeMenuItem = [CCMenuItemImage
-                                      itemWithNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png"
+                                      itemWithNormalImage:@"play.png" selectedImage:@"play.png"
                                       target:self selector:@selector(ResumeButtonTapped:)];
         ResumeMenuItem.position = ccp(250, 190);
         

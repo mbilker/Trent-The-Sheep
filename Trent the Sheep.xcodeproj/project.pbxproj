@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61CC0F761535F16800E08809 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 61CC0F751535F16800E08809 /* play.png */; };
 		651AB2E3151974C60023772D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651AB2E2151974C60023772D /* QuartzCore.framework */; };
 		651AB2E5151974C60023772D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651AB2E4151974C60023772D /* OpenGLES.framework */; };
 		651AB2E7151974C60023772D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651AB2E6151974C60023772D /* OpenAL.framework */; };
@@ -158,6 +159,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61CC0F751535F16800E08809 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		651AB2DE151974C60023772D /* Trent the Sheep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trent the Sheep.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		651AB2E2151974C60023772D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		651AB2E4151974C60023772D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -545,6 +547,7 @@
 			children = (
 				657F713F151984BC00D55825 /* Fonts */,
 				657F712C151983A300D55825 /* Spritesheets */,
+				61CC0F751535F16800E08809 /* play.png */,
 				657F713D1519849800D55825 /* pauseBackground.gif */,
 				657F713B1519840D00D55825 /* health.png */,
 				657F7139151983FD00D55825 /* gamecenter.png */,
@@ -960,7 +963,7 @@
 			attributes = {
 				LastUpgradeCheck = 0430;
 			};
-			buildConfigurationList = 651AB2D8151974C60023772D /* Build configuration list for PBXProject "Trent the Sheep" */;
+			buildConfigurationList = 651AB2D8151974C60023772D /* Build configuration list for PBXProject "Trent The Sheep" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1011,6 +1014,7 @@
 				657F72F315198AB100D55825 /* Icon.png in Resources */,
 				657F72F415198AB100D55825 /* Icon@2x.png in Resources */,
 				657F72F615198ACB00D55825 /* Default.png in Resources */,
+				61CC0F761535F16800E08809 /* play.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,7 +1145,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lawrence Bilker";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lawrence Bilker";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1153,6 +1158,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PROVISIONING_PROFILE = "D4D4B7B2-5EF4-41C1-A163-FB2FD41F698D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D4D4B7B2-5EF4-41C1-A163-FB2FD41F698D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1162,7 +1169,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lawrence Bilker";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lawrence Bilker";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -1172,6 +1180,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PROVISIONING_PROFILE = "D4D4B7B2-5EF4-41C1-A163-FB2FD41F698D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D4D4B7B2-5EF4-41C1-A163-FB2FD41F698D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1181,6 +1191,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lawrence Bilker";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lawrence Bilker";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1195,6 +1207,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D4D4B7B2-5EF4-41C1-A163-FB2FD41F698D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D4D4B7B2-5EF4-41C1-A163-FB2FD41F698D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1203,6 +1217,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lawrence Bilker";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lawrence Bilker";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Trent the Sheep/Prefix.pch";
@@ -1216,6 +1232,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D4D4B7B2-5EF4-41C1-A163-FB2FD41F698D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D4D4B7B2-5EF4-41C1-A163-FB2FD41F698D";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1224,7 +1242,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		651AB2D8151974C60023772D /* Build configuration list for PBXProject "Trent the Sheep" */ = {
+		651AB2D8151974C60023772D /* Build configuration list for PBXProject "Trent The Sheep" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				651AB46B151974C90023772D /* Debug */,
